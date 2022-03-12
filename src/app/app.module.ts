@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MyStravaComponent } from './my-strava/my-strava.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { environment } from '../environments/environment';
     HomeComponent,
     LoginComponent,
     ProfileComponent,
-    MyStravaComponent
+    MyStravaComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

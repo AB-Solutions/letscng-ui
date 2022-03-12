@@ -1,0 +1,28 @@
+.navbar-brand {
+    img {
+        width: 40px;
+    }
+}
+
+.nav-item {
+    a {
+        color: rgba(31, 45, 61, .8);
+    }
+}
+
+.navbar-toggler {
+    &:focus {
+        box-shadow: none;
+    }
+    .fa-times {
+        display: none;
+    }
+    &[aria-expanded="true"] {
+        .fa-align-justify {
+            display: none;
+        }
+        .fa-times {
+            display: inline;
+        }
+    }
+}

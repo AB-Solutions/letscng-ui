@@ -1,13 +1,11 @@
-@media only screen and (min-width: 768px) {
-    .main-content {
-        background-color: lightgreen;
-        min-height: calc(100% - 171px)
+@media only screen and (max-width: 991px) {
+    .top-contents {
+        min-height: calc(100% - 113.48px)
     }
 }
 
 @media only screen and (min-width: 992px) {
-    .main-content {
-        background-color: lightblue;
-        min-height: calc(100% - 138px)
+    .top-contents {
+        min-height: calc(100% - 80px)
     }
 }

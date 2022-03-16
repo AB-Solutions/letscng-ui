@@ -4,49 +4,61 @@
     <h2>Your Profile</h2>
     <p class="cng-grey">Please enter details</p>
   </div>
-  <form class="mt-5">
+  <form class="mt-5" [formGroup]="userForm">
     <div class="form-group">
-      <input type="text" class="form-control form-control-lg one-edge-shadow" name="firstname" required/>
-      <label class="input-label">
+      <input type="text" class="form-control form-control-lg one-edge-shadow"
+        name="firstname" required formControlName="firstName"/>
+      <label class="input-label" [ngClass]="{'fly': userForm.controls['firstName'].value}">
         <span class="input-label-value">First Name</span>
       </label>
+      <span class="error" *ngIf="userForm.controls['firstName'].invalid && userFormSubmitted">Please enter First name.</span>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control form-control-lg mt-3" name="lastname" required/>
-      <label class="input-label">
+      <input type="text" class="form-control form-control-lg mt-3"
+        formControlName="lastName" name="lastname" required/>
+      <label class="input-label" [ngClass]="{'fly': userForm.controls['lastName'].value}">
         <span class="input-label-value">Last Name</span>
       </label>
+      <span class="error" *ngIf="userForm.controls['lastName'].invalid && userFormSubmitted">Please enter Last name.</span>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control form-control-lg mt-3" name="phone" required/>
-      <label class="input-label">
+      <input type="text" class="form-control form-control-lg mt-3"
+      formControlName="phoneNumber" name="phoneNumber" required/>
+      <label class="input-label" [ngClass]="{'fly': userForm.controls['phoneNumber'].value}">
         <span class="input-label-value">Phone Number</span>
       </label>
+      <span class="error" *ngIf="userForm.controls['phoneNumber'].invalid && userFormSubmitted">Please enter Phone Number.</span>
     </div>
     <div class="form-group">
-      <input type="date" class="form-control form-control-lg no-authenticate mt-3" name="dob" required/>
-      <label class="input-label">
+      <input type="text" class="form-control form-control-lg no-authenticate mt-3"
+        formControlName="dob" name="dob" required/>
+      <label class="input-label" [ngClass]="{'fly': userForm.controls['dob'].value}">
         <span class="input-label-value">Date of Birth</span>
       </label>
+      <span class="error" *ngIf="userForm.controls['dob'].invalid && userFormSubmitted">Please enter DOB (dd/mm/yyyy).</span>
     </div>
     <div class="form-group">
-      <select class="form-select form-control form-control-lg mt-3" name="gender" required>
+      <select class="form-select form-control form-control-lg mt-3"
+        formControlName="gender" name="gender" required>
         <option value=""></option>
-        <option vlaue="Male">Male</option>
-        <option vlaue="Female">Female</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
       </select>
-      <label class="input-label">
+      <label class="input-label" [ngClass]="{'fly': userForm.controls['gender'].value}">
         <span class="input-label-value">Gender</span>
       </label>
+      <span class="error" *ngIf="userForm.controls['gender'].invalid && userFormSubmitted">Please select gender.</span>
     </div>
     <div class="form-group">
-      <input class="form-control form-control-lg mt-3" name="address" required />
-      <label class="input-label">
+      <input class="form-control form-control-lg mt-3" name="address"
+        formControlName="address" required />
+      <label class="input-label" [ngClass]="{'fly': userForm.controls['address'].value}">
         <span class="input-label-value">Communication Address</span>
       </label>
+      <span class="error" *ngIf="userForm.controls['address'].invalid && userFormSubmitted">Please enter address.</span>
     </div>
     <div class="form-group mt-4 d-grid">
-      <button type="submit" class="btn cng-btn-blue btn-lg">Update Profile</button>
+      <button type="submit" class="btn cng-btn-blue btn-lg" (click)="submitForm()">Update Profile</button>
     </div>
   </form>
 </div>

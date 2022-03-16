@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { FooterComponent } from './footer/footer.component';
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { RecaptchaModule } from "ng-recaptcha";
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { RecaptchaModule } from "ng-recaptcha";
     }),
     Ng2TelInputModule,
     RecaptchaModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

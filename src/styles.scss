@@ -57,7 +57,7 @@ input.form-control, select.form-control, textarea.form-control {
   }
 
   &:valid {
-    &+label.input-label {
+    &+label.input-label.fly {
       &>span.input-label-value {
         margin-top: -80px;
         font-size: 12px;
@@ -86,6 +86,9 @@ input.form-control, select.form-control, textarea.form-control {
 .fs-20 {
   font-size: 20px;
 }
+.fs-12 {
+  font-size: 12px;
+}
 
 /* Chrome, Safari, Edge, Opera */
 input.no-number::-webkit-outer-spin-button,
@@ -113,7 +116,7 @@ input.no-number[type=number] {
 .cng-btn-blue {
   background-color: $cng-blue-color;
   border-color: $cng-blue-color;
-  color: $cng-white-color;
+  color: $cng-white-color !important;
 }
 
 
@@ -134,4 +137,14 @@ input.no-number[type=number] {
   background-color: $cng-grey-color;
   border-color: $cng-grey-color;
   color: $cng-white-color;
+}
+
+.error {
+  color: $cng-error-color;
+  margin-left: 16px;
+  font-size: 12px;
+}
+
+.pointer {
+  cursor: pointer;
 }

@@ -11,7 +11,8 @@ import { MyStravaComponent } from './my-strava/my-strava.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { FooterComponent } from './footer/footer.component';
-
+import { Ng2TelInputModule } from 'ng2-tel-input';
+import { RecaptchaModule } from "ng-recaptcha";
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,9 @@ import { FooterComponent } from './footer/footer.component';
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    Ng2TelInputModule,
+    RecaptchaModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

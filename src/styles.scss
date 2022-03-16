@@ -1,9 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+$cng-blue-color: #125ea3;
+$cng-grey-color: #757575;
+$cng-green-color: #74b84a;
+$cng-white-color: #ffffff;
+$cng-error-color: #dd2c00;
+$header-color: #152c5b;
 
 html,
 body,
 .h100 {
-    height: 100%;
+  height: 100%;
+  font-family: 'Nunito Sans';
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $header-color;
+}
+
+.display-4 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .pad-0 {
@@ -17,23 +34,23 @@ body,
 }
 
 input.form-control, select.form-control, textarea.form-control {
-  border-color: transparent transparent grey;
+  border-color: transparent transparent $cng-grey-color;
   background-color: transparent;
   border-radius: 0;
-  color: gray;
+  color: $cng-grey-color;
 
   &:focus {
     border: none;
     background-color: transparent;
-    -webkit-box-shadow: 0 8px 6px -6px gray;
-    -moz-box-shadow: 0 8px 6px -6px gray;
-    box-shadow: 0 8px 6px -6px gray;
+    -webkit-box-shadow: 0 8px 6px -6px $cng-grey-color;
+    -moz-box-shadow: 0 8px 6px -6px $cng-grey-color;
+    box-shadow: 0 8px 6px -6px $cng-grey-color;
   }
 
   &.no-authenticate {
     &+label.input-label {
       &>span.input-label-value {
-        color: #bbbbbb;
+        color: $cng-grey-color;
         margin-top: -80px;
       }
     }
@@ -43,8 +60,8 @@ input.form-control, select.form-control, textarea.form-control {
     &+label.input-label {
       &>span.input-label-value {
         margin-top: -80px;
-        font-size: 15px;
-        color: lightseagreen;
+        font-size: 12px;
+        color: $cng-green-color;
       }
     }
   }
@@ -57,7 +74,7 @@ input.form-control, select.form-control, textarea.form-control {
       display: block;
       margin-top: -50px;
       margin-left: 1rem;
-      color: #bbbbbb;
+      color: $cng-grey-color;
       white-space: nowrap;
       transition: all 0.2s;
       z-index: -1;
@@ -66,5 +83,55 @@ input.form-control, select.form-control, textarea.form-control {
 }
 
 
-.one-edge-shadow {
+.fs-20 {
+  font-size: 20px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input.no-number::-webkit-outer-spin-button,
+input.no-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input.no-number[type=number] {
+  -moz-appearance: textfield;
+}
+
+.greyed {
+  color: $cng-grey-color;
+}
+
+.small-text {
+  font-size: 12px;
+}
+
+.cng-blue {
+  color: $cng-blue-color
+}
+.cng-btn-blue {
+  background-color: $cng-blue-color;
+  border-color: $cng-blue-color;
+  color: $cng-white-color;
+}
+
+
+.cng-green {
+  color: $cng-green-color
+}
+.cng-btn-green {
+  background-color: $cng-green-color;
+  border-color: $cng-green-color;
+  color: $cng-white-color;
+}
+
+
+.cng-grey {
+  color: $cng-grey-color
+}
+.cng-btn-grey {
+  background-color: $cng-grey-color;
+  border-color: $cng-grey-color;
+  color: $cng-white-color;
 }

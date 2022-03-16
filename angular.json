@@ -32,9 +32,12 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
+              "node_modules/intl-tel-input/build/css/intlTelInput.css",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/intl-tel-input/build/js/intlTelInput.min.js"
+            ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },

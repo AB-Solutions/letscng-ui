@@ -1,5 +1,13 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+
+import firebase from 'firebase/compat/app';
+import "firebase/auth";
+import "firebase/firestore";
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,6 +20,16 @@ export class LoginComponent implements OnInit {
   phoneWithCountryCode: string = '';
   timer: number = 10;
   timerStr: string = '10';
+  recaptchaVerifier: any;
+  fetchingOtp = false;
+  otp: string = '';
+  otpConfig = {
+    length: 6,
+    allowNumbersOnly: true,
+    isPasswordInput: false,
+    disableAutoFocus: false,
+    placeholder: ''
+  }
 
   phone = new FormControl('', [
     Validators.required,
@@ -28,11 +46,15 @@ export class LoginComponent implements OnInit {
   smsFormSubmitted: boolean = false;
   verifyFormSubmitted: boolean = false;
   codeSend: boolean = false;
-  constructor() {
+  constructor(private router: Router) {
     this.captcha = '';
   }
 
   ngOnInit(): void {
+    firebase.initializeApp(environment.firebaseConfig);
+  }
+
+  ngAfterViewInit(): void {
   }
 
   hasError(error: any) {
@@ -67,18 +89,41 @@ export class LoginComponent implements OnInit {
   verify() {
     this.smsFormSubmitted = true;
     this.timer = 10;
+
     if (this.phone.valid) {
       console.log(this.phone.valid);
       console.log(this.phone.value);
-      this.phoneWithCountryCode = `+${this.countryCode}-${this.phone.value}`;
+
+      this.phoneWithCountryCode = `+${this.countryCode}${this.phone.value}`;
 
       console.log('valid Ph num is : ', this.phoneWithCountryCode);
-      this.codeSend = true;
 
-      var self = this;
-      setTimeout(function(){
-        self.runTimer();
-      }, 1000);
+      console.log('this.recaptchaVerifier: ', this.recaptchaVerifier);
+
+      this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('firebase-recaptcha', {
+        size: 'invisible'
+      });
+
+      console.log('this.recaptchaVerifier: ', this.recaptchaVerifier);
+
+      this.fetchingOtp = true;
+
+      firebase.auth().signInWithPhoneNumber(
+        this.phoneWithCountryCode,
+        this.recaptchaVerifier
+      ).then((result) => {
+        console.log('result: ', result);
+        localStorage.setItem('verificationId', result.verificationId);
+        this.fetchingOtp = false;
+        this.codeSend = true;
+
+        var self = this;
+        setTimeout(function(){
+          self.runTimer();
+        }, 1000);
+      }).catch((error) => {
+        console.log(error);
+      });
 
     }
   }
@@ -105,9 +150,27 @@ export class LoginComponent implements OnInit {
 
   codeVerify() {
     this.verifyFormSubmitted = true;
+    const verify = localStorage.getItem('verificationId') || '';
+
+    const credentials = firebase.auth.PhoneAuthProvider.credential(verify, this.otp);
+    console.log('credentials : ', credentials);
+
+    firebase.auth().signInWithCredential(credentials).then((response) => {
+      console.log('signInWithCredential response: ', response);
+      this.router.navigate(['/profile']);
+    }).catch(error => {
+      console.log('signInWithCredential error: ', error);
+    });
+
   }
 
   resendCode() {}
 
+  onOtpChange(otp: any) {
+    if (otp.length === 6) {
+      console.log('otp is : ', otp);
+      this.otp = otp;
+    }
+  }
 
 }

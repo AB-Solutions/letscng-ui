@@ -14,6 +14,13 @@ import { FooterComponent } from './footer/footer.component';
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { RecaptchaModule } from "ng-recaptcha";
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgOtpInputModule } from  'ng-otp-input';
+
+// import Firebase
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { LoadingIconComponent } from './loading-icon/loading-icon.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     ProfileComponent,
     MyStravaComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingIconComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +44,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     Ng2TelInputModule,
     RecaptchaModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    NgOtpInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

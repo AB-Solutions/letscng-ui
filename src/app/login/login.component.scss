@@ -40,3 +40,13 @@ div.countryCodeGroup {
 .phoneNumberGroup {
   width: calc(100% - 78px);
 }
+
+.otp-input {
+  width: 14% !important;
+  border-color: transparent transparent #152c5b !important;
+  border-radius: unset !important;
+
+  &:focus-visible {
+    outline: none !important;
+  }
+}

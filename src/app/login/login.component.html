@@ -43,9 +43,12 @@
                       (resolved)="resolved($event)"
                       siteKey="6LdbS-UeAAAAAKp0lL-QNwGE_MH7kNbh5ezjxbf6"
                     ></re-captcha>
+                    <hr/>
+                    <div class="hidden" id="firebase-recaptcha"></div>
                   </div>
                   <div [hidden]="!captcha">
-                    <div class="form-group mt-4 d-grid">
+                    <div class="form-group relative mt-4 d-grid">
+                      <app-loading-icon *ngIf="fetchingOtp"></app-loading-icon>
                       <button type="submit" class="btn cng-btn-blue btn-lg" (click)="verify()">Verify</button>
                       <p class="small-text greyed mt-3">By tapping Verify, an SMS may be sent. Message &amp; data rates may apply.</p>
                     </div>
@@ -61,15 +64,18 @@
                         <div>Enter the 6-digit code we sent to</div>
                         <span class="cng-blue pointer" (click)="editPhone()">{{phoneWithCountryCode}}</span>
                       </div>
-                      <div class="form-group mt-5">
+                      <!-- <div class="form-group mt-5">
                         <input type="number" class="form-control no-number form-control-lg mt-3" name="sixDigitCode"
                         [formControl]="sixDigitCode" required/>
                         <label class="input-label" [ngClass]="{'fly': sixDigitCode.value}">
                           <span class="input-label-value">6-digit code</span>
                         </label>
                         <span class="error" *ngIf="sixDigitCode.invalid && verifyFormSubmitted">Wrong code. Try again</span>
+                      </div> -->
+                      <div class="input-group mt-3">
+                        <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="otpConfig"></ng-otp-input>
                       </div>
-                      <div class="input-group mt-5">
+                      <div class="input-group mt-3">
                         <button type="submit" class="btn cng-btn-grey btn-lg col-6" (click)="editPhone()">CANCEL</button>
                         <button type="submit" class="btn cng-btn-blue btn-lg col-6" (click)="codeVerify()">CONTINUE</button>
                       </div>

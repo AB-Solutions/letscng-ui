@@ -173,8 +173,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-  resendCode() {}
-
   onOtpChange(otp: any) {
     this.otp = otp;
   }

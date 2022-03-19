@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
   recaptchaVerifier: any;
   fetchingOtp = false;
   otp: string = '';
+  otpContinueDisabled: boolean = false;
+  otpCodeError: boolean = false;
   otpConfig = {
     length: 6,
     allowNumbersOnly: true,
@@ -154,6 +156,7 @@ export class LoginComponent implements OnInit {
   }
 
   codeVerify() {
+    this.otpCodeError = false;
     this.verifyFormSubmitted = true;
     const verify = localStorage.getItem('verificationId') || '';
 
@@ -165,6 +168,7 @@ export class LoginComponent implements OnInit {
       this.authService.saveUserInStore(response);
     }).catch(error => {
       console.log('signInWithCredential error: ', error);
+      this.otpCodeError = true;
     });
 
   }
@@ -172,10 +176,7 @@ export class LoginComponent implements OnInit {
   resendCode() {}
 
   onOtpChange(otp: any) {
-    if (otp.length === 6) {
-      console.log('otp is : ', otp);
-      this.otp = otp;
-    }
+    this.otp = otp;
   }
 
 }

@@ -43,7 +43,6 @@
                       (resolved)="resolved($event)"
                       siteKey="6LdbS-UeAAAAAKp0lL-QNwGE_MH7kNbh5ezjxbf6"
                     ></re-captcha>
-                    <hr/>
                     <div class="hidden" id="firebase-recaptcha"></div>
                   </div>
                   <div [hidden]="!captcha">
@@ -74,10 +73,11 @@
                       </div> -->
                       <div class="input-group mt-3">
                         <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="otpConfig"></ng-otp-input>
+                        <span class="error" *ngIf="otpCodeError">Wrong code. Try again</span>
                       </div>
                       <div class="input-group mt-3">
                         <button type="submit" class="btn cng-btn-grey btn-lg col-6" (click)="editPhone()">CANCEL</button>
-                        <button type="submit" class="btn cng-btn-blue btn-lg col-6" (click)="codeVerify()">CONTINUE</button>
+                        <button type="submit" class="btn cng-btn-blue btn-lg col-6" (click)="codeVerify()" [disabled]="otp.length < 6">CONTINUE</button>
                       </div>
 
                       <div class="mt-5 text-center cng-grey">

@@ -7,11 +7,12 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+  userData: any = {};
   userFormSubmitted: boolean = false;
   userForm = new FormGroup({
     firstName: new FormControl('Ujjal', [Validators.required]),
     lastName: new FormControl('Bhaskar', [Validators.required]),
-    phoneNumber: new FormControl('9876543212', [
+    phoneNumber: new FormControl({value: '', disabled: true}, [
       Validators.required,
       Validators.min(1000000000),
       Validators.max(9999999999)
@@ -23,6 +24,10 @@ export class ProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.userData = JSON.parse(localStorage.getItem('user_data') || '{}');
+    console.log('userData is : ', this.userData);
+    this.userForm.controls['phoneNumber'].setValue(this.userData.user.phoneNumber);
+    this.userForm.controls['phoneNumber'].disable();
   }
 
   submitForm() {

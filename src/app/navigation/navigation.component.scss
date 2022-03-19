@@ -19,6 +19,10 @@
 .nav-item {
     a {
         color: rgba(31, 45, 61, .8);
+
+        &.active {
+          color: #125ea3;
+        }
     }
 }
 

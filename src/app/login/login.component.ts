@@ -7,6 +7,7 @@ import "firebase/firestore";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -46,7 +47,11 @@ export class LoginComponent implements OnInit {
   smsFormSubmitted: boolean = false;
   verifyFormSubmitted: boolean = false;
   codeSend: boolean = false;
-  constructor(private router: Router) {
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) {
     this.captcha = '';
   }
 
@@ -157,7 +162,7 @@ export class LoginComponent implements OnInit {
 
     firebase.auth().signInWithCredential(credentials).then((response) => {
       console.log('signInWithCredential response: ', response);
-      this.router.navigate(['/profile']);
+      this.authService.saveUserInStore(response);
     }).catch(error => {
       console.log('signInWithCredential error: ', error);
     });

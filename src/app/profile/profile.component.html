@@ -30,7 +30,7 @@
       <span class="error" *ngIf="userForm.controls['phoneNumber'].invalid && userFormSubmitted">Please enter Phone Number.</span>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control form-control-lg no-authenticate mt-3"
+      <input type="date" class="form-control form-control-lg no-authenticate mt-3"
         formControlName="dob" name="dob" required/>
       <label class="input-label" [ngClass]="{'fly': userForm.controls['dob'].value}">
         <span class="input-label-value">Date of Birth</span>

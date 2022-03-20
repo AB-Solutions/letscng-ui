@@ -10,16 +10,16 @@ export class ProfileComponent implements OnInit {
   userData: any = {};
   userFormSubmitted: boolean = false;
   userForm = new FormGroup({
-    firstName: new FormControl('Ujjal', [Validators.required]),
-    lastName: new FormControl('Bhaskar', [Validators.required]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl({value: '', disabled: true}, [
       Validators.required,
       Validators.min(1000000000),
       Validators.max(9999999999)
     ]),
-    dob: new FormControl('05/04/1991', [Validators.required]),
-    gender: new FormControl('male', [Validators.required]),
-    address: new FormControl('ABC Street, Kolkata, 700001', [Validators.required]),
+    dob: new FormControl('', [Validators.required]),
+    gender: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required]),
   })
   constructor() { }
 

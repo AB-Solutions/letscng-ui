@@ -15,6 +15,7 @@ import { Ng2TelInputModule } from 'ng2-tel-input';
 import { RecaptchaModule } from "ng-recaptcha";
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgOtpInputModule } from  'ng-otp-input';
+import { HttpClientModule } from '@angular/common/http';
 
 // import Firebase
 import { AngularFireModule } from "@angular/fire/compat";
@@ -48,6 +49,7 @@ import { LoadingIconComponent } from './loading-icon/loading-icon.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     NgOtpInputModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

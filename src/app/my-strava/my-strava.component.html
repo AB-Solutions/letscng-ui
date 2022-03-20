@@ -1,1 +1,43 @@
-<p>my-strava works!</p>
+<section>
+  <div class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 py-6 py-md-0">
+        <div class="card shadow zindex-100 mb-0">
+          <div class="card-body px-md-5 py-5 text-center">
+            <div class="mb-5">
+              <h6 class="h3">My Strava</h6>
+              <a *ngIf="!(athlete?.id)" class="btn btn-lg px-5 btn-block" href="{{'https://www.strava.com/oauth/authorize?client_id='+environment.stravaConfig.client_id+'&redirect_uri=http://'+window.location.host+'/strava&response_type=code&scope=activity:read'}}" role="button" id="stravaAuth">
+                <img src="../../assets/img/cws.png" height="30">
+              </a>
+              <div class="card-body" *ngIf="athlete?.id">
+                <h6>Strava Profile Details:</h6>
+                <img class="strava-profile-pic mb-3" src="{{athlete.profile}}" alt="{{athlete.firstname}} {{athlete.lastname}}"/>
+                <table class="text-left  table table-striped">
+                  <tbody>
+                    <tr>
+                      <td>Strava Id</td>
+                      <td>{{athlete.id}}</td>
+                    </tr>
+                    <tr>
+                      <td>Rider Name</td>
+                      <td>{{athlete.firstname}} {{athlete.lastname}}</td>
+                    </tr>
+                    <tr>
+                      <td>Place</td>
+                      <td>{{athlete.city}}, {{athlete.state}}</td>
+                    </tr>
+                    <tr>
+                      <td>Gender</td>
+                      <td>{{athlete.sex}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <img src="../../assets/img/brand/api_logo_pwrdBy_strava_horiz_light.png" class="img-fluid d-block mx-auto" style="max-width: 50%" alt="Responsive image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

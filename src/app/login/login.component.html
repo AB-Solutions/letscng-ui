@@ -47,7 +47,7 @@
                   </div>
                   <div [hidden]="!captcha">
                     <div class="form-group relative mt-4 d-grid">
-                      <app-loading-icon *ngIf="fetchingOtp"></app-loading-icon>
+                      <!-- <app-loading-icon *ngIf="fetchingOtp"></app-loading-icon> -->
                       <button type="submit" class="btn cng-btn-blue btn-lg" (click)="verify()">Verify</button>
                       <p class="small-text greyed mt-3">By tapping Verify, an SMS may be sent. Message &amp; data rates may apply.</p>
                     </div>

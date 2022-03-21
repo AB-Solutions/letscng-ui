@@ -8,7 +8,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-
+import { CommonUtilService } from '../common-util.service';
+import { LoadingEnum } from '../enum/loading.enum';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -53,6 +54,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private commonUtilService: CommonUtilService
   ) {
     this.captcha = '';
   }
@@ -113,7 +115,7 @@ export class LoginComponent implements OnInit {
 
       console.log('this.recaptchaVerifier: ', this.recaptchaVerifier);
 
-      this.fetchingOtp = true;
+      this.commonUtilService.setloadingMessage('Verifying Phone Number');
 
       firebase.auth().signInWithPhoneNumber(
         this.phoneWithCountryCode,
@@ -121,7 +123,7 @@ export class LoginComponent implements OnInit {
       ).then((result) => {
         console.log('result: ', result);
         localStorage.setItem('verificationId', result.verificationId);
-        this.fetchingOtp = false;
+        this.commonUtilService.setloadingSuccess(LoadingEnum.OTP_SENT);
         this.codeSend = true;
 
         var self = this;
@@ -129,6 +131,7 @@ export class LoginComponent implements OnInit {
           self.runTimer();
         }, 1000);
       }).catch((error) => {
+        this.commonUtilService.setloadingMessage('');
         console.log(error);
       });
 
@@ -163,10 +166,14 @@ export class LoginComponent implements OnInit {
     const credentials = firebase.auth.PhoneAuthProvider.credential(verify, this.otp);
     console.log('credentials : ', credentials);
 
+    this.commonUtilService.setloadingMessage('Verifying OTP');
+
     firebase.auth().signInWithCredential(credentials).then((response) => {
       console.log('signInWithCredential response: ', response);
+      this.commonUtilService.setloadingSuccess(LoadingEnum.OTP_VERIFIED);
       this.authService.saveUserInStore(response);
     }).catch(error => {
+      this.commonUtilService.setloadingMessage('');
       console.log('signInWithCredential error: ', error);
       this.otpCodeError = true;
     });

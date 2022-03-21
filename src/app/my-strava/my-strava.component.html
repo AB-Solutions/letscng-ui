@@ -6,7 +6,7 @@
           <div class="card-body px-md-5 py-5 text-center">
             <div class="mb-5">
               <h6 class="h3">My Strava</h6>
-              <a *ngIf="!(athlete?.id)" class="btn btn-lg px-5 btn-block" href="{{'https://www.strava.com/oauth/authorize?client_id='+environment.stravaConfig.client_id+'&redirect_uri=http://'+window.location.host+'/strava&response_type=code&scope=activity:read'}}" role="button" id="stravaAuth">
+              <a *ngIf="!(athlete?.id)" class="btn btn-lg px-5 btn-block" href="{{'https://www.strava.com/oauth/authorize?client_id='+environment.stravaConfig.client_id+'&redirect_uri='+window.location.origin+'/strava?phoneNumber='+loggedUser.user.phoneNumber+'&response_type=code&scope=activity:read'}}" role="button" id="stravaAuth">
                 <img src="../../assets/img/cws.png" height="30">
               </a>
               <div class="card-body" *ngIf="athlete?.id">

@@ -177,3 +177,12 @@ input.no-number[type=number] {
   color: $cng-blue-color;
   cursor: pointer;
 }
+
+.small-icon {
+  width: 30px;
+  height: 30px;
+}
+
+table.no-wrap th {
+  white-space: nowrap;
+}

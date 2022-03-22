@@ -46,12 +46,12 @@
                   <a class="nav-link active" href="#">My Rides</a>
                 </li>
               </ul>
-              <app-my-rides *ngIf="activities.length > 0" [activities]="activities"></app-my-rides>
+              <app-my-rides *ngIf="activities.length > 0 && !loadingActivities" [activities]="activities" (refresh)="getStravaUserActivities()"></app-my-rides>
               <br/>
               <div class="alert alert-danger" *ngIf="activities.length === 0 && noActivitiesFound">
                 <strong>Info!</strong> No activities found...
               </div>
-              <div class="alert alert-info" *ngIf="activities.length === 0 && loadingActivities">
+              <div class="alert alert-info" *ngIf="loadingActivities">
                 <strong>Loading activities....</strong>
               </div>
             </section>

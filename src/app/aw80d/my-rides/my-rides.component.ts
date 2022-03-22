@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-my-rides',
@@ -7,11 +7,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MyRidesComponent implements OnInit {
   @Input() activities: any[] = [];
+  @Output() refresh: EventEmitter<boolean> = new EventEmitter();
   limit = 10;
   limitExceeded = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  syncData() {
+    this.refresh.emit(true);
   }
 
   getDate(dateStr: any) {

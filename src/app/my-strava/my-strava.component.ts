@@ -61,7 +61,9 @@ export class MyStravaComponent implements OnInit {
     this.loadingActivities = true;
     this.authService.getStravaUserActivities().subscribe((data: any) => {
       console.log('activities: ', data);
-      this.activities = data;
+      this.activities = data.filter((activity: any) => {
+        return activity.type === 'Ride';
+      });
       this.loadingActivities = false;
       if (this.activities.length === 0) {
         this.noActivitiesFound = true;

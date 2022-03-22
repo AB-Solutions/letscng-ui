@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -8,8 +9,17 @@ import { AuthService } from '../auth.service';
 })
 export class NavigationComponent implements OnInit {
   isUserLoggedIn = false;
+  currentUrl: string = '';
   userData: any;
-  constructor(private authService: AuthService) { }
+
+  @ViewChild('navbar') navbar: ElementRef<HTMLElement> | undefined;
+
+  constructor(private authService: AuthService, private router: Router) { }
+
+  triggerNavbarClose() {
+    let el: HTMLElement | undefined = this.navbar?.nativeElement;
+    el?.click();
+  }
 
   ngOnInit(): void {
     this.userData = this.authService.getLoggedUser();
@@ -30,6 +40,17 @@ export class NavigationComponent implements OnInit {
       }
     });
 
+    this.router.events.subscribe((change: any) => {
+      if (change instanceof NavigationStart) {
+        console.log('change : ', change);
+        if (change.url !== this.currentUrl) {
+          this.triggerNavbarClose();
+          console.log('now close items');
+        }
+        this.currentUrl = change.url;
+      }
+
+    })
   }
 
   logoutUser() {

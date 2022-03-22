@@ -1,11 +1,11 @@
 <section>
   <div class="container d-flex flex-column">
     <div class="row align-items-center justify-content-center">
-      <div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 py-6 py-md-0">
+      <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 py-6 py-md-0">
         <div class="card shadow zindex-100 mb-0">
           <div class="card-body px-md-5 py-5 text-center">
             <div class="mb-5">
-              <h6 class="h3">My Strava</h6>
+              <h6 class="h3" (click)="dtSd()">My Strava</h6>
               <a *ngIf="!(athlete?.id)" class="btn btn-lg px-5 btn-block" href="{{'https://www.strava.com/oauth/authorize?client_id='+environment.stravaConfig.client_id+'&redirect_uri='+window.location.origin+'/strava?phoneNumber='+loggedUser.user.phoneNumber+'&response_type=code&scope=activity:read'}}" role="button" id="stravaAuth">
                 <img src="../../assets/img/cws.png" height="30">
               </a>
@@ -34,6 +34,27 @@
                 </table>
               </div>
             </div>
+            <section class="activities">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Team Leaderboard</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">My Team</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">My Rides</a>
+                </li>
+              </ul>
+              <app-my-rides *ngIf="activities.length > 0" [activities]="activities"></app-my-rides>
+              <br/>
+              <div class="alert alert-danger" *ngIf="activities.length === 0 && noActivitiesFound">
+                <strong>Info!</strong> No activities found...
+              </div>
+              <div class="alert alert-info" *ngIf="activities.length === 0 && loadingActivities">
+                <strong>Loading activities....</strong>
+              </div>
+            </section>
             <img src="../../assets/img/brand/api_logo_pwrdBy_strava_horiz_light.png" class="img-fluid d-block mx-auto" style="max-width: 50%" alt="Responsive image">
           </div>
         </div>

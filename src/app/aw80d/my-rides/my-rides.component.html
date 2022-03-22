@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>SL No.</th>
+      <th>Date</th>
+      <th>Ride Title</th>
+      <th>Distance (KM)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let activity of activities | slice:0:limit; index as i;">
+      <td>{{i + 1}}</td>
+      <td>{{getDate(activity.start_date)}}</td>
+      <td [attr.title]="activity.name" class="ellipsis">{{activity.name}}</td>
+      <td>{{getDistance(activity.distance)}}</td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!limitExceeded">
+    <tr>
+      <td class="link" colspan="4" (click)="loadMore()">Load more</td>
+    </tr>
+  </tfoot>
+</table>

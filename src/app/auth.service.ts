@@ -38,7 +38,7 @@ export class AuthService {
   logoutUser() {
     localStorage.removeItem('user_data');
     this.afAuth.signOut();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('');
   }
 
   getStravaProfileDetails(code: string) {

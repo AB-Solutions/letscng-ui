@@ -18,7 +18,10 @@ export class NavigationComponent implements OnInit {
 
   triggerNavbarClose() {
     let el: HTMLElement | undefined = this.navbar?.nativeElement;
-    el?.click();
+
+    if(el?.getAttribute('aria-expanded') === 'true') {
+      el?.click();
+    }
   }
 
   ngOnInit(): void {

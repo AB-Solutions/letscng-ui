@@ -46,6 +46,21 @@
                   <a class="nav-link active" href="#">My Rides</a>
                 </li>
               </ul>
+              <div class="btn-group filter-btn-group col-12 mt-3 mb-3">
+                <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 7}" (click)="setFilterLast(7)">
+                  Last 7 days
+                  <i class="fa-solid fa-check"></i>
+                </button>
+                <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 14}" (click)="setFilterLast(14)">
+                  Last 14 days
+                  <i class="fa-solid fa-check"></i>
+                </button>
+                <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 30}" (click)="setFilterLast(30)">
+                  Last 30 days
+                  <i class="fa-solid fa-check"></i>
+                </button>
+                <span class="link"><img class="small-icon" src="../../assets/icons/icons8-refresh-48.png" (click)="getStravaUserActivities()"/></span>
+              </div>
               <app-my-rides *ngIf="activities.length > 0 && !loadingActivities" [activities]="activities" (refresh)="getStravaUserActivities()"></app-my-rides>
               <br/>
               <div class="alert alert-danger" *ngIf="activities.length === 0 && noActivitiesFound">

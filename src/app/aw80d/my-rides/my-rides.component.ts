@@ -25,7 +25,7 @@ export class MyRidesComponent implements OnInit {
     if (date < 10) {
       date = `0${date}`;
     }
-    let month: any = d.getMonth();
+    let month: any = d.getMonth() + 1;
     if (month < 10) {
       month = `0${month}`;
     }

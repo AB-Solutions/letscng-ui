@@ -3,7 +3,9 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import { AuthService } from '../auth.service';
 import { environment } from 'src/environments/environment';
 import { CommonUtilService } from '../common-util.service';
-import { LoadingEnum } from '../enum/loading.enum'
+import { LoadingEnum } from '../enum/loading.enum';
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-my-strava',
   templateUrl: './my-strava.component.html',
@@ -17,12 +19,33 @@ export class MyStravaComponent implements OnInit {
   loggedUser: any;
   noActivitiesFound = false;
   loadingActivities = false;
+  filterLast = 7;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private commonUtilService: CommonUtilService,
   ) { }
+
+  setFilterLast(days: number) {
+    this.filterLast = days;
+    this.getStravaUserActivities();
+  }
+
+  getLastDaysTimeStamp(days: number) {
+    var dateFrom = moment().subtract(days,'d');
+    const startDate = moment(`${dateFrom.day()}/${dateFrom.month()}/${dateFrom.year()}`, 'DD/MM/YYYY');
+    // console.log('dateFrom : ', dateFrom);
+    // console.log('dateFrom day: ', dateFrom.day());
+    // console.log('dateFrom month: ', dateFrom.month());
+    // console.log('dateFrom year: ', dateFrom.year());
+    // console.log('test: ', moment(`${dateFrom.day()}/${dateFrom.month()}/${dateFrom.year()}`, 'DD/MM/YYYY'));
+    // console.log('dateFrom timestamp unix : ', dateFrom.unix());
+    // console.log('dateFrom timestamp valueOf: ', dateFrom.valueOf());
+    // console.log('date : ', date);
+    console.log('startDate : ', startDate.unix());
+    return startDate.unix();
+  }
 
   ngOnInit(): void {
     this.loggedUser = this.authService.getLoggedUser();
@@ -59,7 +82,14 @@ export class MyStravaComponent implements OnInit {
   getStravaUserActivities() {
     this.noActivitiesFound = false;
     this.loadingActivities = true;
-    this.authService.getStravaUserActivities().subscribe((data: any) => {
+    let options: any = {};
+    if (this.filterLast) {
+      options.after = this.getLastDaysTimeStamp(this.filterLast);
+    }
+
+    console.log('options: ', options);
+
+    this.authService.getStravaUserActivities(options).subscribe((data: any) => {
       console.log('activities: ', data);
       this.activities = data.filter((activity: any) => {
         return activity.type === 'Ride';

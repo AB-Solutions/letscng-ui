@@ -48,10 +48,13 @@ export class AuthService {
     return this.http.post(url, {});
   }
 
-  getStravaUserActivities() {
+  getStravaUserActivities(options?: any) {
     const {stravaConfig} = environment;
-    const url = `${stravaConfig.base_url}/api/v3/athlete/activities?access_token=${this.getStravaUserFromStore().access_token}`;
+    let url = `${stravaConfig.base_url}/api/v3/athlete/activities?access_token=${this.getStravaUserFromStore().access_token}`;
 
+    if (options && options.after) {
+      url += `&&after=${options.after}`;
+    }
     return this.http.get(url);
   }
 

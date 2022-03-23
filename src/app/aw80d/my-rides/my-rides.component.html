@@ -1,21 +1,18 @@
 <table class="table no-wrap table-responsive">
   <thead>
     <tr>
-      <th>
-        SL No.
-        <span class="link"><img class="small-icon" src="../../../assets/icons/icons8-refresh-48.png" (click)="syncData()"/></span>
-      </th>
-      <th>Date</th>
+      <th>Sl No.</th>
       <th>Ride Title</th>
+      <th>Date</th>
       <th>Distance (KM)</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let activity of activities | slice:0:limit; index as i;">
       <td>{{i + 1}}</td>
-      <td>{{getDate(activity.start_date)}}</td>
       <td [attr.title]="activity.name" class="ellipsis">
         <a attr.href="https://www.strava.com/activities/{{activity.id}}" target="_blank">{{activity.name}}</a></td>
+      <td>{{getDate(activity.start_date)}}</td>
       <td>{{getDistance(activity.distance)}}</td>
     </tr>
   </tbody>

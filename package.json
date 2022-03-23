@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "ng serve --open",
+        "start": "ng serve --open --port=4300",
         "build": "ng build --prod --aot",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
@@ -23,6 +23,7 @@
         "@angular/service-worker": "~13.2.0",
         "firebase": "^9.6.9",
         "intl-tel-input": "^17.0.16",
+        "moment": "^2.29.1",
         "ng-otp-input": "^1.8.3",
         "ng-recaptcha": "^9.0.0",
         "ng2-tel-input": "^2.3.0",

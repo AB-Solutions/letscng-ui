@@ -34,15 +34,9 @@ export class MyStravaComponent implements OnInit {
 
   getLastDaysTimeStamp(days: number) {
     var dateFrom = moment().subtract(days,'d');
-    const startDate = moment(`${dateFrom.day()}/${dateFrom.month()}/${dateFrom.year()}`, 'DD/MM/YYYY');
-    // console.log('dateFrom : ', dateFrom);
-    // console.log('dateFrom day: ', dateFrom.day());
-    // console.log('dateFrom month: ', dateFrom.month());
-    // console.log('dateFrom year: ', dateFrom.year());
-    // console.log('test: ', moment(`${dateFrom.day()}/${dateFrom.month()}/${dateFrom.year()}`, 'DD/MM/YYYY'));
-    // console.log('dateFrom timestamp unix : ', dateFrom.unix());
-    // console.log('dateFrom timestamp valueOf: ', dateFrom.valueOf());
-    // console.log('date : ', date);
+    console.log('dateFrom.month() : ', dateFrom.month());
+    const startDate = moment(`${dateFrom.date()}/${dateFrom.month() + 1}/${dateFrom.year()}`, 'DD/MM/YYYY');
+    console.log('startDate : ', startDate);
     console.log('startDate : ', startDate.unix());
     return startDate.unix();
   }

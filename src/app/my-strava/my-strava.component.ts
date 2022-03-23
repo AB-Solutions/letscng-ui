@@ -79,6 +79,12 @@ export class MyStravaComponent implements OnInit {
     });
   }
 
+  sortByDate(data: any) {
+    return data.sort((a: any, b: any) => {
+      return moment(b.start_date).unix() - moment(a.start_date).unix();
+    })
+  }
+
   getStravaUserActivities() {
     this.noActivitiesFound = false;
     this.loadingActivities = true;

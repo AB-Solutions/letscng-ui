@@ -61,7 +61,7 @@
                 </button>
                 <span class="link"><img class="small-icon" src="../../assets/icons/icons8-refresh-48.png" (click)="getStravaUserActivities()"/></span>
               </div>
-              <app-my-rides *ngIf="activities.length > 0 && !loadingActivities" [activities]="activities" (refresh)="getStravaUserActivities()"></app-my-rides>
+              <app-my-rides *ngIf="activities.length > 0 && !loadingActivities" [activities]="sortByDate(activities)" (refresh)="getStravaUserActivities()"></app-my-rides>
               <br/>
               <div class="alert alert-danger" *ngIf="activities.length === 0 && noActivitiesFound">
                 <strong>Info!</strong> No activities found...

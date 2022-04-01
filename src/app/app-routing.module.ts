@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MyStravaComponent } from './my-strava/my-strava.component';
@@ -18,11 +19,11 @@ const routes: Routes = [
     component: LoginComponent,
     path: 'login',
   }, {
-    component: ProfileComponent,
-    path: 'profile',
-  }, {
     component: MyStravaComponent,
     path: 'strava',
+  }, {
+    component: AdminHomeComponent,
+    path: 'admin',
   }
 ];
 

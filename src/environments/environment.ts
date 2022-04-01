@@ -20,6 +20,9 @@ export const environment = {
     refresh_token: 'ea9720aa8937fffa61c43900e1f1b6e3d82ec0ee',
     access_token: '429fc45166bc9ccdb9ee2030f0e0a060d6a20710',
   },
+  siteManagement: {
+    apiBaseURL: 'http://localhost:8000/api',
+  }
 };
 
 /*

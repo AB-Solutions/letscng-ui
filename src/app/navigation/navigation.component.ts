@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class NavigationComponent implements OnInit {
   isUserLoggedIn = false;
+  isAdminUser = true;
   currentUrl: string = '';
   userData: any;
 

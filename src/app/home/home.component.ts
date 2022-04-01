@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Banner } from '../model/banner.model';
 
 @Component({
   selector: 'app-home',
@@ -6,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  banners: Banner[] = [];
   constructor() { }
 
   ngOnInit(): void {
-    console.log('HomeComponenrt')
+    console.log('HomeComponenrt');
   }
 
 }

@@ -24,7 +24,7 @@ export class AuthService {
   saveUserInStore(userData: any) {
     localStorage.setItem('user_data', JSON.stringify(userData));
     this.loggedUser.emit(true);
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/strava');
   }
 
   setStravaUserInStore(data: any) {

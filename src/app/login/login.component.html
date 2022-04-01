@@ -1,0 +1,99 @@
+<section>
+  <div class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-5 py-6 py-md-0">
+        <div class="card shadow zindex-100 mb-0">
+          <div class="card-body px-md-5 py-5">
+            <div class="mb-3">
+              <h6 class="h3">Login</h6>
+              <br/>
+              <br/>
+              <div class="card" *ngIf="!codeSend; else validateCode">
+                <div class="card-body px-md-3 py-5">
+                  <div class="mb-3">
+                    <p class="fs-20 text-dark">Enter your phone number</p>
+                    <div class="form-group input-group mt-4">
+                      <div class="countryCodeGroup">
+                        <span class="countryCode">+{{countryCode}}</span>
+                        <input type="text"
+                          class="form-control tel-number no-number form-control-lg mt-3"
+                          ng2TelInput
+                          [ng2TelInputOptions]="{initialCountry: 'in'}"
+                          (hasError)="hasError($event)"
+                          (ng2TelOutput)="getNumber($event)"
+                          (intlTelInputObject)="telInputObject($event)"
+                          (countryChange)="onCountryChange($event)"
+                        />
+                      </div>
+                      <div class="phoneNumberGroup">
+                        <input type="number" #phoneNumber
+                          class="form-control no-number form-control-lg"
+                          name="phone"
+                          [formControl]="phone"
+                        />
+                        <label class="input-label" [ngClass]="{'fly': phone.value}">
+                          <span class="input-label-value">Phone Number</span>
+                        </label>
+                        <span class="error" *ngIf="phone.invalid && smsFormSubmitted">Enter a valid phone number</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <re-captcha
+                      (resolved)="resolved($event)"
+                      siteKey="6LdbS-UeAAAAAKp0lL-QNwGE_MH7kNbh5ezjxbf6"
+                    ></re-captcha>
+                    <div class="hidden" id="firebase-recaptcha"></div>
+                  </div>
+                  <div [hidden]="!captcha">
+                    <div class="form-group relative mt-4 d-grid">
+                      <!-- <app-loading-icon *ngIf="fetchingOtp"></app-loading-icon> -->
+                      <button type="submit" class="btn cng-btn-blue btn-lg" (click)="verify()">Verify</button>
+                      <p class="small-text greyed mt-3">By tapping Verify, an SMS may be sent. Message &amp; data rates may apply.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ng-template #validateCode>
+                <div class="card">
+                  <div class="card-body px-md-3 py-5">
+                    <div class="mb-3">
+                      <p class="fs-20 text-dark">Verify your phone number</p>
+                      <div class="mt-4">
+                        <div>Enter the 6-digit code we sent to</div>
+                        <span class="cng-blue pointer" (click)="editPhone()">{{phoneWithCountryCode}}</span>
+                      </div>
+                      <!-- <div class="form-group mt-5">
+                        <input type="number" class="form-control no-number form-control-lg mt-3" name="sixDigitCode"
+                        [formControl]="sixDigitCode" required/>
+                        <label class="input-label" [ngClass]="{'fly': sixDigitCode.value}">
+                          <span class="input-label-value">6-digit code</span>
+                        </label>
+                        <span class="error" *ngIf="sixDigitCode.invalid && verifyFormSubmitted">Wrong code. Try again</span>
+                      </div> -->
+                      <div class="input-group mt-3">
+                        <ng-otp-input  (onInputChange)="onOtpChange($event)"  [config]="otpConfig"></ng-otp-input>
+                        <span class="error" *ngIf="otpCodeError">Wrong code. Try again</span>
+                      </div>
+                      <div class="input-group mt-3">
+                        <button type="submit" class="btn cng-btn-grey btn-lg col-6" (click)="editPhone()">CANCEL</button>
+                        <button type="submit" class="btn cng-btn-blue btn-lg col-6" (click)="codeVerify()" [disabled]="otp.length < 6">CONTINUE</button>
+                      </div>
+
+                      <div class="mt-5 text-center cng-grey">
+                        <span *ngIf="timer >= 0">Resend code in 00:{{timerStr}}</span>
+                        <span *ngIf="timer < 0" class="cng-blue pointer" (click)="editPhone()">RESEND</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

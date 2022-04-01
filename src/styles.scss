@@ -1,1 +1,188 @@
 /* You can add global styles to this file, and also import other style files */
+$cng-blue-color: #125ea3;
+$cng-grey-color: #757575;
+$cng-green-color: #74b84a;
+$cng-white-color: #ffffff;
+$cng-error-color: #dd2c00;
+$header-color: #152c5b;
+
+html,
+body,
+.h100 {
+  height: 100%;
+  font-family: 'Nunito Sans';
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $header-color;
+}
+
+.display-4 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.pad-0 {
+    padding: 0;
+}
+
+@media only screen and (max-width: 575px) {
+  .row>* {
+    padding: 0;
+  }
+}
+
+input.form-control, select.form-control, textarea.form-control {
+  border-color: transparent transparent $cng-grey-color;
+  background-color: transparent;
+  border-radius: 0;
+  color: $cng-grey-color;
+
+  &:focus {
+    border: none;
+    background-color: transparent;
+    -webkit-box-shadow: 0 8px 6px -6px $cng-grey-color;
+    -moz-box-shadow: 0 8px 6px -6px $cng-grey-color;
+    box-shadow: 0 8px 6px -6px $cng-grey-color;
+  }
+
+  &.no-authenticate {
+    &+label.input-label {
+      &>span.input-label-value {
+        color: $cng-grey-color;
+        margin-top: -80px;
+      }
+    }
+  }
+
+  &:valid {
+    &+label.input-label.fly {
+      &>span.input-label-value {
+        margin-top: -80px;
+        font-size: 12px;
+        color: $cng-green-color;
+      }
+    }
+  }
+
+  &+label.input-label {
+    position: relative;
+
+    span.input-label-value {
+      position: absolute;
+      display: block;
+      margin-top: -50px;
+      margin-left: 1rem;
+      color: $cng-grey-color;
+      white-space: nowrap;
+      transition: all 0.2s;
+      z-index: -1;
+    }
+  }
+}
+
+
+.fs-20 {
+  font-size: 20px;
+}
+.fs-12 {
+  font-size: 12px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input.no-number::-webkit-outer-spin-button,
+input.no-number::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input.no-number[type=number] {
+  -moz-appearance: textfield;
+}
+
+.greyed {
+  color: $cng-grey-color;
+}
+
+.small-text {
+  font-size: 12px;
+}
+
+.cng-blue {
+  color: $cng-blue-color
+}
+.cng-btn-blue {
+  background-color: $cng-blue-color;
+  border-color: $cng-blue-color;
+  color: $cng-white-color !important;
+}
+
+
+.cng-green {
+  color: $cng-green-color
+}
+.cng-btn-green {
+  background-color: $cng-green-color;
+  border-color: $cng-green-color;
+  color: $cng-white-color;
+}
+
+
+.cng-grey {
+  color: $cng-grey-color
+}
+.cng-btn-grey {
+  background-color: $cng-grey-color;
+  border-color: $cng-grey-color;
+  color: $cng-white-color;
+}
+
+.error {
+  color: $cng-error-color;
+  margin-left: 16px;
+  font-size: 12px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.rt-0 {
+  right: 0;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+}
+
+.link {
+  color: $cng-blue-color;
+  cursor: pointer;
+}
+
+.small-icon {
+  width: 30px;
+  height: 30px;
+}
+
+table.no-wrap th {
+  white-space: nowrap;
+}

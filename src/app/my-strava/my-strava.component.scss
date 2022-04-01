@@ -1,0 +1,24 @@
+.strava-profile-pic {
+  width: 100px;
+  border-radius: 50%;
+}
+
+
+.filter-btn-group {
+  button {
+    position: relative;
+
+    .fa-check {
+      display: none;
+    }
+
+    &.active {
+      background-color: #bbffcc;
+      // color: aliceblue;
+      .fa-check {
+        display: inline-block;
+      }
+    }
+
+  }
+}

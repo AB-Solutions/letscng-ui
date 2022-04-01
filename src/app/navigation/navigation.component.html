@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-sm">
+    <div class="container">
+        <a class="navbar-brand" routerLink="home">
+            <img src="../../assets/img/brand/logo.png" alt="Let's CNG" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" #navbar>
+            <i class='fas fa-align-justify'></i>
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <span class="me-auto"></span>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+              </li>
+              <li class="nav-item" *ngIf="!isUserLoggedIn">
+                  <a class="nav-link" routerLink="login" routerLinkActive="active" >Login</a>
+              </li>
+              <li class="nav-item" *ngIf="isUserLoggedIn">
+                  <a class="nav-link" routerLink="profile" routerLinkActive="active" >Profile</a>
+              </li>
+              <li class="nav-item" *ngIf="isUserLoggedIn">
+                  <a class="nav-link" routerLink="strava" routerLinkActive="active" >My Strava</a>
+              </li>
+              <li class="nav-item" *ngIf="isUserLoggedIn">
+                  <a class="nav-link" routerLink="strava" (click)="logoutUser()">Logout</a>
+              </li>
+            </ul>
+        </div>
+    </div>
+</nav>

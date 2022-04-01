@@ -1,0 +1,29 @@
+.site-footer {
+    background-color: #111;
+    padding: 0;
+    .bottom {
+        background-color: #000;
+        padding: 20px 0;
+    }
+}
+
+.site-footer .bottom .list-inline,
+.site-footer .bottom p {
+    margin: 0;
+}
+
+.site-footer p {
+    opacity: .75;
+    line-height: 2.0925;
+}
+
+.site-footer h2,
+.site-footer p {
+    color: #fff;
+}
+
+.site-footer .bottom .list-inline a {
+    color: #fff;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    margin-right: 15px;
+}

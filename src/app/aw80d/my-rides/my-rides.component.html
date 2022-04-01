@@ -1,0 +1,24 @@
+<table class="table no-wrap table-responsive">
+  <thead>
+    <tr>
+      <th>Sl No.</th>
+      <th>Ride Title</th>
+      <th>Date</th>
+      <th>Distance (KM)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let activity of activities | slice:0:limit; index as i;">
+      <td>{{i + 1}}</td>
+      <td [attr.title]="activity.name" class="ellipsis">
+        <a attr.href="https://www.strava.com/activities/{{activity.id}}" target="_blank">{{activity.name}}</a></td>
+      <td>{{getDate(activity.start_date)}}</td>
+      <td>{{getDistance(activity.distance)}}</td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!limitExceeded">
+    <tr>
+      <td class="link" colspan="4" (click)="loadMore()">Load more</td>
+    </tr>
+  </tfoot>
+</table>

@@ -1,0 +1,52 @@
+.iti.iti--allow-dropdown {
+  .iti__flag {
+    margin-right: 40px;
+  }
+}
+.card {
+  background-color: transparent;
+}
+div.countryCodeGroup {
+  ::-webkit-input-placeholder {
+    color:transparent;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+    color:transparent;
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+    color:transparent;
+  }
+
+  :-ms-input-placeholder {
+    color:transparent;
+  }
+}
+
+.countryCodeGroup {
+  position: relative;
+  .countryCode {
+    position: absolute;
+    top: 13px;
+    left: 32px;
+  }
+  input.tel-number {
+    padding-left: 70px;
+    width: 0;
+  }
+}
+
+.phoneNumberGroup {
+  width: calc(100% - 78px);
+}
+
+.otp-input {
+  width: 14% !important;
+  border-color: transparent transparent #152c5b !important;
+  border-radius: unset !important;
+
+  &:focus-visible {
+    outline: none !important;
+  }
+}

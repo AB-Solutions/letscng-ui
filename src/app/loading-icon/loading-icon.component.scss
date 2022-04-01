@@ -1,0 +1,47 @@
+.loading-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: rgb(255,255,255,0.5);
+  z-index: 1000;
+  display: inline-block;
+  top: 0;
+  cursor: wait;
+  text-align: center;
+
+  .loading {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0;
+    height: 300px;
+    width: 300px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0px 5px grey;
+    top: calc(50% - 150px);
+    left: calc(50% - 150px);
+    position: absolute;
+    text-align: center;
+
+    .icon-loading {
+      position: absolute;
+      bottom: 0;
+      left: calc(50% - 25px);
+      top: calc(50% - 50px);
+    }
+
+    .message {
+      top: 50%;
+      position: absolute;
+      width: 100%;
+    }
+
+    /*
+    Set the color of the icon
+    */
+    svg path,
+    svg rect{
+      fill: #125ea3;
+    }
+  }
+}
+

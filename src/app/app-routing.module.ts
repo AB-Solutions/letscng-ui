@@ -17,12 +17,18 @@ const routes: Routes = [
   }, {
     component: LoginComponent,
     path: 'login',
-  }, {
-    component: ProfileComponent,
-    path: 'profile',
-  }, {
+  },
+  // {
+  //   component: ProfileComponent,
+  //   path: 'profile',
+  // },
+  {
     component: MyStravaComponent,
     path: 'strava',
+  },
+  {
+    path: '**',
+    redirectTo: "",
   }
 ];
 

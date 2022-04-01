@@ -35,6 +35,25 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('strava_user_data') || '{}');
   }
 
+  getStravaUserFromFireStore(phone: any) {
+    // phone = '7864864886';
+    const {backend} = environment;
+    const {apiBaseUrl} = backend;
+    const url = `${apiBaseUrl}/user/strava?phone=${phone}`;
+
+    return this.http.get(url);
+  }
+
+  setStravaUserInFireStore(user: any) {
+    // phone = '7864864886';
+    console.log('in setStravaUserInFireStore : ', user);
+    const {backend} = environment;
+    const {apiBaseUrl} = backend;
+    const url = `${apiBaseUrl}/user/setStrava`;
+
+    return this.http.post(url, user);
+  }
+
   logoutUser() {
     localStorage.removeItem('user_data');
     this.afAuth.signOut();
@@ -48,28 +67,38 @@ export class AuthService {
     return this.http.post(url, {});
   }
 
-  getStravaUserActivities(options?: any) {
-    const {stravaConfig} = environment;
-    let url = `${stravaConfig.base_url}/api/v3/athlete/activities?access_token=${this.getStravaUserFromStore().access_token}`;
+  getStravaUserActivities(phone: any) {
+    // phone = '7864864886';
+    console.log('in getStravaUserActivities : ', phone);
+    const {backend} = environment;
+    const {apiBaseUrl} = backend;
+    const url = `${apiBaseUrl}/rides?phone=${phone}`;
 
-    if (options && options.after) {
-      url += `&&after=${options.after}`;
-    }
     return this.http.get(url);
   }
 
-  getStravaRefreshToken() {
-    const {stravaConfig} = environment;
-    const url = `${stravaConfig.base_url}/oauth/token?client_id=${stravaConfig.client_id}&client_secret=${stravaConfig.client_secret}&refresh_token=${this.getStravaUserFromStore().refresh_token}&grant_type=refresh_token`;
+  syncStravaUserActivities(phone: any) {
+    // phone = '7864864886';
+    console.log('in getStravaUserActivities : ', phone);
+    const {backend} = environment;
+    const {apiBaseUrl} = backend;
+    const url = `${apiBaseUrl}/sync?phone=${phone}`;
 
-    return this.http.post(url, {});
+    return this.http.get(url);
   }
 
-  updateStravaAccessToken(access_token: string) {
-    const stravaData = this.getStravaUserFromStore();
-    stravaData.access_token = access_token;
+  // getStravaRefreshToken() {
+  //   const {stravaConfig} = environment;
+  //   const url = `${stravaConfig.base_url}/oauth/token?client_id=${stravaConfig.client_id}&client_secret=${stravaConfig.client_secret}&refresh_token=${this.getStravaUserFromStore().refresh_token}&grant_type=refresh_token`;
 
-    this.setStravaUserInStore(stravaData);
-  }
+  //   return this.http.post(url, {});
+  // }
+
+  // updateStravaAccessToken(access_token: string) {
+  //   const stravaData = this.getStravaUserFromStore();
+  //   stravaData.access_token = access_token;
+
+  //   this.setStravaUserInStore(stravaData);
+  // }
 
 }

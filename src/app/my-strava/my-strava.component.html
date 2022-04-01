@@ -5,11 +5,17 @@
         <div class="card shadow zindex-100 mb-0">
           <div class="card-body px-md-5 py-5 text-center">
             <div class="mb-5">
-              <h6 class="h3" (click)="dtSd()">My Strava</h6>
-              <a *ngIf="!(athlete?.id)" class="btn btn-lg px-5 btn-block" href="{{'https://www.strava.com/oauth/authorize?client_id='+environment.stravaConfig.client_id+'&redirect_uri='+window.location.origin+'/strava?phoneNumber='+loggedUser.user.phoneNumber+'&response_type=code&scope=activity:read'}}" role="button" id="stravaAuth">
+              <h6 class="h3" (click)="myMethodChangingQueryParams()">My Strava</h6>
+              <a
+                *ngIf="!(athlete?.id) && !stravaProfileFound"
+                class="btn btn-lg px-5 btn-block"
+                href="{{'https://www.strava.com/oauth/authorize?client_id='+environment.stravaConfig.client_id+'&redirect_uri='+window.location.origin+'/strava?phoneNumber='+loggedUser.user.phoneNumber+'&response_type=code&scope=activity:read'}}"
+                role="button"
+                id="stravaAuth"
+              >
                 <img src="../../assets/img/cws.png" height="30">
               </a>
-              <div class="card-body" *ngIf="athlete?.id">
+              <div class="card-body" *ngIf="athlete?.id && stravaProfileFound">
                 <h6>Strava Profile Details:</h6>
                 <img class="strava-profile-pic mb-3" src="{{athlete.profile}}" alt="{{athlete.firstname}} {{athlete.lastname}}"/>
                 <table class="text-left  table table-striped">
@@ -59,12 +65,12 @@
                   Last 30 days
                   <i class="fa-solid fa-check"></i>
                 </button>
-                <span class="link"><img class="small-icon" src="../../assets/icons/icons8-refresh-48.png" (click)="getStravaUserActivities()"/></span>
+                <span class="link"><img class="small-icon" src="../../assets/icons/icons8-refresh-48.png" (click)="syncUserRides()"/></span>
               </div>
-              <app-my-rides *ngIf="activities.length > 0 && !loadingActivities" [activities]="sortByDate(activities)" (refresh)="getStravaUserActivities()"></app-my-rides>
+              <app-my-rides *ngIf="activities.length > 0 && !loadingActivities" [activities]="filterByLastDate(activities)" (refresh)="getStravaUserActivities()"></app-my-rides>
               <br/>
               <div class="alert alert-danger" *ngIf="activities.length === 0 && noActivitiesFound">
-                <strong>Info!</strong> No activities found...
+                <strong>Info!</strong> No activities found, Please Sync your Rides...
               </div>
               <div class="alert alert-info" *ngIf="loadingActivities">
                 <strong>Loading activities....</strong>

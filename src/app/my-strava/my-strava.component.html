@@ -5,11 +5,11 @@
         <div class="card shadow zindex-100 mb-0">
           <div class="card-body px-md-5 py-5 text-center">
             <div class="mb-5">
-              <h6 class="h3" (click)="myMethodChangingQueryParams()">My Strava</h6>
+              <h6 class="h3">My Strava</h6>
               <a
                 *ngIf="!(athlete?.id) && !stravaProfileFound"
                 class="btn btn-lg px-5 btn-block"
-                href="{{'https://www.strava.com/oauth/authorize?client_id='+environment.stravaConfig.client_id+'&redirect_uri='+window.location.origin+'/strava?phoneNumber='+loggedUser.user.phoneNumber+'&response_type=code&scope=activity:read'}}"
+                href="{{'https://www.strava.com/oauth/authorize?client_id=69720&redirect_uri=http%3A%2F%2Fletscng-backend-bsx6kqq36q-uc.a.run.app%2Fstrava-oauth%3Fphone%3D'+getPhoneNumber()+'%26cng_redirect_uri%3D'+getCNGRedirectURI()+'&approval_prompt=auto&response_type=code&scope=read%2Cactivity%3Aread'}}"
                 role="button"
                 id="stravaAuth"
               >

@@ -22,7 +22,8 @@ export const environment = {
     access_token: '429fc45166bc9ccdb9ee2030f0e0a060d6a20710',
   },
   backend: {
-    apiBaseUrl: "https://letscng-backend-bsx6kqq36q-uc.a.run.app"
+    apiBaseUrl: "https://letscng-backend-bsx6kqq36q-uc.a.run.app",
+    cng_redirect_uri: "https://letcng-ui.web.app/strava",
   }
 };
 

@@ -23,6 +23,8 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { LoadingIconComponent } from './loading-icon/loading-icon.component';
 import { MyRidesComponent } from './aw80d/my-rides/my-rides.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { BannerComponent } from './home/banner/banner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,9 @@ import { MyRidesComponent } from './aw80d/my-rides/my-rides.component';
     MyStravaComponent,
     FooterComponent,
     LoadingIconComponent,
-    MyRidesComponent
+    MyRidesComponent,
+    AdminHomeComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,

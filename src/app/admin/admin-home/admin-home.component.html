@@ -1,0 +1,36 @@
+<div class="container">
+  <h3>Banner List</h3>
+  <div class="row">
+    <div style="overflow-x:auto;">
+      <table class="table table-responsive">
+        <thead>
+          <tr>
+            <th>Sl No.</th>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Image URL</th>
+            <th>Redirect URL</th>
+            <th>Active</th>
+            <th>timestamp</th>
+            <th><i class="fa-solid fa-gear"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let banner of banners; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{banner._id}}</td>
+            <td>{{banner.title}}</td>
+            <td>{{banner.imageUrl}}</td>
+            <td>{{banner.redirectURI}}</td>
+            <td>{{banner.active}}</td>
+            <td>{{banner.updatedAt}}</td>
+            <td>
+              <i class="fa-solid fa-pen"></i> &nbsp;
+              <i class="fa-solid fa-trash"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

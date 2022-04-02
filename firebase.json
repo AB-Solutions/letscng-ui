@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "dist/letscng-ui",
+    "site": "letscng-prod-ui",
     "ignore": [
       "firebase.json",
       "**/.*",

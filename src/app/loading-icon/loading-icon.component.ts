@@ -15,42 +15,16 @@ export class LoadingIconComponent implements OnInit {
   constructor(private commonUtilService: CommonUtilService) { }
 
   ngOnInit(): void {
+    var self = this;
     this.commonUtilService.loadingMessage.subscribe((message) => {
-      this.loadingText = message;
-    });
-
-    this.commonUtilService.loadingSuccessMessage.subscribe((message) => {
-      switch (message) {
-        case LoadingEnum.OTP_SENT:
-          this.otpSendSuccess = true;
-          var self = this;
-          setTimeout(function() {
-            self.otpSendSuccess = false;
-          }, 1000);
-          break;
-          case LoadingEnum.OTP_VERIFIED:
-            this.otpMessageVerified = true;
-            var self = this;
-            setTimeout(function() {
-              self.otpMessageVerified = false;
-            }, 1000);
-            break;
-          case LoadingEnum.STRAVA_ACCOUNT_VERIFIED:
-            this.stravaAccountVerified = true;
-            var self = this;
-            setTimeout(function() {
-              self.stravaAccountVerified = false;
-            }, 1000);
-            break;
-      }
+      console.log('loadingMessage : ', message);
+      self.loadingText = message;
+      console.log('self.loadingText : ', self.loadingText);
     });
   }
 
   showLoading() {
-    return this.loadingText.length ||
-      this.otpSendSuccess ||
-      this.otpMessageVerified ||
-      this.stravaAccountVerified;
+    return this.loadingText.length;
   }
 
 }

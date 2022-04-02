@@ -123,7 +123,7 @@ export class LoginComponent implements OnInit {
       ).then((result) => {
         console.log('result: ', result);
         localStorage.setItem('verificationId', result.verificationId);
-        this.commonUtilService.setloadingSuccess(LoadingEnum.OTP_SENT);
+        this.commonUtilService.setloadingMessage('');
         this.codeSend = true;
 
         var self = this;
@@ -170,7 +170,7 @@ export class LoginComponent implements OnInit {
 
     firebase.auth().signInWithCredential(credentials).then((response) => {
       console.log('signInWithCredential response: ', response);
-      this.commonUtilService.setloadingSuccess(LoadingEnum.OTP_VERIFIED);
+      this.commonUtilService.setloadingMessage('');
       this.authService.saveUserInStore(response);
     }).catch(error => {
       this.commonUtilService.setloadingMessage('');

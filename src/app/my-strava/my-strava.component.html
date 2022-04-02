@@ -41,42 +41,51 @@
               </div>
             </div>
             <section class="activities" *ngIf="athlete?.id">
+              <!-- tornamentTab: {{tornamentTab}} -->
               <ul class="nav nav-tabs">
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Team Leaderboard</a>
+                  <a class="nav-link" [ngClass]="{'active': tornamentTab === 'master'}" (click)="setTournamentTab('master')">Team Leaderboard</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#">My Team</a>
+                  <a class="nav-link disabled">My Team</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">My Rides</a>
+                  <a class="nav-link" [ngClass]="{'active': tornamentTab === 'myride'}" (click)="setTournamentTab('myride')">My Rides</a>
                 </li>
               </ul>
-              <div class="btn-group filter-btn-group col-12 mt-3 mb-3">
-                <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 7}" (click)="setFilterLast(7)">
-                  Last 7 days
-                  <i class="fa-solid fa-check"></i>
-                </button>
-                <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 14}" (click)="setFilterLast(14)">
-                  Last 14 days
-                  <i class="fa-solid fa-check"></i>
-                </button>
-                <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 30}" (click)="setFilterLast(30)">
-                  Last 30 days
-                  <i class="fa-solid fa-check"></i>
-                </button>
-                <span class="link"><img class="small-icon" src="../../assets/icons/icons8-refresh-48.png" (click)="syncUserRides()"/></span>
+              <div *ngIf="tornamentTab === 'master'" class="team-leaderboard-container">
+                <div class="launching">
+                  <img class="launch" src="../../assets/img/gifs/launch.gif" alt="Launching Soon" />
+                  <div class="message">Launching Soon..</div>
+                </div>
               </div>
-              <app-my-rides *ngIf="activities.length > 0 && !loadingActivities" [activities]="filterByLastDate(activities)" (refresh)="getStravaUserActivities()"></app-my-rides>
-              <br/>
-              <div class="alert alert-danger" *ngIf="activities.length === 0 && noActivitiesFound">
-                <strong>Info!</strong> No activities found, Please Sync your Rides...
-              </div>
-              <div class="alert alert-info" *ngIf="loadingActivities">
-                <strong>Loading activities....</strong>
+              <div *ngIf="tornamentTab === 'myride'">
+                <div class="btn-group filter-btn-group col-12 mt-3 mb-3">
+                  <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 7}" (click)="setFilterLast(7)">
+                    Last 7 days
+                    <i class="fa-solid fa-check"></i>
+                  </button>
+                  <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 14}" (click)="setFilterLast(14)">
+                    Last 14 days
+                    <i class="fa-solid fa-check"></i>
+                  </button>
+                  <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 30}" (click)="setFilterLast(30)">
+                    Last 30 days
+                    <i class="fa-solid fa-check"></i>
+                  </button>
+                  <span class="link"><img class="small-icon" src="../../assets/icons/icons8-refresh-48.png" (click)="syncUserRides()"/></span>
+                </div>
+                <app-my-rides *ngIf="activities.length > 0 && !loadingActivities" [activities]="filterByLastDate(activities)" (refresh)="getStravaUserActivities()"></app-my-rides>
+                <br/>
+                <div class="alert alert-danger" *ngIf="activities.length === 0 && noActivitiesFound">
+                  <strong>Info!</strong> No activities found, Please Sync your Rides...
+                </div>
+                <div class="alert alert-info" *ngIf="loadingActivities">
+                  <strong>Loading activities....</strong>
+                </div>
               </div>
             </section>
-            <img src="../../assets/img/brand/api_logo_pwrdBy_strava_horiz_light.png" class="img-fluid d-block mx-auto" style="max-width: 50%" alt="Responsive image">
+            <img src="../../assets/img/brand/api_logo_pwrdBy_strava_horiz_light.png" class="img-fluid d-block mx-auto powered-strava" alt="Responsive image">
           </div>
         </div>
       </div>

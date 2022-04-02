@@ -11,6 +11,7 @@ import * as moment from 'moment';
   styleUrls: ['./my-strava.component.scss']
 })
 export class MyStravaComponent implements OnInit {
+  tornamentTab = 'master';
   stravaProfileFound = true;
   athlete: any;
   activities: any[] = [];
@@ -98,9 +99,8 @@ export class MyStravaComponent implements OnInit {
   getStravaUserActivities() {
     this.noActivitiesFound = false;
     this.loadingActivities = true;
-    const phone = this.loggedUser.user.phoneNumber.replace('+91', '%2B91');
 
-    this.authService.getStravaUserActivities(phone).subscribe((data: any) => {
+    this.authService.getStravaUserActivities(this.getPhoneNumber()).subscribe((data: any) => {
       if (data) {
         var activities = Object.keys(data).map((activityId) => {
           return data[activityId];
@@ -117,5 +117,10 @@ export class MyStravaComponent implements OnInit {
       console.log(err);
       this.loadingActivities = false;
     });
+  }
+
+  setTournamentTab(tab: string) {
+    console.log('in setTournamentTab : ', tab);
+    this.tornamentTab = tab;
   }
 }

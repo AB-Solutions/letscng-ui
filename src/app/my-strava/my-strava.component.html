@@ -46,9 +46,9 @@
                 <li class="nav-item">
                   <a class="nav-link" [ngClass]="{'active': tornamentTab === 'master'}" (click)="setTournamentTab('master')">Team Leaderboard</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link disabled">My Team</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <a class="nav-link" [ngClass]="{'active': tornamentTab === 'myride'}" (click)="setTournamentTab('myride')">My Rides</a>
                 </li>
@@ -56,7 +56,7 @@
               <div *ngIf="tornamentTab === 'master'" class="team-leaderboard-container">
                 <div class="launching">
                   <img class="launch" src="../../assets/img/gifs/launch.gif" alt="Launching Soon" />
-                  <div class="message">Launching Soon..</div>
+                  <div class="message">Launching Soon...</div>
                 </div>
               </div>
               <div *ngIf="tornamentTab === 'myride'">

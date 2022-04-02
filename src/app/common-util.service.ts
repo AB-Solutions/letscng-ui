@@ -12,9 +12,4 @@ export class CommonUtilService {
   setloadingMessage(message: string) {
     this.loadingMessage.emit(message);
   }
-
-  setloadingSuccess(message: string) {
-    this.loadingMessage.emit('');
-    this.loadingSuccessMessage.emit(message);
-  }
 }

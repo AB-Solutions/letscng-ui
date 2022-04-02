@@ -5,11 +5,17 @@
         <div class="card shadow zindex-100 mb-0">
           <div class="card-body px-md-5 py-5 text-center">
             <div class="mb-5">
-              <h6 class="h3" (click)="dtSd()">My Strava</h6>
-              <a *ngIf="!(athlete?.id)" class="btn btn-lg px-5 btn-block" href="{{'https://www.strava.com/oauth/authorize?client_id='+environment.stravaConfig.client_id+'&redirect_uri='+window.location.origin+'/strava?phoneNumber='+loggedUser.user.phoneNumber+'&response_type=code&scope=activity:read'}}" role="button" id="stravaAuth">
+              <h6 class="h3">My Strava</h6>
+              <a
+                *ngIf="!(athlete?.id) && !stravaProfileFound"
+                class="btn btn-lg px-5 btn-block"
+                href="{{'https://www.strava.com/oauth/authorize?client_id=69720&redirect_uri=http%3A%2F%2Fletscng-backend-bsx6kqq36q-uc.a.run.app%2Fstrava-oauth%3Fphone%3D'+getPhoneNumber()+'%26cng_redirect_uri%3D'+getCNGRedirectURI()+'&approval_prompt=auto&response_type=code&scope=read%2Cactivity%3Aread'}}"
+                role="button"
+                id="stravaAuth"
+              >
                 <img src="../../assets/img/cws.png" height="30">
               </a>
-              <div class="card-body" *ngIf="athlete?.id">
+              <div class="card-body" *ngIf="athlete?.id && stravaProfileFound">
                 <h6>Strava Profile Details:</h6>
                 <img class="strava-profile-pic mb-3" src="{{athlete.profile}}" alt="{{athlete.firstname}} {{athlete.lastname}}"/>
                 <table class="text-left  table table-striped">
@@ -35,42 +41,51 @@
               </div>
             </div>
             <section class="activities" *ngIf="athlete?.id">
+              <!-- tornamentTab: {{tornamentTab}} -->
               <ul class="nav nav-tabs">
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Team Leaderboard</a>
+                  <a class="nav-link" [ngClass]="{'active': tornamentTab === 'master'}" (click)="setTournamentTab('master')">Team Leaderboard</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#">My Team</a>
+                  <a class="nav-link disabled">My Team</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">My Rides</a>
+                  <a class="nav-link" [ngClass]="{'active': tornamentTab === 'myride'}" (click)="setTournamentTab('myride')">My Rides</a>
                 </li>
               </ul>
-              <div class="btn-group filter-btn-group col-12 mt-3 mb-3">
-                <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 7}" (click)="setFilterLast(7)">
-                  Last 7 days
-                  <i class="fa-solid fa-check"></i>
-                </button>
-                <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 14}" (click)="setFilterLast(14)">
-                  Last 14 days
-                  <i class="fa-solid fa-check"></i>
-                </button>
-                <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 30}" (click)="setFilterLast(30)">
-                  Last 30 days
-                  <i class="fa-solid fa-check"></i>
-                </button>
-                <span class="link"><img class="small-icon" src="../../assets/icons/icons8-refresh-48.png" (click)="getStravaUserActivities()"/></span>
+              <div *ngIf="tornamentTab === 'master'" class="team-leaderboard-container">
+                <div class="launching">
+                  <img class="launch" src="../../assets/img/gifs/launch.gif" alt="Launching Soon" />
+                  <div class="message">Launching Soon..</div>
+                </div>
               </div>
-              <app-my-rides *ngIf="activities.length > 0 && !loadingActivities" [activities]="sortByDate(activities)" (refresh)="getStravaUserActivities()"></app-my-rides>
-              <br/>
-              <div class="alert alert-danger" *ngIf="activities.length === 0 && noActivitiesFound">
-                <strong>Info!</strong> No activities found...
-              </div>
-              <div class="alert alert-info" *ngIf="loadingActivities">
-                <strong>Loading activities....</strong>
+              <div *ngIf="tornamentTab === 'myride'">
+                <div class="btn-group filter-btn-group col-12 mt-3 mb-3">
+                  <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 7}" (click)="setFilterLast(7)">
+                    Last 7 days
+                    <i class="fa-solid fa-check"></i>
+                  </button>
+                  <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 14}" (click)="setFilterLast(14)">
+                    Last 14 days
+                    <i class="fa-solid fa-check"></i>
+                  </button>
+                  <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 30}" (click)="setFilterLast(30)">
+                    Last 30 days
+                    <i class="fa-solid fa-check"></i>
+                  </button>
+                  <span class="link"><img class="small-icon" src="../../assets/icons/icons8-refresh-48.png" (click)="syncUserRides()"/></span>
+                </div>
+                <app-my-rides *ngIf="activities.length > 0 && !loadingActivities" [activities]="filterByLastDate(activities)" (refresh)="getStravaUserActivities()"></app-my-rides>
+                <br/>
+                <div class="alert alert-danger" *ngIf="activities.length === 0 && noActivitiesFound">
+                  <strong>Info!</strong> No activities found, Please Sync your Rides...
+                </div>
+                <div class="alert alert-info" *ngIf="loadingActivities">
+                  <strong>Loading activities....</strong>
+                </div>
               </div>
             </section>
-            <img src="../../assets/img/brand/api_logo_pwrdBy_strava_horiz_light.png" class="img-fluid d-block mx-auto" style="max-width: 50%" alt="Responsive image">
+            <img src="../../assets/img/brand/api_logo_pwrdBy_strava_horiz_light.png" class="img-fluid d-block mx-auto powered-strava" alt="Responsive image">
           </div>
         </div>
       </div>

@@ -22,3 +22,31 @@
 
   }
 }
+
+#stravaAuth {
+  img {
+    height: 100%;
+  }
+}
+
+.powered-strava {
+  max-width: 150px;
+}
+
+.team-leaderboard-container {
+  .launching {
+    position: relative;
+    img.launch {
+      width: 100%;
+    }
+    .message {
+      position: absolute;
+      width: 100%;
+      top: 70%;
+      background: rgba(0,0,0,0.1);
+      color: #74b84a;
+      font-size: xx-large;
+      text-shadow: 1px 2px 2px #125ea3;
+    }
+  }
+}

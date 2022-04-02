@@ -6,14 +6,13 @@ export const environment = {
   production: false,
   envName: "local",
   firebaseConfig: {
-    apiKey: "AIzaSyBd9AIpEXU-jfkp40JlCi0N34QiqHS7wW0",
-    authDomain: "challenge1177.firebaseapp.com",
-    databaseURL: "https://challenge1177-default-rtdb.firebaseio.com",
-    projectId: "challenge1177",
-    storageBucket: "challenge1177.appspot.com",
-    messagingSenderId: "59705937323",
-    appId: "1:59705937323:web:73d7ba7d7776d4f58a16ee",
-    measurementId: "G-CZ87RT5HH8",
+    apiKey: "AIzaSyB4HeeYD0Q2jsSgrAh7wF2Ib8hBu5u-YGk",
+    authDomain: "letscng-ui.firebaseapp.com",
+    projectId: "letscng-ui",
+    storageBucket: "letscng-ui.appspot.com",
+    messagingSenderId: "1070710859649",
+    appId: "1:1070710859649:web:c6a93ca4e69bf35bf5aa80",
+    measurementId: "G-GN0E3C4ENN"
   },
   stravaConfig: {
     client_id: 69720,

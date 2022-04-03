@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { CommonUtilService } from 'src/app/services/common-util.service';
 import { EventService } from 'src/app/services/event.service';
 
 @Component({
@@ -15,17 +16,23 @@ export class MyTeamComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private authService: AuthService,
+    private commonUtilService: CommonUtilService,
   ) { }
 
   ngOnInit(): void {
-    this.fetchTeamStats();
+    this.fetchTeamStats(true);
   }
 
-  fetchTeamStats() {
+  refreshTeamList() {
+    this.teamMemberStats = [];
+    this.fetchTeamStats(false);
+  }
+
+  fetchTeamStats(cached: boolean) {
     console.log('in fetchTeamStats');
     this.loadingStats = true;
 
-    this.eventService.getAw80d2022TeamRides(this.authService.getPhoneNumber()).subscribe((data) => {
+    this.eventService.getAw80d2022TeamRides(this.authService.getPhoneNumber(), cached).subscribe((data) => {
       console.log('fetchTeamStats data: ', data);
       this,this.buildTeamStats(data);
 
@@ -47,6 +54,7 @@ export class MyTeamComponent implements OnInit {
         profile: athlete.profile,
         distance: Number((data[phone].TotalDistance / 1000).toFixed(2)),
         me: this.authService.getPhoneNumber() === phone,
+        phone: phone,
       };
     }).sort((a, b) => {
       return b.distance - a.distance;
@@ -59,6 +67,11 @@ export class MyTeamComponent implements OnInit {
     return this.teamMemberStats.reduce((total, member) => {
       return total + member.distance;
     }, 0).toFixed(2);
+  }
+
+  setRiderView(rider: any) {
+    this.commonUtilService.setRiderToView(rider);
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
 }

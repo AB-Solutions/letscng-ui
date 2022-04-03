@@ -30,9 +30,19 @@ export class CngEventsComponent implements OnInit {
     if (this.authService.getPhoneNumber()) {
       this.verifyAw80D2022Participant();
     }
-    this.fetchTeamTotals();
+    this.fetchTeamTotals(true);
     this.fetchTeamNames();
     this.fetchMyself();
+  }
+
+  refreshTeamTotal() {
+    this.teamTotals = {
+      running: {},
+      valid: {}
+    };
+
+    this.fetchTeamTotals(false);
+    this.formTeamLeaderboardList();
   }
 
   fetchMyself() {
@@ -58,8 +68,9 @@ export class CngEventsComponent implements OnInit {
     });
   }
 
-  fetchTeamTotals() {
-    this.eventService.getAw80d2022TeamTotals().subscribe((data) => {
+  fetchTeamTotals(cached: boolean) {
+
+    this.eventService.getAw80d2022TeamTotals(cached).subscribe((data) => {
       console.log('fetched TeamTotals : ', data);
       this.teamTotals = data;
       this.formTeamLeaderboardList();

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-team-leaderboard',
@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TeamLeaderboardComponent implements OnInit {
   @Input() teams: any[] = [];
   @Input() aw80dUser: any;
+  @Output() refresh = new EventEmitter<any>();
   numbers: any= [];
 
   constructor() {
@@ -25,6 +26,10 @@ export class TeamLeaderboardComponent implements OnInit {
     } else {
       return '----';
     }
+  }
+
+  refreshLeaderBoard() {
+    this.refresh.emit();
   }
 
 }

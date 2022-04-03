@@ -1,2 +1,2 @@
-<h3 class="h3">Participant activities.</h3>
+<h3 class="h3"><span *ngIf="!rider.name">Your </span>Activities: <span *ngIf="rider.name">({{rider.name}})</span></h3>
 <app-my-rides [isEventUser]="true" [isFilterDisabled]="true"></app-my-rides>

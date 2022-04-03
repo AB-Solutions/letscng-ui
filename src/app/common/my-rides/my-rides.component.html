@@ -32,16 +32,16 @@
       <td>{{getDistance(activity.distance)}}</td>
     </tr>
   </tbody>
-  <tfoot *ngIf="!limitExceeded && !loadingActivities">
+  <tfoot *ngIf="!limitExceeded && !loadingActivities && !noActivitiesFound">
     <tr>
       <td class="link" colspan="4" (click)="loadMore()">Load more</td>
     </tr>
   </tfoot>
 </table>
-<br/>
 <div class="alert alert-danger" *ngIf="activities.length === 0 && noActivitiesFound">
-  <strong>Info!</strong> No activities found, Please Sync your Rides...
+  <strong>Info!</strong> No activities found, Please Sync Rides from My Strava Page...
 </div>
 <div class="alert alert-info" *ngIf="loadingActivities">
   <strong>Loading activities....</strong>
 </div>
+<div class="mb-5"></div>

@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 export class CommonUtilService {
   loadingMessage = new EventEmitter<string>();
   loadingSuccessMessage = new EventEmitter<string>();
+  selectedRiderPhone = new EventEmitter<any>();
   serverHealth = new EventEmitter<boolean>();
 
   constructor(
@@ -25,5 +26,9 @@ export class CommonUtilService {
   getServerHealth() {
     const url = environment.backend.apiBaseUrl;
     return this.http.get(url);
+  }
+
+  setRiderToView(rider: any) {
+    this.selectedRiderPhone.emit(rider);
   }
 }

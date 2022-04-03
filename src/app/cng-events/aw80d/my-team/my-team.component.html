@@ -1,8 +1,14 @@
-<h3 class="h3">Team Member's List</h3>
-
+<div class="row">
+  <div class="col-6">
+    <h3 class="h3">Team Member's List</h3>
+  </div>
+  <div class="col-6 text-right">
+    <button class="btn btn-dark" (click)="refreshTeamList()">Refresh</button>
+  </div>
+</div>
 <table
   class="table"
-  style="background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)), url('../../../../assets/img/aw80dteams/{{aw80dUser.team_name}}.jpeg')"
+  style="background-position: center; background-size: contain; background-repeat: no-repeat;background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)), url('../../../../assets/img/aw80dteams/{{aw80dUser.team_name}}.jpeg')"
 >
   <thead>
     <tr>
@@ -13,7 +19,11 @@
     </tr>
   </thead>
   <tbody *ngIf="!loadingStats">
-    <tr *ngFor="let member of teamMemberStats; let i = index" [ngClass]="{'highlight': member.me}">
+    <tr
+      *ngFor="let member of teamMemberStats; let i = index"
+      [ngClass]="{'highlight': member.me}"
+      (click)="setRiderView(member)"
+    >
       <td>{{i + 1}}</td>
       <td><img class="profile_pic" src="{{member.profile}}" alt="{{member.name}}" /></td>
       <td>{{member.name}}</td>

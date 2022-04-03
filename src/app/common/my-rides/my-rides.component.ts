@@ -33,6 +33,11 @@ export class MyRidesComponent implements OnInit {
     } else {
       this.getStravaUserActivities();
     }
+
+    this.commonUtilService.selectedRiderPhone.subscribe((rider: any) => {
+      console.log('in my-rides: ', rider);
+      this.getUserActivitiesByEvent(rider.phone);
+    });
   }
 
   getDate(dateStr: any) {
@@ -102,11 +107,12 @@ export class MyRidesComponent implements OnInit {
     });
   }
 
-  getUserActivitiesByEvent() {
+  getUserActivitiesByEvent(phone?: any) {
     this.noActivitiesFound = false;
     this.loadingActivities = true;
+    this.activities = [];
 
-    this.eventService.getAw80d2022UserActivities(this.authService.getPhoneNumber()).subscribe((data: any) => {
+    this.eventService.getAw80d2022UserActivities(phone ? phone : this.authService.getPhoneNumber()).subscribe((data: any) => {
       if (data) {
         var activities = Object.keys(data).map((activityId) => {
           return data[activityId];
@@ -122,6 +128,7 @@ export class MyRidesComponent implements OnInit {
     }, (err) => {
       console.log(err);
       this.loadingActivities = false;
+      this.noActivitiesFound = true;
     });
   }
 

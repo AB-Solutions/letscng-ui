@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CngEventsComponent } from './cng-events/cng-events.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MyStravaComponent } from './my-strava/my-strava.component';
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     component: MyStravaComponent,
     path: 'strava',
+  },
+  {
+    component: CngEventsComponent,
+    path: 'cng-events',
   },
   {
     path: '**',

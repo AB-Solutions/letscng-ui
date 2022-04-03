@@ -7,8 +7,8 @@ import "firebase/firestore";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { CommonUtilService } from '../common-util.service';
+import { AuthService } from '../services/auth.service';
+import { CommonUtilService } from '../services/common-util.service';
 import { LoadingEnum } from '../enum/loading.enum';
 @Component({
   selector: 'app-login',

@@ -1,5 +1,8 @@
 <section>
-  <div class="container d-flex flex-column">
+  <app-server-down *ngIf="!serverHealth"></app-server-down>
+  <div *ngIf="serverHealth"
+    class="container d-flex flex-column"
+  >
     <div class="row align-items-center justify-content-center">
       <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10 py-6 py-md-0">
         <div class="card shadow zindex-100 mb-0">
@@ -15,30 +18,10 @@
               >
                 <img src="../../assets/img/cws.png" height="30">
               </a>
-              <div class="card-body" *ngIf="athlete?.id && stravaProfileFound">
-                <h6>Strava Profile Details:</h6>
-                <img class="strava-profile-pic mb-3" src="{{athlete.profile}}" alt="{{athlete.firstname}} {{athlete.lastname}}"/>
-                <table class="text-left  table table-striped">
-                  <tbody>
-                    <tr>
-                      <td>Strava Id</td>
-                      <td>{{athlete.id}}</td>
-                    </tr>
-                    <tr>
-                      <td>Rider Name</td>
-                      <td>{{athlete.firstname}} {{athlete.lastname}}</td>
-                    </tr>
-                    <tr>
-                      <td>Place</td>
-                      <td>{{athlete.city}}, {{athlete.state}}</td>
-                    </tr>
-                    <tr>
-                      <td>Gender</td>
-                      <td>{{athlete.sex}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <app-strava-profile
+                *ngIf="stravaProfileFound"
+                [athlete]="athlete"
+              ></app-strava-profile>
             </div>
             <section class="activities" *ngIf="athlete?.id">
               <!-- tornamentTab: {{tornamentTab}} -->
@@ -54,10 +37,7 @@
                 </li>
               </ul>
               <div *ngIf="tornamentTab === 'master'" class="team-leaderboard-container">
-                <div class="launching">
-                  <img class="launch" src="../../assets/img/gifs/launch.gif" alt="Launching Soon" />
-                  <div class="message">Launching Soon...</div>
-                </div>
+                <app-aw80d></app-aw80d>
               </div>
               <div *ngIf="tornamentTab === 'myride'">
                 <div class="btn-group filter-btn-group col-12 mt-3 mb-3">

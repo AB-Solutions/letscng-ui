@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonUtilService } from '../common-util.service';
+import { CommonUtilService } from '../services/common-util.service';
 import { LoadingEnum } from '../enum/loading.enum';
 @Component({
   selector: 'app-loading-icon',

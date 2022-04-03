@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { environment } from 'src/environments/environment';
-import { CommonUtilService } from '../common-util.service';
+import { CommonUtilService } from '../services/common-util.service';
 import { LoadingEnum } from '../enum/loading.enum';
 import * as moment from 'moment';
 
@@ -11,6 +11,7 @@ import * as moment from 'moment';
   styleUrls: ['./my-strava.component.scss']
 })
 export class MyStravaComponent implements OnInit {
+  serverHealth = true;
   tornamentTab = 'master';
   stravaProfileFound = true;
   athlete: any;
@@ -30,6 +31,12 @@ export class MyStravaComponent implements OnInit {
   ngOnInit(): void {
     this.loggedUser = this.authService.getLoggedUser();
     this.fetchStravaUserData();
+
+    var self = this;
+    self.getServerHealth()
+    setInterval(function() {
+      self.getServerHealth();
+    }, 300000);
   }
 
   setFilterLast(days: number) {
@@ -122,5 +129,20 @@ export class MyStravaComponent implements OnInit {
   setTournamentTab(tab: string) {
     console.log('in setTournamentTab : ', tab);
     this.tornamentTab = tab;
+  }
+
+
+  getServerHealth() {
+    this.commonUtilService.getServerHealth().subscribe((data) => {
+      console.log('data: ', data);
+      this.serverHealth = true;
+    }, (error) => {
+      console.log('error: ', error);
+      if (error.status && error.status === 200) {
+        this.serverHealth = true;
+      } else {
+        this.serverHealth = false;
+      }
+    });
   }
 }

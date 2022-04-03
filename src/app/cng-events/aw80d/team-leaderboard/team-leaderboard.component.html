@@ -9,12 +9,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+      <tr *ngFor="let team of teams; let i = index" >
+        <td>{{i + 1}}</td>
+        <td><img class="team-logo" alt="{{team.name}}" src="{{team.logo}}"/></td>
+        <td>{{team.name}}</td>
+        <td>
+          <span *ngIf="team.total > 0">{{team.total}}</span>
+          <div *ngIf="team.total < 0" class="progress">
+            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width:100%"></div>
+          </div>
+        </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" class="text-right total"><b>Total</b></td>
+        <td>{{getTotals()}}</td>
+      </tr>
+    </tfoot>
   </table>
+  <div class="alert alert-info" *ngIf="teams.length == 0">
+    <strong>Loading...</strong>
+  </div>
 </div>

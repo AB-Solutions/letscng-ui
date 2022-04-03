@@ -4,7 +4,11 @@
     <h3 class="h3">AROUND THE WORLD IN 80 DAYS</h3>
     <p class="text-secondary">Around the world in 80 days i.e. 40075 kms (The Circumference of the Earth). Multiple teams, each team of 22 riders must cycle 40075 kms in 80 days. Names of the Teams (derived from first Satellite of a Country): Aryabhata (India), Sputnik (USSR), Explorer (USA), Oshumi (Japan) etc.</p>
   </div>
-
   <h4 class="h4">Team Leaderboard</h4>
-  <app-team-leaderboard></app-team-leaderboard>
+  <app-team-leaderboard
+    [teams]="teamLeaderboardList"
+  ></app-team-leaderboard>
+  <br/>
+  <br/>
+  <app-my-event-rides *ngIf="isAw80D2022Participant"></app-my-event-rides>
 </div>

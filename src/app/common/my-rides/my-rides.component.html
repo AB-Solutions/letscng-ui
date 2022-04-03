@@ -1,0 +1,47 @@
+<div *ngIf="!isFilterDisabled" class="btn-group filter-btn-group col-12 mt-3 mb-3">
+  <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 7}" (click)="setFilterLast(7)">
+    Last 7 days
+    <i class="fa-solid fa-check"></i>
+  </button>
+  <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 14}" (click)="setFilterLast(14)">
+    Last 14 days
+    <i class="fa-solid fa-check"></i>
+  </button>
+  <button type="button" class="btn btn-light" [ngClass]="{'active': filterLast === 30}" (click)="setFilterLast(30)">
+    Last 30 days
+    <i class="fa-solid fa-check"></i>
+  </button>
+  <span class="link"><img class="small-icon" src="../../../assets/icons/icons8-refresh-48.png" (click)="syncUserRides()"/></span>
+</div>
+
+<table class="table no-wrap table-responsive">
+  <thead>
+    <tr>
+      <th>Sl No.</th>
+      <th>Ride Title</th>
+      <th>Date</th>
+      <th>Distance (KM)</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="!loadingActivities">
+    <tr *ngFor="let activity of activities | slice:0:limit; index as i;">
+      <td>{{i + 1}}</td>
+      <td [attr.title]="activity.name" class="ellipsis">
+        <a attr.href="https://www.strava.com/activities/{{activity.id}}" target="_blank">{{activity.name}}</a></td>
+      <td>{{getDate(activity.start_date)}}</td>
+      <td>{{getDistance(activity.distance)}}</td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!limitExceeded && !loadingActivities">
+    <tr>
+      <td class="link" colspan="4" (click)="loadMore()">Load more</td>
+    </tr>
+  </tfoot>
+</table>
+<br/>
+<div class="alert alert-danger" *ngIf="activities.length === 0 && noActivitiesFound">
+  <strong>Info!</strong> No activities found, Please Sync your Rides...
+</div>
+<div class="alert alert-info" *ngIf="loadingActivities">
+  <strong>Loading activities....</strong>
+</div>

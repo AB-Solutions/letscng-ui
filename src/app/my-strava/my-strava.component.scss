@@ -1,21 +1,4 @@
-.filter-btn-group {
-  button {
-    position: relative;
 
-    .fa-check {
-      display: none;
-    }
-
-    &.active {
-      background-color: #bbffcc;
-      // color: aliceblue;
-      .fa-check {
-        display: inline-block;
-      }
-    }
-
-  }
-}
 
 #stravaAuth {
   img {

@@ -45,7 +45,7 @@ export class AuthService {
     console.log('in getStravaUserActivities : ', phone);
     const {backend} = environment;
     const {apiBaseUrl} = backend;
-    const url = `${apiBaseUrl}/rides/aw80d2022?phone=${phone}`;
+    const url = `${apiBaseUrl}/rides?phone=${phone}`;
 
     return this.http.get(url);
   }
@@ -57,5 +57,9 @@ export class AuthService {
     const url = `${apiBaseUrl}/sync?phone=${phone}`;
 
     return this.http.get(url);
+  }
+
+  getPhoneNumber() {
+    return this.getLoggedUser()?.user?.phoneNumber.replace('+91', '');
   }
 }

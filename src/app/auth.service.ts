@@ -45,7 +45,7 @@ export class AuthService {
     console.log('in getStravaUserActivities : ', phone);
     const {backend} = environment;
     const {apiBaseUrl} = backend;
-    const url = `${apiBaseUrl}/rides?phone=${phone}`;
+    const url = `${apiBaseUrl}/rides/aw80d2022?phone=${phone}`;
 
     return this.http.get(url);
   }

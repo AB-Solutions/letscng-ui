@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let team of teams; let i = index" >
+      <tr *ngFor="let team of teams; let i = index" [ngClass]="{'highlight': aw80dUser && aw80dUser.team_name === team.name}">
         <td>{{i + 1}}</td>
         <td><img class="team-logo" alt="{{team.name}}" src="{{team.logo}}"/></td>
         <td>{{team.name}}</td>

@@ -7,7 +7,14 @@
   <h4 class="h4">Team Leaderboard</h4>
   <app-team-leaderboard
     [teams]="teamLeaderboardList"
+    [aw80dUser]="aw80dUser"
   ></app-team-leaderboard>
+  <br/>
+  <br/>
+  <aw80d-my-team
+    *ngIf="isAw80D2022Participant"
+    [aw80dUser]="aw80dUser"
+  ></aw80d-my-team>
   <br/>
   <br/>
   <app-my-event-rides *ngIf="isAw80D2022Participant"></app-my-event-rides>

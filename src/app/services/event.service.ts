@@ -37,7 +37,7 @@ export class EventService {
   getAw80d2022TeamTotals() {
     const {backend} = environment;
     const {apiBaseUrl} = backend;
-    const url = `${apiBaseUrl}/rides/aw80d2022/teamTotals`;
+    const url = `${apiBaseUrl}/rides/aw80d2022/teamTotals?cached=True`;
 
     return this.http.get(url);
   }
@@ -45,7 +45,15 @@ export class EventService {
   getAw80d2022TeamRides(phone: any) {
     const {backend} = environment;
     const {apiBaseUrl} = backend;
-    const url = `${apiBaseUrl}/rides/aw80d2022/team?phone=${phone}`;
+    const url = `${apiBaseUrl}/rides/aw80d2022/team?phone=${phone}&cached=True`;
+
+    return this.http.get(url);
+  }
+
+  getMyTeam(phone: any) {
+    const {backend} = environment;
+    const {apiBaseUrl} = backend;
+    const url = `${apiBaseUrl}/user/getAw80D2022Team?phone=${phone}`;
 
     return this.http.get(url);
   }

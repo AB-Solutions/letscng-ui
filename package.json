@@ -8,7 +8,7 @@
         "build:staging": "ng build --aot --configuration staging",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "deploy": "firebase deploy"
+        "deploy": "firebase deploy --only hosting:challenge1177"
     },
     "private": true,
     "dependencies": {

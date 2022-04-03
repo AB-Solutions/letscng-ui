@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TeamLeaderboardComponent implements OnInit {
   @Input() teams: any[] = [];
+  @Input() aw80dUser: any;
   numbers: any= [];
 
   constructor() {
@@ -19,10 +20,6 @@ export class TeamLeaderboardComponent implements OnInit {
   getTotals() {
     if (this.teams.length && this.teams[0].total > 0) {
       return this.teams.reduce((total, team) => {
-        console.log('------------');
-        console.log('total: ', total);
-        console.log('team.total: ', team.total);
-        console.log('------------');
         return Number((total + team.total).toFixed(2));
       }, 0);
     } else {

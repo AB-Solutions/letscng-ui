@@ -17,6 +17,7 @@ export class CngEventsComponent implements OnInit {
     valid: {}
   };
   teamLeaderboardList: any[] = [];
+  aw80dUser: any = {};
 
   constructor(
     private authService: AuthService,
@@ -31,6 +32,16 @@ export class CngEventsComponent implements OnInit {
     }
     this.fetchTeamTotals();
     this.fetchTeamNames();
+    this.fetchMyself();
+  }
+
+  fetchMyself() {
+    this.eventService.getMyTeam(this.authService.getPhoneNumber()).subscribe((data) => {
+      console.log('in fetchMyself: ', data);
+      this.aw80dUser = data;
+    }, (error) => {
+      console.log('error: ', error);
+    })
   }
 
   verifyAw80D2022Participant() {

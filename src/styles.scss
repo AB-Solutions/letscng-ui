@@ -190,3 +190,17 @@ table.no-wrap th {
 .text-right {
   text-align: right;
 }
+
+
+td, th {
+  text-align: center;
+}
+
+.total {
+  text-align: right;
+  font-size: x-large;
+}
+
+tr.highlight td {
+  background: rgba(255,255,0,.4);
+}

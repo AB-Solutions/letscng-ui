@@ -61,6 +61,6 @@ export class AuthService {
 
   getPhoneNumber() {
     return this.getLoggedUser()?.user?.phoneNumber.replace('+91', '');
-    // return '9903699009';
+    // return '9657694161';
   }
 }

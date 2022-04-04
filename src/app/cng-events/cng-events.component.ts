@@ -98,7 +98,7 @@ export class CngEventsComponent implements OnInit {
       const teamName = this.teamNames[teamId];
       return {
         name: teamName,
-        logo: `../../../assets/img/aw80dteams/${teamName}.jpeg`,
+        logo: `../../../assets/img/aw80dteams/${teamName}.png`,
         total: isTeamTotalReady ? Number(((this.teamTotals.running[teamId])/1000).toFixed(2)) : -1,
       }
     }).sort((teamA, teamB) => {

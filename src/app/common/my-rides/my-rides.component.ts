@@ -117,7 +117,7 @@ export class MyRidesComponent implements OnInit {
         var activities = Object.keys(data).map((activityId) => {
           return data[activityId];
         });
-        this.activities = activities;
+        this.activities = this.filterByLastDate(activities);
       } else {
         this.activities = [];
       }

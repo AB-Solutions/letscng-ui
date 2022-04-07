@@ -6,6 +6,7 @@
   </div>
 
   <app-team-leaderboard
+    [isAdmin]="isAdmin"
     [teams]="teamLeaderboardList"
     [aw80dUser]="aw80dUser"
     (refresh)="refreshTeamTotal()"
@@ -13,10 +14,10 @@
   <br/>
   <br/>
   <aw80d-my-team
-    *ngIf="isAw80D2022Participant"
-    [aw80dUser]="aw80dUser"
+    *ngIf="isAw80D2022Participant || isAdmin"
+    [teamId]="aw80dUser.team_id"
   ></aw80d-my-team>
   <br/>
   <br/>
-  <app-my-event-rides *ngIf="isAw80D2022Participant"></app-my-event-rides>
+  <app-my-event-rides *ngIf="isAw80D2022Participant || isAdmin"></app-my-event-rides>
 </div>

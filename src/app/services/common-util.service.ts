@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 export class CommonUtilService {
   loadingMessage = new EventEmitter<string>();
   loadingSuccessMessage = new EventEmitter<string>();
+  loadSelectedTeamList = new EventEmitter<string>();
   selectedRiderPhone = new EventEmitter<any>();
   serverHealth = new EventEmitter<boolean>();
 
@@ -30,5 +31,9 @@ export class CommonUtilService {
 
   setRiderToView(rider: any) {
     this.selectedRiderPhone.emit(rider);
+  }
+
+  setTeamListToView(id: any) {
+    this.loadSelectedTeamList.emit(id);
   }
 }

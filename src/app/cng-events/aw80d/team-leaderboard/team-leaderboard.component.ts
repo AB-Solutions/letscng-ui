@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CommonUtilService } from 'src/app/services/common-util.service';
 
 @Component({
   selector: 'app-team-leaderboard',
@@ -6,12 +7,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./team-leaderboard.component.scss']
 })
 export class TeamLeaderboardComponent implements OnInit {
+  @Input() isAdmin: boolean = false;
   @Input() teams: any[] = [];
   @Input() aw80dUser: any;
   @Output() refresh = new EventEmitter<any>();
   numbers: any= [];
+  selectedTeam: any;
 
-  constructor() {
+  constructor(private commonUtilService: CommonUtilService) {
     this.numbers = Array(13).fill(0).map((x,i)=>i);
   }
 
@@ -32,4 +35,12 @@ export class TeamLeaderboardComponent implements OnInit {
     this.refresh.emit();
   }
 
+  loadTeamList(id: any) {
+    if (this.isAdmin) {
+      this.selectedTeam = id;
+      console.log('in loadTeamList: ', id);
+      this.commonUtilService.setTeamListToView(id);
+      document.getElementById('teamlist')?.scrollIntoView();
+    }
+  }
 }

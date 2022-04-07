@@ -9,8 +9,6 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log('HomeComponenrt')
-  }
+  ngOnInit(): void {}
 
 }

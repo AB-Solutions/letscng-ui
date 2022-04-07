@@ -2,3 +2,33 @@
   height: 40px;
 }
 
+.big-logo {
+
+}
+
+@media only screen and (max-width: 575px) {
+  .small-table-cell {
+    width: 40px;
+  }
+
+  .km-progress {
+    min-width: 150px;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .km-progress {
+    min-width: 200px;
+  }
+}
+
+.team-logo-td {
+  position: relative;
+}
+
+img.big-logo {
+  height: 65px;
+  position: absolute;
+  left: -0.25rem;
+  top: -0.25rem;
+}

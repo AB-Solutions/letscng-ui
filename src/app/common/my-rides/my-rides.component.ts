@@ -22,7 +22,7 @@ export class MyRidesComponent implements OnInit {
   filterLast = 7;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private commonUtilService: CommonUtilService,
     private eventService: EventService,
   ) { }
@@ -64,6 +64,10 @@ export class MyRidesComponent implements OnInit {
 
   getDistance(distance: number) {
     return (distance/1000).toFixed(2);
+  }
+
+  getAvgSpeed(avgSpeed: any) {
+    return Number((Number(avgSpeed) * 3.6).toFixed(2));
   }
 
   loadMore() {

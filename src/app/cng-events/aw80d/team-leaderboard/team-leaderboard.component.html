@@ -4,24 +4,33 @@
       <h3 class="h3">Team Leaderboard</h3>
     </div>
     <div class="col-6 text-right">
-      <button class="btn btn-dark" (click)="refreshLeaderBoard()">Refresh</button>
+      <button class="btn btn-dark" (click)="refreshLeaderBoard()" [disabled]="teams[0]?.total < 0">Refresh</button>
     </div>
   </div>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Ranks</th>
-        <th></th>
+        <th class="small-table-cell">Ranks</th>
+        <th class="small-table-cell"></th>
         <th>Teams</th>
-        <th>KMs</th>
+        <th class="km-progress">KMs</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let team of teams; let i = index" [ngClass]="{'highlight': aw80dUser && aw80dUser.team_name === team.name}">
-        <td>{{i + 1}}</td>
-        <td><img class="team-logo" alt="{{team.name}}" src="{{team.logo}}"/></td>
+      <tr *ngFor="let team of teams; let i = index"
+        [ngClass]="{
+          'highlight': aw80dUser && aw80dUser.team_name === team.name,
+          'table-row-selected': team.teamId === selectedTeam
+        }"
+        (click)="loadTeamList(team.teamId)"
+      >
+        <td class="small-table-cell">{{i + 1}}</td>
+        <td class="small-table-cell team-logo-td">
+          <img class="team-logo hidden" alt="{{team.name}}" src="{{team.logo}}" />
+          <img class="big-logo" alt="{{team.name}}" src="{{team.logo}}" />
+        </td>
         <td>{{team.name}}</td>
-        <td>
+        <td class="km-progress">
           <span *ngIf="team.total > 0">{{team.total}}</span>
           <div *ngIf="team.total < 0" class="progress">
             <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width:100%"></div>

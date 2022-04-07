@@ -14,21 +14,25 @@
   <span class="link"><img class="small-icon" src="../../../assets/icons/icons8-refresh-48.png" (click)="syncUserRides()"/></span>
 </div>
 
-<table class="table no-wrap table-responsive">
+<table class="table table-responsive">
   <thead>
     <tr>
       <th>Sl No.</th>
       <th>Ride Title</th>
       <th>Date</th>
+      <th>Avg Speed (Kmph)</th>
       <th>Distance (KM)</th>
     </tr>
   </thead>
   <tbody *ngIf="!loadingActivities">
-    <tr *ngFor="let activity of activities | slice:0:limit; index as i;">
+    <tr *ngFor="let activity of activities | slice:0:limit; index as i;"
+      [ngClass]="{'high-speed': authService.isAdminUser() && getAvgSpeed(activity.max_speed) >= 50}"
+    >
       <td>{{i + 1}}</td>
       <td [attr.title]="activity.name" class="ellipsis">
         <a attr.href="https://www.strava.com/activities/{{activity.id}}" target="_blank">{{activity.name}}</a></td>
       <td>{{getDate(activity.start_date)}}</td>
+      <td>{{getAvgSpeed(activity.average_speed)}}</td>
       <td>{{getDistance(activity.distance)}}</td>
     </tr>
   </tbody>

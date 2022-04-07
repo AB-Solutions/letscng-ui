@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class EventService {
+  aw80d2022Teams: any = {};
 
   constructor(private http: HttpClient) { }
 
@@ -46,10 +47,18 @@ export class EventService {
     return this.http.get(url);
   }
 
-  getAw80d2022TeamRides(phone: any, cached: boolean) {
+  getAw80d2022TeamRides(phone: any, id: number, cached: boolean) {
     const {backend} = environment;
     const {apiBaseUrl} = backend;
-    let url = `${apiBaseUrl}/rides/aw80d2022/team?phone=${phone}`;
+    let queryParams = '';
+
+    if (id && id > 0) {
+      queryParams += `id=${id}`;
+    } else if (phone) {
+      queryParams += `phone=${phone}`;
+    }
+
+    let url = `${apiBaseUrl}/rides/aw80d2022/team?${queryParams}`;
 
     if (cached) {
       url += `&cached=true`;
@@ -58,11 +67,15 @@ export class EventService {
     return this.http.get(url);
   }
 
-  getMyTeam(phone: any) {
+  getMyTeamByPhone(phone: any) {
     const {backend} = environment;
     const {apiBaseUrl} = backend;
     const url = `${apiBaseUrl}/user/getAw80D2022Team?phone=${phone}`;
 
     return this.http.get(url);
+  }
+
+  getTeamNameById(id: any) {
+    return this.aw80d2022Teams[id];
   }
 }

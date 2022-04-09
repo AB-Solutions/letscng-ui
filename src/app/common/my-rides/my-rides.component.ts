@@ -12,7 +12,7 @@ import { EventService } from 'src/app/services/event.service';
 export class MyRidesComponent implements OnInit {
   @Input() isEventUser: boolean = false;
   @Input() isFilterDisabled: boolean = false;
-
+  syncDisabled = false;
   activities: any[] = [];
   limit = 10;
   limitExceeded = false;
@@ -138,23 +138,28 @@ export class MyRidesComponent implements OnInit {
 
 
   syncUserRides() {
-    const phone = this.authService.getPhoneNumber();
+    this.syncDisabled = true;
+    var self = this;
+    setTimeout(function(){
+      self.syncDisabled = false;
+    }, 6000);
+    // const phone = this.authService.getPhoneNumber();
 
-    this.commonUtilService.setloadingMessage('Syncing STRAVA Rides');
-    this.authService.syncStravaUserActivities(phone).subscribe((data: any) => {
+    // this.commonUtilService.setloadingMessage('Syncing STRAVA Rides');
+    // this.authService.syncStravaUserActivities(phone).subscribe((data: any) => {
 
-      this.commonUtilService.setloadingMessage('');
+    //   this.commonUtilService.setloadingMessage('');
 
-      if (this.isEventUser) {
-        this.getUserActivitiesByEvent();
-      } else {
-        this.getStravaUserActivities();
-      }
-    }, (err) => {
-      console.log(err);
+    //   if (this.isEventUser) {
+    //     this.getUserActivitiesByEvent();
+    //   } else {
+    //     this.getStravaUserActivities();
+    //   }
+    // }, (err) => {
+    //   console.log(err);
 
-      this.commonUtilService.setloadingMessage('');
-    });
+    //   this.commonUtilService.setloadingMessage('');
+    // });
   }
 
   sortByDate(data: any) {

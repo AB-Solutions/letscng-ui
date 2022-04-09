@@ -11,7 +11,9 @@
     Last 30 days
     <i class="fa-solid fa-check"></i>
   </button>
-  <span class="link"><img class="small-icon" src="../../../assets/icons/icons8-refresh-48.png" (click)="syncUserRides()"/></span>
+  <span class="link">
+    <img class="small-icon" src="../../../assets/icons/icons8-refresh-48.png" (click)="syncUserRides()"/>
+  </span>
 </div>
 <div class=" table-responsive">
   <table class="table">
@@ -50,3 +52,14 @@
   <strong>Loading activities....</strong>
 </div>
 <div class="mb-5"></div>
+
+
+<div class="toast" [ngClass]="{'show': syncDisabled}">
+  <div class="toast-header">
+    <strong class="me-auto">Sync Notification</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+  </div>
+  <div class="toast-body">
+    <p>Sync is temporarily disabled for the time being. You will be notified once it is enabled again.</p>
+  </div>
+</div>

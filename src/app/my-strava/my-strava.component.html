@@ -29,7 +29,7 @@
                   <a class="nav-link" [ngClass]="{'active': tornamentTab === 'myride'}">My Rides</a>
                 </li>
               </ul>
-              <div *ngIf="tornamentTab === 'myride'">
+              <div class="relative" *ngIf="tornamentTab === 'myride'">
                 <app-my-rides></app-my-rides>
               </div>
             </section>

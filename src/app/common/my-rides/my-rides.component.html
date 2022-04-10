@@ -82,7 +82,7 @@
         <span *ngIf="isSyncAllowed">Manual Sync cannot be done more than once in 24 hours. Do you still want to proceed?</span>
       </div>
       <div *ngIf="!lastSyncFetched" class="modal-body">
-        Unable to fetch your last manual sync date time. Please contact your admin.
+        <span *ngIf="isSyncAllowed">Manual Sync cannot be done more than once in 24 hours. Do you still want to proceed?</span>
       </div>
 
       <!-- Modal footer -->

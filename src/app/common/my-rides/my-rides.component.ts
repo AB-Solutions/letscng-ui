@@ -172,27 +172,31 @@ export class MyRidesComponent implements OnInit {
     this.isSyncAllowed = false;
     this.lastSyncFetched = false;
     this.lastSyncDateTime = '';
+    this.lastSyncUTCDateTime = '';
     const phone = this.authService.getPhoneNumber();
     this.authService.fetchSyncLastTime(phone).subscribe((data: any) => {
       this.lastSyncUTCDateTime = data;
       this.lastSyncFetched = true;
       this.buildSyncDateTimeSettings();
     }, (err) => {
+      this.isSyncAllowed = true;
       console.log(err);
     });
   }
 
   buildSyncDateTimeSettings() {
-    console.log('in buildSyncDateTimeSettings');
-    var utcSyncDate = moment.utc(this.lastSyncUTCDateTime, 'YYYY-MM-DD HH:mm:ss.SSSS');
-    // var utcSyncDate = moment.utc("2022-04-09 08:30:23.670962", 'YYYY-MM-DD HH:mm:ss.SSSS');
-    var localDate = moment(utcSyncDate.toDate()).local();
-    this.lastSyncDateTime = localDate.format('DD-MM-YYYY HH:mm');
-    var currentNow = Number((moment.now() / 1000).toFixed(0));
-    var diffSyncTime = currentNow - localDate.unix();
-    this.isSyncAllowed = diffSyncTime > (24*60*60);
-    console.log('diffSyncTime: ', diffSyncTime);
-    console.log('isSyncAllowed: ', this.isSyncAllowed);
+    console.log('in buildSyncDateTimeSettings: ', this.lastSyncUTCDateTime);
+    if (this.lastSyncUTCDateTime) {
+      var utcSyncDate = moment.utc(this.lastSyncUTCDateTime, 'YYYY-MM-DD HH:mm:ss.SSSS');
+      // var utcSyncDate = moment.utc("2022-04-09 08:30:23.670962", 'YYYY-MM-DD HH:mm:ss.SSSS');
+      var localDate = moment(utcSyncDate.toDate()).local();
+      this.lastSyncDateTime = localDate.format('DD-MM-YYYY HH:mm');
+      var currentNow = Number((moment.now() / 1000).toFixed(0));
+      var diffSyncTime = currentNow - localDate.unix();
+      this.isSyncAllowed = diffSyncTime > (24*60*60);
+      console.log('diffSyncTime: ', diffSyncTime);
+      console.log('isSyncAllowed: ', this.isSyncAllowed);
+    }
   }
 
   sortByDate(data: any) {

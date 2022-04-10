@@ -12,7 +12,8 @@
     <i class="fa-solid fa-check"></i>
   </button>
   <span class="link">
-    <img class="small-icon" src="../../../assets/icons/icons8-refresh-48.png" (click)="syncUserRides()"/>
+    <img class="small-icon" src="../../../assets/icons/icons8-refresh-48.png"
+      data-bs-toggle="modal" data-bs-target="#myModal" (click)="buildSyncDateTimeSettings()"/>
   </span>
 </div>
 <div class=" table-responsive">
@@ -54,12 +55,45 @@
 <div class="mb-5"></div>
 
 
-<div class="toast" [ngClass]="{'show': syncDisabled}">
+<!-- <div class="toast" [ngClass]="{'show': syncDisabled}">
   <div class="toast-header">
     <strong class="me-auto">Sync Notification!</strong>
     <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
   </div>
   <div class="toast-body">
     <p>Sync is temporarily disabled for the time being. You will be notified once it is enabled again.</p>
+  </div>
+</div> -->
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-sm modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h3 class="modal-title h3">Manual Sync Alert!</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" #closeModal></button>
+      </div>
+
+      <!-- Modal body -->
+      <div *ngIf="lastSyncFetched" class="modal-body">
+        You have last manually synced on {{lastSyncDateTime}}.
+        <span *ngIf="!isSyncAllowed">Please Sync again after 24hrs from your last sync date time.</span>
+        <span *ngIf="isSyncAllowed">Manual Sync cannot be done more than once in 24 hours. Do you still want to proceed?</span>
+      </div>
+      <div *ngIf="!lastSyncFetched" class="modal-body">
+        Unable to fetch your last manual sync date time. Please contact your admin.
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn"
+          [ngClass]="{'btn-secondary': isSyncAllowed, 'btn-danger': !isSyncAllowed}"
+         data-bs-dismiss="modal">
+          {{isSyncAllowed ? 'Cancel' : 'Close'}}</button>
+        <button *ngIf="isSyncAllowed" type="button" class="btn btn-primary" (click)="syncUserRides(); closeModal.click()">Continue</button>
+      </div>
+
+    </div>
   </div>
 </div>

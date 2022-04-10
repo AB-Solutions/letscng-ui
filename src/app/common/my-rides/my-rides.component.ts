@@ -12,6 +12,10 @@ import { EventService } from 'src/app/services/event.service';
 export class MyRidesComponent implements OnInit {
   @Input() isEventUser: boolean = false;
   @Input() isFilterDisabled: boolean = false;
+  lastSyncUTCDateTime: any;
+  lastSyncDateTime: any;
+  isSyncAllowed: boolean = false;
+  lastSyncFetched: boolean = true;
   syncDisabled = false;
   activities: any[] = [];
   limit = 10;
@@ -31,6 +35,7 @@ export class MyRidesComponent implements OnInit {
     if (this.isEventUser) {
       this.getUserActivitiesByEvent();
     } else {
+      this.getSyncLastTime();
       this.getStravaUserActivities();
     }
 
@@ -138,28 +143,56 @@ export class MyRidesComponent implements OnInit {
 
 
   syncUserRides() {
-    this.syncDisabled = true;
-    var self = this;
-    setTimeout(function(){
-      self.syncDisabled = false;
-    }, 6000);
-    // const phone = this.authService.getPhoneNumber();
+    // this.syncDisabled = true;
+    // var self = this;
+    // setTimeout(function(){
+    //   self.syncDisabled = false;
+    // }, 6000);
+    const phone = this.authService.getPhoneNumber();
 
-    // this.commonUtilService.setloadingMessage('Syncing STRAVA Rides');
-    // this.authService.syncStravaUserActivities(phone).subscribe((data: any) => {
+    this.commonUtilService.setloadingMessage('Syncing STRAVA Rides');
+    this.authService.syncStravaUserActivities(phone).subscribe((data: any) => {
+      this.getSyncLastTime();
+      this.commonUtilService.setloadingMessage('');
 
-    //   this.commonUtilService.setloadingMessage('');
+      if (this.isEventUser) {
+        this.getUserActivitiesByEvent();
+      } else {
+        this.getStravaUserActivities();
+      }
 
-    //   if (this.isEventUser) {
-    //     this.getUserActivitiesByEvent();
-    //   } else {
-    //     this.getStravaUserActivities();
-    //   }
-    // }, (err) => {
-    //   console.log(err);
+    }, (err) => {
+      console.log(err);
 
-    //   this.commonUtilService.setloadingMessage('');
-    // });
+      this.commonUtilService.setloadingMessage('');
+    });
+  }
+
+  getSyncLastTime() {
+    this.isSyncAllowed = false;
+    this.lastSyncFetched = false;
+    this.lastSyncDateTime = '';
+    const phone = this.authService.getPhoneNumber();
+    this.authService.fetchSyncLastTime(phone).subscribe((data: any) => {
+      this.lastSyncUTCDateTime = data;
+      this.lastSyncFetched = true;
+      this.buildSyncDateTimeSettings();
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  buildSyncDateTimeSettings() {
+    console.log('in buildSyncDateTimeSettings');
+    // var utcSyncDate = moment.utc(this.lastSyncUTCDateTime, 'YYYY-MM-DD HH:mm:ss.SSSS');
+    var utcSyncDate = moment.utc("2022-04-09 08:30:23.670962", 'YYYY-MM-DD HH:mm:ss.SSSS');
+    var localDate = moment(utcSyncDate.toDate()).local();
+    this.lastSyncDateTime = localDate.format('DD-MM-YYYY HH:mm');
+    var currentNow = Number((moment.now() / 1000).toFixed(0));
+    var diffSyncTime = currentNow - localDate.unix();
+    this.isSyncAllowed = diffSyncTime > (24*60*60);
+    console.log('diffSyncTime: ', diffSyncTime);
+    console.log('isSyncAllowed: ', this.isSyncAllowed);
   }
 
   sortByDate(data: any) {

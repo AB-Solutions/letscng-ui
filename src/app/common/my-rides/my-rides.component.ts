@@ -184,8 +184,8 @@ export class MyRidesComponent implements OnInit {
 
   buildSyncDateTimeSettings() {
     console.log('in buildSyncDateTimeSettings');
-    // var utcSyncDate = moment.utc(this.lastSyncUTCDateTime, 'YYYY-MM-DD HH:mm:ss.SSSS');
-    var utcSyncDate = moment.utc("2022-04-09 08:30:23.670962", 'YYYY-MM-DD HH:mm:ss.SSSS');
+    var utcSyncDate = moment.utc(this.lastSyncUTCDateTime, 'YYYY-MM-DD HH:mm:ss.SSSS');
+    // var utcSyncDate = moment.utc("2022-04-09 08:30:23.670962", 'YYYY-MM-DD HH:mm:ss.SSSS');
     var localDate = moment(utcSyncDate.toDate()).local();
     this.lastSyncDateTime = localDate.format('DD-MM-YYYY HH:mm');
     var currentNow = Number((moment.now() / 1000).toFixed(0));

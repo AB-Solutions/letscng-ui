@@ -3,12 +3,13 @@
         <div class="col-12 col-xl-12 order-md-1 text-center">
           <a href="https://forms.gle/S5FcUGNF39VTTJi69" target="_blank">
             <figure class="w-100">
-                <img class="img-fluid mw-md-120" src="../../assets/img/banner/web_banner.jpg" alt="Image banner" />
+              <img *ngIf="!maintenance" class="img-fluid mw-md-120" src="../../assets/img/banner/web_banner.jpg" alt="Image banner" />
+              <img *ngIf="maintenance" class="img-fluid mw-md-120" src="../../assets/img/banner/under-mintenance.jpeg" alt="Image banner" />
             </figure>
           </a>
         </div>
-        <div class="col-12 col-xl-12 order-md-2 pr-md-5">
-            <h3 class="display-4 text-center text-md-left mb-3">
+        <div *ngIf="!maintenance" class="col-12 col-xl-12 order-md-2 pr-md-5">
+            <h3 class="display-4 h3 text-center text-md-left mb-3">
 
                 It's time to
                 <br/> Cycle - Network - Grow!
@@ -19,5 +20,22 @@
                 Participate in our challenges today!
             </p>
         </div>
+        <div *ngIf="maintenance" class="col-12 col-xl-12 order-md-2 pr-md-5">
+            <h3 class="h3 text-center text-md-left mb-3">
+              We are under maintenance and will be back soon.
+            </h3>
+            <br/>
+            <h4 class="h4 text-center text-md-left mb-3">
+              <b>Note: </b>AW80D event is still live, untill then keep riding and stay safe.
+
+            </h4>
+        </div>
+
+        <!-- <hr/>
+        <app-earth-satellite></app-earth-satellite>
+        <hr/>
+        <div>
+          <canvas id="myChart"></canvas>
+        </div> -->
     </div>
 </div>

@@ -1,0 +1,113 @@
+.galaxy {
+  height: 700px;
+  width: 100%;
+  background-image: url('../../../assets/img/common/794392.jpg');
+  position: relative;
+  perspective: 400px;
+
+  .world {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -256px;
+    margin-top: -256px;
+    border: 1px dotted yellow;
+    height: 512px;
+    width: 512px;
+    background-color: transparent;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    // transform: translateZ(-50px) rotateX(30deg) rotateY(30deg);
+
+    .earth {
+      height: 200px;
+      width: 200px;
+      background-image: url('../../../assets/img/common/earth.png');
+      position: absolute;
+      left: calc(50% - 100px);
+      top: calc(50% - 100px);
+      background-size: 220px;
+      background-position: -10px -10px;
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      transform: translateZ(0px) rotateX(0deg) rotateY(0deg);
+    }
+
+    .sat {
+      position: absolute;
+      background-color: transparent;
+      border: 1px solid white;
+      border-radius: 50%;
+      transform: translateZ(0) rotateX(80deg) rotateY(0);
+      font-size: xx-large;
+      color: red;
+
+      &.sat1 {
+        left: calc(50% - 170px);
+        top: calc(50% - 170px);
+        height: 340px;
+        width: 340px;
+      }
+      &.sat2 {
+        left: calc(50% - 190px);
+        top: calc(50% - 190px);
+        height: 380px;
+        width: 380px;
+      }
+      &.sat3 {
+        left: calc(50% - 210px);
+        top: calc(50% - 210px);
+        height: 420px;
+        width: 420px;
+      }
+      &.sat4 {
+        left: calc(50% - 230px);
+        top: calc(50% - 230px);
+        height: 460px;
+        width: 460px;
+      }
+      &.sat5 {
+        left: calc(50% - 250px);
+        top: calc(50% - 250px);
+        height: 500px;
+        width: 500px;
+      }
+    }
+  }
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 10s linear infinite;
+  -moz-animation: rotating 10s linear infinite;
+  -ms-animation: rotating 10s linear infinite;
+  -o-animation: rotating 10s linear infinite;
+  animation: rotating 10s linear infinite;
+}

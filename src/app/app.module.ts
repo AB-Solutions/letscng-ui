@@ -30,6 +30,7 @@ import { MyTeamComponent } from './cng-events/aw80d/my-team/my-team.component';
 import { MyEventRidesComponent } from './cng-events/aw80d/my-event-rides/my-event-rides.component';
 import { CngEventsComponent } from './cng-events/cng-events.component';
 import { ServerDownComponent } from './server-down/server-down.component';
+import { EarthSatelliteComponent } from './common/earth-satellite/earth-satellite.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,8 @@ import { ServerDownComponent } from './server-down/server-down.component';
     MyTeamComponent,
     MyEventRidesComponent,
     CngEventsComponent,
-    ServerDownComponent
+    ServerDownComponent,
+    EarthSatelliteComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { CommonUtilService } from '../services/common-util.service';
 import { LoadingEnum } from '../enum/loading.enum';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-strava',
@@ -23,17 +24,22 @@ export class MyStravaComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private commonUtilService: CommonUtilService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.loggedUser = this.authService.getLoggedUser();
-    this.fetchStravaUserData();
+    if (this.commonUtilService.maintenance) {
+      this.router.navigateByUrl('/');
+    } else {
+      this.loggedUser = this.authService.getLoggedUser();
+      this.fetchStravaUserData();
 
-    var self = this;
-    self.getServerHealth()
-    setInterval(function() {
-      self.getServerHealth();
-    }, 300000);
+      var self = this;
+      self.getServerHealth()
+      setInterval(function() {
+        self.getServerHealth();
+      }, 300000);
+    }
   }
 
   getCNGRedirectURI() {

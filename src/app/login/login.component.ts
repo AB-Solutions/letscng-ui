@@ -60,6 +60,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.commonUtilService.maintenance) {
+      this.router.navigateByUrl('/');
+    }
     firebase.initializeApp(environment.firebaseConfig);
   }
 

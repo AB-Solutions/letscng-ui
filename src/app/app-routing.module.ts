@@ -16,22 +16,22 @@ const routes: Routes = [
     component: HomeComponent,
     path: '',
   },
-  // , {
-  //   component: LoginComponent,
-  //   path: 'login',
-  // },
+  {
+    component: LoginComponent,
+    path: 'login',
+  },
   // {
   //   component: ProfileComponent,
   //   path: 'profile',
   // },
-  // {
-  //   component: MyStravaComponent,
-  //   path: 'strava',
-  // },
-  // {
-  //   component: CngEventsComponent,
-  //   path: 'cng-events',
-  // },
+  {
+    component: MyStravaComponent,
+    path: 'strava',
+  },
+  {
+    component: CngEventsComponent,
+    path: 'cng-events',
+  },
   {
     path: '**',
     redirectTo: "",

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../services/auth.service';
 import { CommonUtilService } from '../services/common-util.service';
@@ -26,9 +27,14 @@ export class CngEventsComponent implements OnInit {
     private authService: AuthService,
     private commonUtilService: CommonUtilService,
     private eventService: EventService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    if (this.commonUtilService.maintenance) {
+      this.router.navigateByUrl('/');
+    }
+
     this.loggedUser = this.authService.getLoggedUser();
     if (this.authService.getPhoneNumber()) {
       this.verifyAw80D2022Participant();

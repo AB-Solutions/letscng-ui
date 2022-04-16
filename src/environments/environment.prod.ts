@@ -9,13 +9,14 @@ export const environment = {
     storageBucket: "challenge1177.appspot.com",
     messagingSenderId: "59705937323",
     appId: "1:59705937323:web:73d7ba7d7776d4f58a16ee",
-    measurementId: "G-CZ87RT5HH8",
+    measurementId: "G-CZ87RT5HH8"
   },
   stravaConfig: {
-    client_id: 79860,
+    client_id: 69720,
   },
   backend: {
     apiBaseUrl: "https://letscng-backend-bsx6kqq36q-uc.a.run.app",
-    cng_redirect_uri: "https://letcng.com/strava",
-  }
+    cng_redirect_uri: "https://letcng-prod.web.app/strava",
+  },
+  admins: ['9831035620', '9748437466'],
 };

@@ -58,4 +58,22 @@ export class AuthService {
 
     return this.http.get(url);
   }
+
+  fetchSyncLastTime(phone: any) {
+    console.log('in fetchSyncLastTime : ', phone);
+    const {backend} = environment;
+    const {apiBaseUrl} = backend;
+    const url = `${apiBaseUrl}/sync/last_time?phone=${phone}`;
+
+    return this.http.get(url);
+  }
+
+  getPhoneNumber() {
+    // return '7200559936';
+    return this.getLoggedUser()?.user?.phoneNumber.replace('+91', '');
+  }
+
+  isAdminUser() {
+    return environment.admins.indexOf(this.getPhoneNumber()) >= 0;
+  }
 }

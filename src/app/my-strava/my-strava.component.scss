@@ -1,27 +1,4 @@
-.strava-profile-pic {
-  width: 100px;
-  border-radius: 50%;
-}
 
-
-.filter-btn-group {
-  button {
-    position: relative;
-
-    .fa-check {
-      display: none;
-    }
-
-    &.active {
-      background-color: #bbffcc;
-      // color: aliceblue;
-      .fa-check {
-        display: inline-block;
-      }
-    }
-
-  }
-}
 
 #stravaAuth {
   img {
@@ -33,21 +10,3 @@
   max-width: 150px;
 }
 
-.team-leaderboard-container {
-  .launching {
-    position: relative;
-    min-height: 300px;
-    img.launch {
-      width: 100%;
-    }
-    .message {
-      position: absolute;
-      width: 100%;
-      top: 70%;
-      background: rgba(0,0,0,0.1);
-      color: #74b84a;
-      font-size: xx-large;
-      text-shadow: 1px 2px 2px #125ea347;
-    }
-  }
-}

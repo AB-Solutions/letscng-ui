@@ -1,0 +1,31 @@
+<div class="galaxy">
+  <div class="world">
+    <div class="earth"></div>
+    <div class="orbits-plain rotating">
+      <div
+        *ngFor="let team of teams; let i = index"
+        class="orbit orb{{getOrbitIndex(i)}}"
+        style="transform: rotate(-{{getRotation(team.total)}}deg)"
+      >
+        <div class="satellite">
+          <img class="sat-body" src="../../../assets/img/aw80dteams/{{team.logo}}" />
+          <span class="sat-total">{{team.total}}KM</span>
+        </div>
+      </div>
+      <!-- <div class="orbit orb2">
+        <div class="satellite">
+          <img class="sat-body" src="../../../assets/img/aw80dteams/Alouette - Canada.png" />
+        </div>
+      </div>
+      <div class="orbit orb3">
+        <div class="satellite">
+          <img class="sat-body" src="../../../assets/img/aw80dteams/Ariel - UK.png" />
+        </div>
+      </div>
+      <div class="orbit orb4"></div>
+      <div class="orbit orb5"></div> -->
+    </div>
+  </div>
+  <!--
+   -->
+</div>

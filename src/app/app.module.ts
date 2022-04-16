@@ -22,7 +22,15 @@ import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { LoadingIconComponent } from './loading-icon/loading-icon.component';
-import { MyRidesComponent } from './aw80d/my-rides/my-rides.component';
+import { MyRidesComponent } from './common/my-rides/my-rides.component';
+import { StravaProfileComponent } from './my-strava/strava-profile/strava-profile.component';
+import { Aw80dComponent } from './cng-events/aw80d/aw80d.component';
+import { TeamLeaderboardComponent } from './cng-events/aw80d/team-leaderboard/team-leaderboard.component';
+import { MyTeamComponent } from './cng-events/aw80d/my-team/my-team.component';
+import { MyEventRidesComponent } from './cng-events/aw80d/my-event-rides/my-event-rides.component';
+import { CngEventsComponent } from './cng-events/cng-events.component';
+import { ServerDownComponent } from './server-down/server-down.component';
+import { EarthSatelliteComponent } from './common/earth-satellite/earth-satellite.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +41,15 @@ import { MyRidesComponent } from './aw80d/my-rides/my-rides.component';
     MyStravaComponent,
     FooterComponent,
     LoadingIconComponent,
-    MyRidesComponent
+    MyRidesComponent,
+    StravaProfileComponent,
+    Aw80dComponent,
+    TeamLeaderboardComponent,
+    MyTeamComponent,
+    MyEventRidesComponent,
+    CngEventsComponent,
+    ServerDownComponent,
+    EarthSatelliteComponent
   ],
   imports: [
     BrowserModule,

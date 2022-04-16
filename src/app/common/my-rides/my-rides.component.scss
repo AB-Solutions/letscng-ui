@@ -1,0 +1,45 @@
+.filter-btn-group {
+  button {
+    position: relative;
+
+    .fa-check {
+      display: none;
+    }
+
+    &.active {
+      background-color: #bbffcc;
+      // color: aliceblue;
+      .fa-check {
+        display: inline-block;
+      }
+    }
+
+  }
+}
+
+.small-table-cell {
+  width: 40px;
+}
+
+.high-speed {
+  background-color: yellow;
+}
+
+
+.toast {
+  position: absolute;
+  width: 350px;
+  top: -100px;
+  z-index: 1000;
+  left: calc(50% - 175px);
+  background-color: #fff;
+
+  .toast-header {
+    background-color: #125ea3;
+    color: white;
+
+    .btn-close {
+      background-color: white;
+    }
+  }
+}

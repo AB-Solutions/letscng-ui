@@ -13,14 +13,17 @@
               <li class="nav-item">
                   <a class="nav-link" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
               </li>
-              <li class="nav-item" *ngIf="!isUserLoggedIn">
-                  <a class="nav-link" routerLink="login" routerLinkActive="active" >Login</a>
-              </li>
               <!-- <li class="nav-item" *ngIf="isUserLoggedIn">
                   <a class="nav-link" routerLink="profile" routerLinkActive="active" >Profile</a>
               </li> -->
+              <li class="nav-item">
+                <a class="nav-link" routerLink="cng-events" routerLinkActive="active" >CNG Events</a>
+              </li>
               <li class="nav-item" *ngIf="isUserLoggedIn">
                   <a class="nav-link" routerLink="strava" routerLinkActive="active" >My Strava</a>
+              </li>
+              <li class="nav-item" *ngIf="!isUserLoggedIn">
+                  <a class="nav-link" routerLink="login" routerLinkActive="active" >Login</a>
               </li>
               <li class="nav-item" *ngIf="isUserLoggedIn">
                   <a class="nav-link" routerLink="strava" (click)="logoutUser()">Logout</a>

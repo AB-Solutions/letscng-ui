@@ -1,0 +1,28 @@
+<div class="container">
+
+  <div class="mt-4 mb-5 rounded">
+    <h2 class="h2">AROUND THE WORLD IN 80 DAYS</h2>
+    <p class="text-secondary">Around the world in 80 days i.e. 40075 kms (The Circumference of the Earth). Multiple teams, each team of 22 riders must cycle 40075 kms in 80 days. Names of the Teams (derived from first Satellite of a Country): Aryabhata (India), Sputnik (USSR), Explorer (USA), Oshumi (Japan) etc.</p>
+  </div>
+
+  <app-earth-satellite
+    [teams]="teamLeaderboardList"
+  ></app-earth-satellite>
+  <hr/>
+
+  <app-team-leaderboard
+    [isAdmin]="isAdmin"
+    [teams]="teamLeaderboardList"
+    [aw80dUser]="aw80dUser"
+    (refresh)="refreshTeamTotal()"
+  ></app-team-leaderboard>
+  <br/>
+  <br/>
+  <aw80d-my-team
+    *ngIf="isAw80D2022Participant || isAdmin"
+    [teamId]="aw80dUser.team_id"
+  ></aw80d-my-team>
+  <br/>
+  <br/>
+  <app-my-event-rides *ngIf="isAw80D2022Participant || isAdmin"></app-my-event-rides>
+</div>

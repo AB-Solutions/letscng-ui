@@ -1,0 +1,24 @@
+<div class="card-body" *ngIf="athlete?.id">
+  <h6>Strava Profile Details:</h6>
+  <img class="strava-profile-pic mb-3" src="{{athlete.profile}}" alt="{{athlete.firstname}} {{athlete.lastname}}"/>
+  <table class="text-left  table table-striped">
+    <tbody>
+      <tr>
+        <td>Strava Id</td>
+        <td>{{athlete.id}}</td>
+      </tr>
+      <tr>
+        <td>Rider Name</td>
+        <td>{{athlete.firstname}} {{athlete.lastname}}</td>
+      </tr>
+      <tr>
+        <td>Place</td>
+        <td>{{athlete.city}}, {{athlete.state}}</td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>{{athlete.sex}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

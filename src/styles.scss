@@ -186,3 +186,35 @@ input.no-number[type=number] {
 table.no-wrap th {
   white-space: nowrap;
 }
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+
+td, th {
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.total {
+  text-align: right;
+  font-size: x-large;
+}
+
+tr.highlight td {
+  background: rgba(255,255,0,.4);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.table-row-selected {
+  background-color: cyan !important;
+}

@@ -1,4 +1,6 @@
-<h3 class="h3">
-  <span *ngIf="!rider.name">Your </span>Activities: <span *ngIf="rider.name">({{rider.name}}<span *ngIf="auth.isAdminUser()"> - {{rider.phone}}</span>)</span>
-</h3>
-<app-my-rides [isEventUser]="true" [isFilterDisabled]="true"></app-my-rides>
+<div class="container clear-margin-lf pad-0">
+  <h3 class="h3">
+    <span *ngIf="!rider.name">Your </span>Activities: <span *ngIf="rider.name">({{rider.name}}<span *ngIf="auth.isAdminUser()"> - {{rider.phone}}</span>)</span>
+  </h3>
+  <app-my-rides [isEventUser]="true" [isFilterDisabled]="true"></app-my-rides>
+</div>

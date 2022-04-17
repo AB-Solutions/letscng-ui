@@ -6,6 +6,10 @@
   perspective: 400px;
   overflow: hidden;
   background-size: cover;
+  animation-name: MOVE-BG;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 
   .world {
     position: absolute;
@@ -46,7 +50,7 @@
       .orbit {
         position: absolute;
         background-color: transparent;
-        border: 1px dotted #333;
+        border: 1px dotted rgba(255,255,255,0.2);
         border-radius: 50%;
         font-size: xx-large;
         color: red;
@@ -196,4 +200,14 @@
   -ms-animation: rotating 20s linear infinite;
   -o-animation: rotating 20s linear infinite;
   animation: rotating 20s linear infinite;
+}
+
+
+@keyframes MOVE-BG {
+   from {
+     background-position: left top;
+   }
+   to {
+     background-position: right bottom;
+   }
 }

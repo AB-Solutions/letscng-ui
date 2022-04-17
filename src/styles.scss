@@ -31,6 +31,16 @@ h1, h2, h3, h4, h5, h6 {
   .row>* {
     padding: 0;
   }
+
+  .full-width {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .clear-margin-lf {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }
 
 input.form-control, select.form-control, textarea.form-control {

@@ -31,6 +31,7 @@ import { MyEventRidesComponent } from './cng-events/aw80d/my-event-rides/my-even
 import { CngEventsComponent } from './cng-events/cng-events.component';
 import { ServerDownComponent } from './server-down/server-down.component';
 import { EarthSatelliteComponent } from './common/earth-satellite/earth-satellite.component';
+import { PlotGraphComponent } from './cng-events/aw80d/plot-graph/plot-graph.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import { EarthSatelliteComponent } from './common/earth-satellite/earth-satellit
     MyEventRidesComponent,
     CngEventsComponent,
     ServerDownComponent,
-    EarthSatelliteComponent
+    EarthSatelliteComponent,
+    PlotGraphComponent
   ],
   imports: [
     BrowserModule,

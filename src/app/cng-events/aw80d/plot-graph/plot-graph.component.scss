@@ -1,0 +1,41 @@
+.twoD-graph {
+  height: 200px;
+
+  .rider-positions-container {
+    border: 1px solid grey;
+    height: 100%;
+  }
+}
+
+.verticalXScale {
+  position: relative;
+
+  .kmY {
+    position: absolute;
+    font-size: xx-small;
+    right: 2px;
+  }
+}
+
+.rider-positions-container {
+  position: relative;
+
+  .graphXLine {
+    position: absolute;
+    border-top: 0.5px dotted rgba(0,0,0,0.2);
+    width: 100%;
+  }
+}
+
+.floating-profiles {
+  position: absolute;
+
+  img.prof-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    left: calc(50% - 15px);
+    top: calc(50% - 15px);
+  }
+}

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonUtilService } from 'src/app/services/common-util.service';
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 @Component({
   selector: 'app-team-leaderboard',
@@ -13,6 +14,7 @@ export class TeamLeaderboardComponent implements OnInit {
   @Output() refresh = new EventEmitter<any>();
   numbers: any= [];
   selectedTeam: any;
+  analytics = getAnalytics();
 
   constructor(private commonUtilService: CommonUtilService) {
     this.numbers = Array(13).fill(0).map((x,i)=>i);
@@ -32,6 +34,7 @@ export class TeamLeaderboardComponent implements OnInit {
   }
 
   refreshLeaderBoard() {
+    logEvent(this.analytics, 'leaderboard refreshed');
     this.refresh.emit();
   }
 

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommonUtilService } from 'src/app/services/common-util.service';
 import { EventService } from 'src/app/services/event.service';
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 @Component({
   selector: 'aw80d-my-team',
@@ -14,6 +15,7 @@ export class MyTeamComponent implements OnInit {
   loadingStats: boolean = false;
   teamMemberStats: any[] = [];
   selectedMember: any = {};
+  analytics = getAnalytics();
 
   constructor(
     private eventService: EventService,
@@ -36,6 +38,7 @@ export class MyTeamComponent implements OnInit {
   }
 
   refreshTeamList() {
+    logEvent(this.analytics, 'team list refreshed');
     this.teamMemberStats = [];
     this.fetchTeamStats(false);
   }

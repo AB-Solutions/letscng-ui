@@ -4,7 +4,7 @@
       <div class="earth"></div>
       <div class="orbits-plain rotating">
         <div
-          *ngFor="let team of teams; let i = index"
+          *ngFor="let team of teams | slice:0:7; let i = index"
           class="orbit orb{{getOrbitIndex(i)}}"
           style="transform: rotate(-{{getRotation(team.total)}}deg)"
         >

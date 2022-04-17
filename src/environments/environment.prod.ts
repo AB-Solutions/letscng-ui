@@ -18,5 +18,5 @@ export const environment = {
     apiBaseUrl: "https://letscng-backend-bsx6kqq36q-uc.a.run.app",
     cng_redirect_uri: "https://letcng-prod.web.app/strava",
   },
-  admins: ['9831035620', '9748437466'],
+  admins: ['9831035620', '9748437466', '9903699009'],
 };

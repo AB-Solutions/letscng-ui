@@ -15,7 +15,6 @@ export class MyTeamComponent implements OnInit {
   loadingStats: boolean = false;
   teamMemberStats: any[] = [];
   selectedMember: any = {};
-  analytics = getAnalytics();
 
   constructor(
     private eventService: EventService,
@@ -38,7 +37,7 @@ export class MyTeamComponent implements OnInit {
   }
 
   refreshTeamList() {
-    logEvent(this.analytics, 'team list refreshed');
+    logEvent(getAnalytics(), 'team list refreshed');
     this.teamMemberStats = [];
     this.fetchTeamStats(false);
   }

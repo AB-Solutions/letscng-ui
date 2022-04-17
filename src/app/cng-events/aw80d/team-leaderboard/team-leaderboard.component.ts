@@ -14,7 +14,6 @@ export class TeamLeaderboardComponent implements OnInit {
   @Output() refresh = new EventEmitter<any>();
   numbers: any= [];
   selectedTeam: any;
-  analytics = getAnalytics();
 
   constructor(private commonUtilService: CommonUtilService) {
     this.numbers = Array(13).fill(0).map((x,i)=>i);
@@ -34,7 +33,7 @@ export class TeamLeaderboardComponent implements OnInit {
   }
 
   refreshLeaderBoard() {
-    logEvent(this.analytics, 'leaderboard refreshed');
+    logEvent(getAnalytics(), 'leaderboard refreshed');
     this.refresh.emit();
   }
 

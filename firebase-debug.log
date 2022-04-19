@@ -1,0 +1,34 @@
+[debug] [2022-04-19T17:37:52.262Z] ----------------------------------------------------------------------
+[debug] [2022-04-19T17:37:52.264Z] Command:       /Users/ujjal_bhaskar/.nvm/versions/node/v12.22.9/bin/node /Users/ujjal_bhaskar/.nvm/versions/node/v12.22.9/bin/firebase deploy --only hosting:challenge1177
+[debug] [2022-04-19T17:37:52.264Z] CLI Version:   10.5.0
+[debug] [2022-04-19T17:37:52.264Z] Platform:      darwin
+[debug] [2022-04-19T17:37:52.264Z] Node Version:  v12.22.9
+[debug] [2022-04-19T17:37:52.265Z] Time:          Tue Apr 19 2022 23:07:52 GMT+0530 (India Standard Time)
+[debug] [2022-04-19T17:37:52.265Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-19T17:37:52.268Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-04-19T17:37:52.342Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-19T17:37:52.342Z] > authorizing via signed-in user (ujjal1991@gmail.com)
+[debug] [2022-04-19T17:37:52.342Z] [iam] checking project challenge1177 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2022-04-19T17:37:52.343Z] > refreshing access token with scopes: []
+[debug] [2022-04-19T17:37:52.344Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-04-19T17:38:28.842Z] [iam] error while checking permissions, command may fail: FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2022-04-19T17:38:28.842Z] > refreshing access token with scopes: []
+[debug] [2022-04-19T17:38:28.843Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-04-19T17:38:39.481Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-04-19T17:38:39.481Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2022-04-19T17:38:54.919Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2022-04-19T17:39:05.137Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at invalidCredentialError (/Users/ujjal_bhaskar/.nvm/versions/node/v12.22.9/lib/node_modules/firebase-tools/lib/auth.js:145:12)
+    at refreshTokens (/Users/ujjal_bhaskar/.nvm/versions/node/v12.22.9/lib/node_modules/firebase-tools/lib/auth.js:485:15)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: Failed to get Firebase project challenge1177. Please make sure the project exists and your account has permission to access it.

@@ -32,13 +32,19 @@ export class MyStravaComponent implements OnInit {
       this.router.navigateByUrl('/');
     } else {
       this.loggedUser = this.authService.getLoggedUser();
-      this.fetchStravaUserData();
 
-      var self = this;
-      self.getServerHealth()
-      setInterval(function() {
-        self.getServerHealth();
-      }, 300000);
+      if (!this.loggedUser?.user) {
+        this.authService.logoutUser();
+      } else {
+        this.fetchStravaUserData();
+
+        var self = this;
+        self.getServerHealth()
+        setInterval(function() {
+          self.getServerHealth();
+        }, 300000);
+
+      }
     }
   }
 

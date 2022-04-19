@@ -38,7 +38,7 @@ export class AuthService {
   logoutUser() {
     localStorage.removeItem('user_data');
     this.afAuth.signOut();
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('/cng-events');
   }
 
   getStravaUserActivities(phone: any) {

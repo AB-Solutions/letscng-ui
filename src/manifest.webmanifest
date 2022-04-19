@@ -1,6 +1,6 @@
 {
-  "name": "letscng-ui",
-  "short_name": "letscng-ui",
+  "name": "letscng",
+  "short_name": "letscng",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",

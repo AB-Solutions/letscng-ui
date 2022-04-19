@@ -30,7 +30,7 @@ export class NavigationComponent implements OnInit {
     if (this.userData.user) {
       this.isUserLoggedIn = true;
     } else {
-      this.logoutUser();
+      this.isUserLoggedIn = false;
     }
 
     console.log('this.userData: ', this.userData);
@@ -39,7 +39,7 @@ export class NavigationComponent implements OnInit {
       this.isUserLoggedIn = loggedIn;
 
       if (!this.isUserLoggedIn) {
-        this.logoutUser();
+        // this.logoutUser();
       }
     });
 

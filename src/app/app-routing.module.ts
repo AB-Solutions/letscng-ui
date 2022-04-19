@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'cng-events',
   },
   {
+    component: CngEventsComponent,
+    path: 'aw80d',
+  },
+  {
     path: '**',
     redirectTo: "",
   }

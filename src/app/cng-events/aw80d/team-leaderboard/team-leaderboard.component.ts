@@ -14,12 +14,15 @@ export class TeamLeaderboardComponent implements OnInit {
   @Output() refresh = new EventEmitter<any>();
   numbers: any= [];
   selectedTeam: any;
+  analytics: any;
 
   constructor(private commonUtilService: CommonUtilService) {
     this.numbers = Array(13).fill(0).map((x,i)=>i);
   }
 
   ngOnInit(): void {
+    this.analytics = getAnalytics();
+    logEvent(this.analytics, 'leaderboard visited');
   }
 
   getTotals() {
@@ -33,7 +36,7 @@ export class TeamLeaderboardComponent implements OnInit {
   }
 
   refreshLeaderBoard() {
-    logEvent(getAnalytics(), 'leaderboard refreshed');
+    logEvent(this.analytics, 'leaderboard refreshed');
     this.refresh.emit();
   }
 

@@ -15,6 +15,7 @@ export class MyTeamComponent implements OnInit {
   loadingStats: boolean = false;
   teamMemberStats: any[] = [];
   selectedMember: any = {};
+  analytics: any;
 
   constructor(
     private eventService: EventService,
@@ -23,6 +24,8 @@ export class MyTeamComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.analytics = getAnalytics();
+    logEvent(this.analytics, 'team list visited');
     this.fetchTeamStats(true);
 
     this.commonUtilService.loadSelectedTeamList.subscribe((id) => {
@@ -37,7 +40,7 @@ export class MyTeamComponent implements OnInit {
   }
 
   refreshTeamList() {
-    logEvent(getAnalytics(), 'team list refreshed');
+    logEvent(this.analytics, 'team list refreshed');
     this.teamMemberStats = [];
     this.fetchTeamStats(false);
   }

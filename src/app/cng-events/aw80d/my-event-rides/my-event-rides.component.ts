@@ -18,7 +18,6 @@ export class MyEventRidesComponent implements OnInit {
   ngOnInit(): void {
 
     this.commonUtilService.selectedRiderPhone.subscribe((rider: any) => {
-      console.log('in app-my-event-ride: ', rider);
       this.rider = rider;
     });
   }

@@ -1,22 +1,39 @@
-<div class="container pad-0">
-  <h3 class="h3">Top 10 Riders progress:</h3>
-  <br/>
+<div class="container">
   <div class="twoD-graph row clear-margin-lf">
+    <div class="y-axis">---------- KM ----------></div>
     <div class="col-1 verticalXScale">
       <span class="kmY" *ngFor="let kms of plotSettings.xCoordinates" style="bottom: {{kms.y - 7}}px">
         {{kms.value}}-
       </span>
     </div>
     <div class="col-11 rider-positions-container">
-      <div class="graphXLine" *ngFor="let kms of plotSettings.xCoordinates" style="bottom: {{kms.y - 1}}px"></div>
+      <div
+        class="graphXLine"
+        *ngFor="let kms of plotSettings.xCoordinates"
+        style="bottom: {{kms.y - 1}}px"
+        (click)="clearRider()"
+      ></div>
 
       <div
         class="floating-profiles"
         *ngFor="let rider of teamMemberStats | slice:0:10; index as i;"
         style="bottom: {{getRiderBottomPosition(rider)}}px; left: {{(11-(i+1))*plotSettings.xDiff}}px"
       >
-        <img class="prof-pic" src="{{rider.profile}}" alt="{{rider.name}}" />
+        <img
+          class="prof-pic"
+          src="{{rider.profile}}"
+          alt="{{rider.name}}"
+          [ngClass]="{'highlight-rider': rider.name === selectedMember.name}"
+          (click)="showRider(rider)"
+        />
       </div>
+
     </div>
+  </div>
+  <div class="x-axis">---------- Riders (distance ascending order) ----------></div>
+  <!-- (clickOutside)="clearRider()" -->
+  <div class="rider-tooltip" *ngIf="selectedMember?.name">
+    <div class="rider-name">{{selectedMember.name}}</div>
+    <div class="rider-distance">{{selectedMember.distance}} KM</div>
   </div>
 </div>

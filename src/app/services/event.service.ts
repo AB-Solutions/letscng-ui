@@ -19,7 +19,6 @@ export class EventService {
   }
 
   getAw80d2022UserActivities(phone: any) {
-    console.log('in getAw80d2022UserActivities : ', phone);
     const {backend} = environment;
     const {apiBaseUrl} = backend;
     const url = `${apiBaseUrl}/rides/aw80d2022?phone=${phone}`;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommonUtilService } from 'src/app/services/common-util.service';
 import { EventService } from 'src/app/services/event.service';
@@ -24,13 +24,16 @@ export class PlotGraphComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.fetchTeamStats(true);
+    // this.fetchTeamStats(true);
 
-    this.commonUtilService.loadSelectedTeamList.subscribe((id) => {
-      console.log('Hey now load team details for : ', id);
-      this.teamId = Number(id);
-      this.fetchTeamStats(true);
-    });
+    // this.commonUtilService.loadSelectedTeamList.subscribe((id) => {
+    //   this.teamId = Number(id);
+    //   this.fetchTeamStats(true);
+    // });
+  }
+
+  ngOnChanges(change: SimpleChanges) {
+    this.fetchTeamStats(true);
   }
 
   getTeamName() {
@@ -39,8 +42,9 @@ export class PlotGraphComponent implements OnInit {
 
   fetchTeamStats(cached: boolean) {
     this.loadingStats = true;
-
-    this.eventService.getAw80d2022TeamRides(this.authService.getPhoneNumber(), this.teamId, cached).subscribe((data) => {
+    this.teamMemberStats = [];
+    this.clearRider();
+    this.eventService.getAw80d2022TeamRides(null, this.teamId, cached).subscribe((data) => {
       this.buildTeamStats(data);
       this.calculateGraphSettings();
       this.loadingStats = false;
@@ -67,8 +71,6 @@ export class PlotGraphComponent implements OnInit {
     }).sort((a, b) => {
       return b.distance - a.distance;
     });
-
-    console.log('final team stats: ', this.teamMemberStats);
   }
 
   calculateGraphSettings() {
@@ -76,13 +78,9 @@ export class PlotGraphComponent implements OnInit {
     this.plotSettings.minKmAttain = this.teamMemberStats[9].distance;
     this.plotSettings.scale = [];
 
-    for (let i = 1; i <= 100; i++) {
-      this.plotSettings.scale.push(i * 100);
+    for (let i = 1; i <= 200; i++) {
+      this.plotSettings.scale.push(i * 200);
     }
-
-    console.log('scale: ', this.plotSettings.scale);
-    console.log('maxKmAttain: ', this.plotSettings.maxKmAttain);
-    console.log('minKmAttain: ', this.plotSettings.minKmAttain);
 
     this.plotSettings.minY = this.plotSettings.scale[0];
     this.plotSettings.maxY = this.plotSettings.scale[this.plotSettings.scale.length - 1];
@@ -101,11 +99,8 @@ export class PlotGraphComponent implements OnInit {
       }
     }
 
-    console.log('minY: ', this.plotSettings.minY);
-    console.log('maxY: ', this.plotSettings.maxY);
-
     this.plotSettings.scaleDiffKm = this.plotSettings.maxY - this.plotSettings.minY;
-    this.plotSettings.diffYPerKm = 200 / this.plotSettings.scaleDiffKm;
+    this.plotSettings.diffYPerKm = 300 / this.plotSettings.scaleDiffKm;
 
     this.plotSettings.xCoordinates = [];
     for (let i = this.plotSettings.scale.indexOf(this.plotSettings.minY); i <= this.plotSettings.scale.indexOf(this.plotSettings.maxY); i++) {
@@ -118,15 +113,18 @@ export class PlotGraphComponent implements OnInit {
     const riderPositionsContainer = document.querySelector('.rider-positions-container');
     const width = riderPositionsContainer?.clientWidth;
 
-    console.log('width ----->', width);
-
     this.plotSettings.xDiff = (width || 300) / 11;
-
-    console.log('this.plotSettings : ', this.plotSettings);
   }
 
   getRiderBottomPosition(rider: any) {
-    console.log('(rider.distance - this.plotSettings.minY) * this.plotSettings.diffYPerKm; : ', (rider.distance - this.plotSettings.minY) * this.plotSettings.diffYPerKm);
     return (rider.distance - this.plotSettings.minY) * this.plotSettings.diffYPerKm;
+  }
+
+  showRider(rider: any) {
+    this.selectedMember = rider;
+  }
+
+  clearRider() {
+    this.selectedMember = {};
   }
 }

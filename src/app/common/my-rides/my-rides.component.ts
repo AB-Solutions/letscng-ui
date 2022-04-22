@@ -40,7 +40,6 @@ export class MyRidesComponent implements OnInit {
     }
 
     this.commonUtilService.selectedRiderPhone.subscribe((rider: any) => {
-      console.log('in my-rides: ', rider);
       this.getUserActivitiesByEvent(rider.phone);
     });
   }
@@ -185,7 +184,6 @@ export class MyRidesComponent implements OnInit {
   }
 
   buildSyncDateTimeSettings() {
-    console.log('in buildSyncDateTimeSettings: ', this.lastSyncUTCDateTime);
     if (this.lastSyncUTCDateTime) {
       var utcSyncDate = moment.utc(this.lastSyncUTCDateTime, 'YYYY-MM-DD HH:mm:ss.SSSS');
       // var utcSyncDate = moment.utc("2022-04-09 08:30:23.670962", 'YYYY-MM-DD HH:mm:ss.SSSS');
@@ -194,8 +192,6 @@ export class MyRidesComponent implements OnInit {
       var currentNow = Number((moment.now() / 1000).toFixed(0));
       var diffSyncTime = currentNow - localDate.unix();
       this.isSyncAllowed = diffSyncTime > (24*60*60);
-      console.log('diffSyncTime: ', diffSyncTime);
-      console.log('isSyncAllowed: ', this.isSyncAllowed);
     }
   }
 

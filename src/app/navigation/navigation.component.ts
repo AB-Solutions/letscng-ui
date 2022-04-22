@@ -33,8 +33,6 @@ export class NavigationComponent implements OnInit {
       this.isUserLoggedIn = false;
     }
 
-    console.log('this.userData: ', this.userData);
-
     this.authService.loggedUser.subscribe((loggedIn) => {
       this.isUserLoggedIn = loggedIn;
 
@@ -45,10 +43,8 @@ export class NavigationComponent implements OnInit {
 
     this.router.events.subscribe((change: any) => {
       if (change instanceof NavigationStart) {
-        console.log('change : ', change);
         if (change.url !== this.currentUrl) {
           this.triggerNavbarClose();
-          console.log('now close items');
         }
         this.currentUrl = change.url;
       }

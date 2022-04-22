@@ -167,17 +167,14 @@ export class LoginComponent implements OnInit {
     const verify = localStorage.getItem('verificationId') || '';
 
     const credentials = firebase.auth.PhoneAuthProvider.credential(verify, this.otp);
-    console.log('credentials : ', credentials);
 
     this.commonUtilService.setloadingMessage('Verifying OTP');
 
     firebase.auth().signInWithCredential(credentials).then((response) => {
-      console.log('signInWithCredential response: ', response);
       this.commonUtilService.setloadingMessage('');
       this.authService.saveUserInStore(response);
     }).catch(error => {
       this.commonUtilService.setloadingMessage('');
-      console.log('signInWithCredential error: ', error);
       this.otpCodeError = true;
     });
 

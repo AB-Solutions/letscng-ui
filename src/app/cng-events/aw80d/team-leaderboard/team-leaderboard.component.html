@@ -20,9 +20,10 @@
       <tr *ngFor="let team of teams; let i = index"
         [ngClass]="{
           'highlight': aw80dUser && aw80dUser.team_name === team.name,
-          'table-row-selected': team.teamId === selectedTeam
+          'table-row-selected': isAdmin && (team.teamId === selectedTeam?.teamId)
         }"
-        (click)="loadTeamList(team.teamId)"
+        [attr.data-bs-toggle]="isAdmin? null: 'modal'" [attr.data-bs-target]="isAdmin? null: '#scatteredModal'"
+        (click)="loadTeamList(team)"
       >
         <td class="small-table-cell">{{i + 1}}</td>
         <td class="small-table-cell team-logo-td">
@@ -49,3 +50,24 @@
     <strong>Loading...</strong>
   </div>
 </div>
+
+
+
+<div class="modal fade" id="scatteredModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" *ngIf="selectedTeam?.name">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h6 class="modal-title h6">Top 10 riders of {{selectedTeam.name}}</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" #closeModal></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <app-plot-graph [teamId]="selectedTeam.teamId"></app-plot-graph>
+      </div>
+    </div>
+  </div>
+</div>
+

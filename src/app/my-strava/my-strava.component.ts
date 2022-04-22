@@ -65,14 +65,12 @@ export class MyStravaComponent implements OnInit {
   }
 
   setTournamentTab(tab: string) {
-    console.log('in setTournamentTab : ', tab);
     this.tornamentTab = tab;
   }
 
 
   getServerHealth() {
     this.commonUtilService.getServerHealth().subscribe((data) => {
-      console.log('data: ', data);
       this.serverHealth = true;
     }, (error) => {
       console.log('error: ', error);

@@ -17,9 +17,7 @@ export class LoadingIconComponent implements OnInit {
   ngOnInit(): void {
     var self = this;
     this.commonUtilService.loadingMessage.subscribe((message) => {
-      console.log('loadingMessage : ', message);
       self.loadingText = message;
-      console.log('self.loadingText : ', self.loadingText);
     });
   }
 

@@ -29,7 +29,6 @@ export class MyTeamComponent implements OnInit {
     this.fetchTeamStats(true);
 
     this.commonUtilService.loadSelectedTeamList.subscribe((id) => {
-      console.log('Hey now load team details for : ', id);
       this.teamId = Number(id);
       this.fetchTeamStats(true);
     });

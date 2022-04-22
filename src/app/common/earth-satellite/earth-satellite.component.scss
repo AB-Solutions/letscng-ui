@@ -6,10 +6,10 @@
   perspective: 400px;
   overflow: hidden;
   background-size: cover;
-  // animation-name: MOVE-BG;
-  // animation-duration: 60s;
-  // animation-timing-function: linear;
-  // animation-iteration-count: infinite;
+  animation-name: MOVE-BG;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 
   .world {
     position: absolute;

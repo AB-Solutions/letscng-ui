@@ -40,11 +40,10 @@ export class TeamLeaderboardComponent implements OnInit {
     this.refresh.emit();
   }
 
-  loadTeamList(id: any) {
+  loadTeamList(team: any) {
+    this.selectedTeam = team;
     if (this.isAdmin) {
-      this.selectedTeam = id;
-      console.log('in loadTeamList: ', id);
-      this.commonUtilService.setTeamListToView(id);
+      this.commonUtilService.setTeamListToView(team.teamId);
       document.getElementById('teamlist')?.scrollIntoView();
     }
   }

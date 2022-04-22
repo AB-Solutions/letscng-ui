@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = JSON.parse(localStorage.getItem('user_data') || '{}');
-    console.log('userData is : ', this.userData);
     this.userForm.controls['phoneNumber'].setValue(this.userData.user.phoneNumber);
     this.userForm.controls['phoneNumber'].disable();
   }

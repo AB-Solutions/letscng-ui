@@ -110,8 +110,6 @@ export class CngEventsComponent implements OnInit {
     }).sort((teamA, teamB) => {
       return teamB.total - teamA.total;
     });
-
-    console.log('this.teamLeaderboardList : ', this.teamLeaderboardList);
   }
 
 }

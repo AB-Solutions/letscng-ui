@@ -38,11 +38,10 @@ export class AuthService {
   logoutUser() {
     localStorage.removeItem('user_data');
     this.afAuth.signOut();
-    this.router.navigateByUrl('/cng-events');
+    this.router.navigateByUrl('/');
   }
 
   getStravaUserActivities(phone: any) {
-    console.log('in getStravaUserActivities : ', phone);
     const {backend} = environment;
     const {apiBaseUrl} = backend;
     const url = `${apiBaseUrl}/rides?phone=${phone}`;
@@ -51,7 +50,6 @@ export class AuthService {
   }
 
   syncStravaUserActivities(phone: any) {
-    console.log('in getStravaUserActivities : ', phone);
     const {backend} = environment;
     const {apiBaseUrl} = backend;
     const url = `${apiBaseUrl}/sync?phone=${phone}`;
@@ -60,7 +58,6 @@ export class AuthService {
   }
 
   fetchSyncLastTime(phone: any) {
-    console.log('in fetchSyncLastTime : ', phone);
     const {backend} = environment;
     const {apiBaseUrl} = backend;
     const url = `${apiBaseUrl}/sync/last_time?phone=${phone}`;
@@ -69,6 +66,7 @@ export class AuthService {
   }
 
   getPhoneNumber() {
+    // return '9163814074';
     return this.getLoggedUser()?.user?.phoneNumber.replace('+91', '');
   }
 

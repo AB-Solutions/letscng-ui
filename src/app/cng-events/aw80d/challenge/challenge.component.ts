@@ -40,7 +40,7 @@ export class ChallengeComponent implements OnInit {
   }
 
   getBoosterWeekData() {
-    this.commonUtilService.setLoadingMessage('Fetching Booster Data');
+    this.commonUtilService.setLoadingMessage('Loading Booster 1');
     this.eventService.getBoosterWeek().pipe(take(1)).subscribe((data: any) => {
       this.commonUtilService.setLoadingMessage('');
       console.log('booster Data: ', data);

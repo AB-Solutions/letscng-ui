@@ -17,7 +17,7 @@ export class CommonUtilService {
     private http: HttpClient,
   ) { }
 
-  setloadingMessage(message: string) {
+  setLoadingMessage(message: string) {
     this.loadingMessage.emit(message);
   }
 

@@ -77,4 +77,14 @@ export class EventService {
   getTeamNameById(id: any) {
     return this.aw80d2022Teams[id];
   }
+
+  getBoosterWeek() {
+    const {backend} = environment;
+    const {apiBaseUrl} = backend;
+    const url = `${apiBaseUrl}/rides/aw80d2022/boosterWeek`;
+
+    return this.http.get(url);
+  }
+
+
 }

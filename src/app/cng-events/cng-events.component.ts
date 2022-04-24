@@ -11,6 +11,7 @@ import { EventService } from '../services/event.service';
   styleUrls: ['./cng-events.component.scss']
 })
 export class CngEventsComponent implements OnInit {
+  selectedTab = 'leaderboard';
   admins = environment.admins;
   isAdmin: boolean = false;
   loggedUser: any;
@@ -110,6 +111,10 @@ export class CngEventsComponent implements OnInit {
     }).sort((teamA, teamB) => {
       return teamB.total - teamA.total;
     });
+  }
+
+  changeTab(tab: string) {
+    this.selectedTab = tab;
   }
 
 }

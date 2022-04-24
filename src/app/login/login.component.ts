@@ -118,7 +118,7 @@ export class LoginComponent implements OnInit {
 
       console.log('this.recaptchaVerifier: ', this.recaptchaVerifier);
 
-      this.commonUtilService.setloadingMessage('Verifying Phone Number');
+      this.commonUtilService.setLoadingMessage('Verifying Phone Number');
 
       firebase.auth().signInWithPhoneNumber(
         this.phoneWithCountryCode,
@@ -126,7 +126,7 @@ export class LoginComponent implements OnInit {
       ).then((result) => {
         console.log('result: ', result);
         localStorage.setItem('verificationId', result.verificationId);
-        this.commonUtilService.setloadingMessage('');
+        this.commonUtilService.setLoadingMessage('');
         this.codeSend = true;
 
         var self = this;
@@ -134,7 +134,7 @@ export class LoginComponent implements OnInit {
           self.runTimer();
         }, 1000);
       }).catch((error) => {
-        this.commonUtilService.setloadingMessage('');
+        this.commonUtilService.setLoadingMessage('');
         console.log(error);
       });
 
@@ -168,13 +168,13 @@ export class LoginComponent implements OnInit {
 
     const credentials = firebase.auth.PhoneAuthProvider.credential(verify, this.otp);
 
-    this.commonUtilService.setloadingMessage('Verifying OTP');
+    this.commonUtilService.setLoadingMessage('Verifying OTP');
 
     firebase.auth().signInWithCredential(credentials).then((response) => {
-      this.commonUtilService.setloadingMessage('');
+      this.commonUtilService.setLoadingMessage('');
       this.authService.saveUserInStore(response);
     }).catch(error => {
-      this.commonUtilService.setloadingMessage('');
+      this.commonUtilService.setLoadingMessage('');
       this.otpCodeError = true;
     });
 

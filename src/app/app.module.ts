@@ -32,6 +32,9 @@ import { CngEventsComponent } from './cng-events/cng-events.component';
 import { ServerDownComponent } from './server-down/server-down.component';
 import { EarthSatelliteComponent } from './common/earth-satellite/earth-satellite.component';
 import { PlotGraphComponent } from './cng-events/aw80d/plot-graph/plot-graph.component';
+import { ChallengeComponent } from './cng-events/aw80d/challenge/challenge.component';
+import { TrendsComponent } from './cng-events/aw80d/trends/trends.component';
+import { BoosterTableComponent } from './common/booster-table/booster-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +54,10 @@ import { PlotGraphComponent } from './cng-events/aw80d/plot-graph/plot-graph.com
     CngEventsComponent,
     ServerDownComponent,
     EarthSatelliteComponent,
-    PlotGraphComponent
+    PlotGraphComponent,
+    ChallengeComponent,
+    TrendsComponent,
+    BoosterTableComponent
   ],
   imports: [
     BrowserModule,

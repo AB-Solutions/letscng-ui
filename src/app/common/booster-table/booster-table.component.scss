@@ -1,0 +1,28 @@
+td, th {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.week-data {
+  min-width: 90px;
+  span {
+    position: relative;
+    display: inline-block;
+    width: 5px;
+    margin: 0 2px;
+    height: 20px;
+    background: #f5f5f5;
+
+    .ride-pillar {
+      position: absolute;
+      background-color: orange;
+      width: 5px;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
+
+.rider-team {
+  width: 50px;
+}

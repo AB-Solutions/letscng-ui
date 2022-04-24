@@ -1,0 +1,15 @@
+<div class="container">
+  <h3 class="h3">Booster - Level 1 Challenge</h3>
+  <p>This is an additional thrust provided by firing proper booster so that payload can be placed in desired orbit. Astronauts 👨‍🚀👩‍🚀 who are below 3️⃣0️⃣0️⃣ kms in the last 20 days will be locked in this challenge for 1 week starting Sunday 25th April with the target to cross a total of 2️⃣0️⃣0️⃣ kms. Astronauts on successfully crossing the target will be awarded by a special gift.</p>
+
+
+  <!-- <div *ngIf="topRidersData.length > 0">
+    <h5 class="h5">Rabbit Challenge Board</h5>
+    <app-booster-table [boosterData]="topRidersData"></app-booster-table>
+  </div> -->
+  <!-- <hr/> -->
+  <div *ngIf="bottomRidersData.length > 0">
+    <!-- <h5 class="h5">Tortoise Challenge Board</h5> -->
+    <app-booster-table [boosterData]="bottomRidersData"></app-booster-table>
+  </div>
+</div>

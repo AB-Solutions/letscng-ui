@@ -149,10 +149,10 @@ export class MyRidesComponent implements OnInit {
     // }, 6000);
     const phone = this.authService.getPhoneNumber();
 
-    this.commonUtilService.setloadingMessage('Syncing STRAVA Rides');
+    this.commonUtilService.setLoadingMessage('Syncing STRAVA Rides');
     this.authService.syncStravaUserActivities(phone).subscribe((data: any) => {
       this.getSyncLastTime();
-      this.commonUtilService.setloadingMessage('');
+      this.commonUtilService.setLoadingMessage('');
 
       if (this.isEventUser) {
         this.getUserActivitiesByEvent();
@@ -163,7 +163,7 @@ export class MyRidesComponent implements OnInit {
     }, (err) => {
       console.log(err);
 
-      this.commonUtilService.setloadingMessage('');
+      this.commonUtilService.setLoadingMessage('');
     });
   }
 

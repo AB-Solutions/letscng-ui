@@ -53,13 +53,13 @@ export class MyStravaComponent implements OnInit {
   }
 
   fetchStravaUserData() {
-    this.commonUtilService.setloadingMessage('Verifying STRAVA Profile');
+    this.commonUtilService.setLoadingMessage('Verifying STRAVA Profile');
     this.authService.getStravaUserFromFireStore(this.authService.getPhoneNumber()).subscribe((data: any)=>{
       this.athlete = data;
-      this.commonUtilService.setloadingMessage('');
+      this.commonUtilService.setLoadingMessage('');
     }, (error) => {
       console.log(error);
-      this.commonUtilService.setloadingMessage('');
+      this.commonUtilService.setLoadingMessage('');
       this.stravaProfileFound = false;
     });
   }

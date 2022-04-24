@@ -1,0 +1,34 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Sl No.</th>
+        <th>Rider</th>
+        <th>Team</th>
+        <th>Week Rides</th>
+        <th>Total (KM)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rider of boosterData; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{rider.firstName + ' ' + rider.lastName}}</td>
+        <td><img class="rider-team" src="../../../assets/img/aw80dteams/{{rider.team_name}}.png" /></td>
+        <td>
+          <div class="week-data">
+            <span *ngFor="let ride of rider.boosterRides">
+              <span class="vertical-pillar">
+                <span
+                  class="ride-pillar"
+                  style="height: {{getRidePillarHeight(rider.maxDistance, ride.distance)}}px"
+                  title="{{(ride.distance / 1000).toFixed(2)}} KM"
+                ></span>
+              </span>
+            </span>
+          </div>
+        </td>
+        <td>{{(rider.totalDistance / 1000).toFixed(2)}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

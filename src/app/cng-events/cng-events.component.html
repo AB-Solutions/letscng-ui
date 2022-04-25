@@ -57,7 +57,10 @@
 </div>
 
 <div *ngIf="selectedTab === 'challenge'">
-  <app-challenge></app-challenge>
+  <app-challenge
+    [boosterWeekData]="boosterWeekData"
+    [loadingBoosterData]="loadingBoosterData"
+  ></app-challenge>
 </div>
 
 <div *ngIf="selectedTab === 'trends'">

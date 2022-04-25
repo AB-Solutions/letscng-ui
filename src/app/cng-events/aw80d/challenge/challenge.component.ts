@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
 import { take } from 'rxjs';
 import { CommonUtilService } from 'src/app/services/common-util.service';
@@ -9,8 +9,9 @@ import { EventService } from 'src/app/services/event.service';
   templateUrl: './challenge.component.html',
   styleUrls: ['./challenge.component.scss']
 })
-export class ChallengeComponent implements OnInit {
-  boosterWeekData: any = {};
+export class ChallengeComponent implements OnChanges {
+  @Input() boosterWeekData: any = [];
+  @Input() loadingBoosterData: boolean = false
   bottomRidersData: any = [];
   topRidersData: any = [];
   startDate = moment('04-24-2022 00:00:00:0000', 'MM-DD-YYYY HH:mm:ss.SSSS');
@@ -24,41 +25,22 @@ export class ChallengeComponent implements OnInit {
     private commonUtilService: CommonUtilService,
   ) { }
 
-  ngOnInit(): void {
-    this.getBoosterWeekData();
-    console.log('start: ', this.startDate.unix());
-    console.log('end: ', this.endDate.unix());
-    console.log('now: ', moment.now());
+  ngOnChanges(changes: SimpleChanges): void {
+      if (changes['loadingBoosterData'].currentValue) {
+        this.commonUtilService.setLoadingMessage('Loading Booster 1');
+      } else {
+        this.commonUtilService.setLoadingMessage('');
+      }
 
-    for (let i = 0; i < 7; i++) {
-      let day: any = this.boosterStartDay + i;
-      day = day < 10 ? '0'+day : day;
-      this.boosterWeekDays.push(`2022-04-${day}`);
-    }
+      if (changes['boosterWeekData'].currentValue.length > 0) {
+        for (let i = 0; i < 7; i++) {
+          let day: any = this.boosterStartDay + i;
+          day = day < 10 ? '0'+day : day;
+          this.boosterWeekDays.push(`2022-04-${day}`);
+        }
 
-    console.log('boosterWeekDays: ', this.boosterWeekDays);
-  }
-
-  getBoosterWeekData() {
-    this.commonUtilService.setLoadingMessage('Loading Booster 1');
-    this.eventService.getBoosterWeek().pipe(take(1)).subscribe((data: any) => {
-      this.commonUtilService.setLoadingMessage('');
-      console.log('booster Data: ', data);
-      this.boosterWeekData = Object.keys(data).map((riderId) => {
-        return data[riderId];
-      });
-
-      console.log('this.boosterWeekData : ', this.boosterWeekData);
-
-      // this.getTopRiders();
-      this.getBottomRiders();
-
-      // console.log('top riders: ', this.topRidersData);
-      console.log('bottom riders: ', this.bottomRidersData);
-    }, (error) => {
-      console.log('error: ', error);
-      this.commonUtilService.setLoadingMessage('');
-    });
+        this.getBottomRiders();
+      }
   }
 
   getBottomRiders() {
@@ -67,6 +49,8 @@ export class ChallengeComponent implements OnInit {
     })).sort((a: any, b: any) => {
       return b.totalDistance - a.totalDistance;
     });
+
+    console.log('this.bottomRidersData : ', this.bottomRidersData);
   }
 
   getTopRiders() {

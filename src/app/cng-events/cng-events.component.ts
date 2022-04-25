@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../services/auth.service';
 import { CommonUtilService } from '../services/common-util.service';
@@ -23,6 +24,8 @@ export class CngEventsComponent implements OnInit {
   };
   teamLeaderboardList: any[] = [];
   aw80dUser: any = {};
+  boosterWeekData: any = [];
+  loadingBoosterData: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -45,6 +48,10 @@ export class CngEventsComponent implements OnInit {
     }
     this.fetchTeamTotals(true);
     this.fetchTeamNames();
+
+    if (!this.boosterWeekData.length) {
+      this.getBoosterWeekData();
+    }
   }
 
   refreshTeamTotal() {
@@ -115,6 +122,20 @@ export class CngEventsComponent implements OnInit {
 
   changeTab(tab: string) {
     this.selectedTab = tab;
+  }
+
+
+  getBoosterWeekData() {
+    this.loadingBoosterData = true;
+    this.eventService.getBoosterWeek().pipe(take(1)).subscribe((data: any) => {
+      this.loadingBoosterData = false;
+      this.boosterWeekData = Object.keys(data).map((riderId) => {
+        return data[riderId];
+      });
+    }, (error) => {
+      console.log('error: ', error);
+      this.loadingBoosterData = false;
+    });
   }
 
 }

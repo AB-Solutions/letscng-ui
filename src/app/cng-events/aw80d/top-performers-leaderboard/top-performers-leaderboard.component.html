@@ -9,14 +9,12 @@
         </div>
         <div class="col-6">
           {{rider.firstName + ' ' + rider.lastName}}
+          <i *ngIf="i < 3" class="fa-solid fa-medal medal-{{i+1}}"></i>
           <br/>
           <img class="leaderboard-team-logo" src="../../../../assets/img/aw80dteams/{{rider.team_name}}.png" /> {{rider.team_name}}
         </div>
         <div class="col-3">
           <app-milestone [distance]="(rider.totals/1000).toFixed(0)" [position]="i+1"></app-milestone>
-          <!-- Milestone {{i+1}}
-          <br/>
-          {{(rider.totals / 1000).toFixed(2)}} -->
         </div>
       </div>
     </div>
@@ -35,14 +33,12 @@
         </div>
         <div class="col-6">
           {{rider.firstName + ' ' + rider.lastName}}
+          <i *ngIf="i < 3" class="fa-solid fa-medal medal-{{i+1}}"></i>
           <br/>
           <img class="leaderboard-team-logo" src="../../../../assets/img/aw80dteams/{{rider.team_name}}.png" /> {{rider.team_name}}
         </div>
         <div class="col-3">
           <app-milestone [distance]="(rider.totals/1000).toFixed(0)" [position]="i+1"></app-milestone>
-          <!-- Milestone {{i+1}}
-          <br/>
-          {{(rider.totals / 1000).toFixed(2)}} -->
         </div>
       </div>
     </div>
@@ -61,14 +57,12 @@
         </div>
         <div class="col-6">
           {{rider.firstName + ' ' + rider.lastName}}
+          <i *ngIf="i < 3" class="fa-solid fa-medal medal-{{i+1}}"></i>
           <br/>
           <img class="leaderboard-team-logo" src="../../../../assets/img/aw80dteams/{{rider.team_name}}.png" /> {{rider.team_name}}
         </div>
         <div class="col-3">
           <app-milestone [distance]="(rider.totals/1000).toFixed(0)" [position]="i+1"></app-milestone>
-          <!-- Milestone {{i+1}}
-          <br/>
-          {{(rider.totals / 1000).toFixed(2)}} -->
         </div>
       </div>
     </div>

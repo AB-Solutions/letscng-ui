@@ -8,21 +8,28 @@
 <div class="aw80d-tabs container mb-3">
   <div class="row">
     <div
-      class="tab-header col-4"
+      class="tab-header col-3"
       [ngClass]="{'selected': selectedTab === 'leaderboard'}"
       (click)="changeTab('leaderboard')"
     >
       <i class="fa-solid fa-ranking-star"></i> Leaderboards
     </div>
     <div
-      class="tab-header col-4"
+      class="tab-header col-3"
+      [ngClass]="{'selected': selectedTab === 'ranking'}"
+      (click)="changeTab('ranking')"
+    >
+      <i class="fa-solid fa-ranking-star"></i> Top Riders
+    </div>
+    <div
+      class="tab-header col-3"
       [ngClass]="{'selected': selectedTab === 'challenge'}"
       (click)="changeTab('challenge')"
     >
       <i class="fa-solid fa-person-biking"></i> Challenge
     </div>
     <div
-      class="tab-header col-4"
+      class="tab-header col-3"
       [ngClass]="{'selected': selectedTab === 'trends'}"
       (click)="changeTab('trends')"
     >
@@ -47,11 +54,6 @@
     (refresh)="refreshTeamTotal()"
   ></app-team-leaderboard>
   <br/>
-  <app-top-performers-leaderboard
-    [loadingTopPerformers]="loadingTopPerformers"
-    [topPerformerData]="topPerformerData"
-  ></app-top-performers-leaderboard>
-  <br/>
   <aw80d-my-team
     *ngIf="isAw80D2022Participant || isAdmin"
     [teamId]="aw80dUser.team_id"
@@ -61,6 +63,12 @@
   <app-my-event-rides *ngIf="isAw80D2022Participant || isAdmin"></app-my-event-rides>
 </div>
 
+<div *ngIf="selectedTab === 'ranking'">
+  <app-top-performers-leaderboard
+  [loadingTopPerformers]="loadingTopPerformers"
+  [topPerformerData]="topPerformerData"
+  ></app-top-performers-leaderboard>
+</div>
 <div *ngIf="selectedTab === 'challenge'">
   <app-challenge
     [boosterWeekData]="boosterWeekData"

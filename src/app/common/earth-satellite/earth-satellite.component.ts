@@ -26,7 +26,7 @@ export class EarthSatelliteComponent implements OnInit {
   }
 
   getRotation(total: number) {
-    return ((360 * 2.5 * total) / 40075).toFixed(0);
+    return ((360 * 3 * total) / 40075).toFixed(0);
   }
 
   getColor() {

@@ -11,10 +11,22 @@
           src="{{rider.strava_profile}}" alt="{{rider.firstName}}" />
         </div>
         <div class="col-6">
-          {{rider.firstName + ' ' + rider.lastName}}
-          <i *ngIf="i < 3" class="fa-solid fa-medal medal-{{i+1}}"></i>
-          <br/>
-          <img class="leaderboard-team-logo" src="../../../../assets/img/aw80dteams/{{rider.team_name}}.png" /> {{rider.team_name}}
+          <div class="row">
+            <div class="col-10">
+              {{rider.firstName + ' ' + rider.lastName}}
+            </div>
+            <div class="col-2">
+              <i *ngIf="i < 3" class="fa-solid fa-medal medal-{{i+1}}"></i>
+            </div>
+          </div>
+          <div class="row leader-rider-row">
+            <div class="col-3">
+              <img class="leaderboard-team-logo" src="../../../../assets/img/aw80dteams/{{rider.team_name}}.png" />
+            </div>
+            <div class="col-9 team-name">
+              {{rider.team_name}}
+            </div>
+          </div>
         </div>
         <div class="col-3">
           <app-milestone [distance]="(rider.totals/1000).toFixed(0)" [position]="i+1"></app-milestone>
@@ -37,10 +49,22 @@
           src="{{rider.strava_profile}}" alt="{{rider.firstName}}" />
         </div>
         <div class="col-6">
-          {{rider.firstName + ' ' + rider.lastName}}
-          <i *ngIf="i < 3" class="fa-solid fa-medal medal-{{i+1}}"></i>
-          <br/>
-          <img class="leaderboard-team-logo" src="../../../../assets/img/aw80dteams/{{rider.team_name}}.png" /> {{rider.team_name}}
+          <div class="row">
+            <div class="col-10">
+              {{rider.firstName + ' ' + rider.lastName}}
+            </div>
+            <div class="col-2">
+              <i *ngIf="i < 3" class="fa-solid fa-medal medal-{{i+1}}"></i>
+            </div>
+          </div>
+          <div class="row leader-rider-row">
+            <div class="col-3">
+              <img class="leaderboard-team-logo" src="../../../../assets/img/aw80dteams/{{rider.team_name}}.png" />
+            </div>
+            <div class="col-9 team-name">
+              {{rider.team_name}}
+            </div>
+          </div>
         </div>
         <div class="col-3">
           <app-milestone [distance]="(rider.totals/1000).toFixed(0)" [position]="i+1"></app-milestone>
@@ -63,10 +87,22 @@
           src="{{rider.strava_profile}}" alt="{{rider.firstName}}" />
         </div>
         <div class="col-6">
-          {{rider.firstName + ' ' + rider.lastName}}
-          <i *ngIf="i < 3" class="fa-solid fa-medal medal-{{i+1}}"></i>
-          <br/>
-          <img class="leaderboard-team-logo" src="../../../../assets/img/aw80dteams/{{rider.team_name}}.png" /> {{rider.team_name}}
+          <div class="row">
+            <div class="col-10">
+              {{rider.firstName + ' ' + rider.lastName}}
+            </div>
+            <div class="col-2">
+              <i *ngIf="i < 3" class="fa-solid fa-medal medal-{{i+1}}"></i>
+            </div>
+          </div>
+          <div class="row leader-rider-row">
+            <div class="col-3">
+              <img class="leaderboard-team-logo" src="../../../../assets/img/aw80dteams/{{rider.team_name}}.png" />
+            </div>
+            <div class="col-9 team-name">
+              {{rider.team_name}}
+            </div>
+          </div>
         </div>
         <div class="col-3">
           <app-milestone [distance]="(rider.totals/1000).toFixed(0)" [position]="i+1"></app-milestone>

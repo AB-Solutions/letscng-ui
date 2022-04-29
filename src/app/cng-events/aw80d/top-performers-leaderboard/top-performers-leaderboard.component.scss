@@ -1,5 +1,9 @@
 .row {
   margin: 0;
+
+  &>* {
+    padding: 0;
+  }
 }
 
 .astronaut-card {
@@ -23,7 +27,7 @@
 }
 
 .leaderboard-container {
-  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)) center center / contain no-repeat, url('../../../../assets/img/banner/wonders.png');
+  background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)) center center / contain no-repeat, url('../../../../assets/img/banner/wonders.png');
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
@@ -47,12 +51,18 @@
 
 .medal-1 {
   color: gold;
+  border: 2px solid gold;
+  box-shadow: 0 0 3px gold;
 }
 .medal-2 {
   color: silver;
+  border: 2px solid silver;
+  box-shadow: 0 0 3px silver;
 }
 .medal-3 {
   color: rgb(205, 127, 50);
+  border: 2px solid rgb(205, 127, 50);
+  box-shadow: 0 0 3px rgb(205, 127, 50);
 }
 
 .fa-solid.fa-arrows-rotate.right {
@@ -63,4 +73,19 @@
     pointer-events: none;
     color: lightgray;
   }
+}
+
+.fa-solid.fa-medal {
+  float: right;
+  padding: 3px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.leader-rider-row {
+  align-items: center;
+}
+
+.team-name {
+  font-size: small;
 }

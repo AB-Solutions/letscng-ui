@@ -26,6 +26,8 @@ export class CngEventsComponent implements OnInit {
   aw80dUser: any = {};
   boosterWeekData: any = [];
   loadingBoosterData: boolean = false;
+  topPerformerData: any = {};
+  loadingTopPerformers: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -51,6 +53,10 @@ export class CngEventsComponent implements OnInit {
 
     if (!this.boosterWeekData.length) {
       this.getBoosterWeekData();
+    }
+
+    if (!Object.keys(this.topPerformerData).length) {
+      this.getTopPerformers();
     }
   }
 
@@ -135,6 +141,17 @@ export class CngEventsComponent implements OnInit {
     }, (error) => {
       console.log('error: ', error);
       this.loadingBoosterData = false;
+    });
+  }
+
+  getTopPerformers() {
+    this.loadingTopPerformers = true;
+    this.eventService.getLeaderboards().pipe(take(1)).subscribe((data: any) => {
+      this.loadingTopPerformers = false;
+      this.topPerformerData = data;
+    }, (error) => {
+      console.log('error: ', error);
+      this.loadingTopPerformers = false;
     });
   }
 

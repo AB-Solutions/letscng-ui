@@ -35,6 +35,8 @@ import { PlotGraphComponent } from './cng-events/aw80d/plot-graph/plot-graph.com
 import { ChallengeComponent } from './cng-events/aw80d/challenge/challenge.component';
 import { TrendsComponent } from './cng-events/aw80d/trends/trends.component';
 import { BoosterTableComponent } from './common/booster-table/booster-table.component';
+import { TopPerformersLeaderboardComponent } from './cng-events/aw80d/top-performers-leaderboard/top-performers-leaderboard.component';
+import { MilestoneComponent } from './common/milestone/milestone.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +59,9 @@ import { BoosterTableComponent } from './common/booster-table/booster-table.comp
     PlotGraphComponent,
     ChallengeComponent,
     TrendsComponent,
-    BoosterTableComponent
+    BoosterTableComponent,
+    TopPerformersLeaderboardComponent,
+    MilestoneComponent
   ],
   imports: [
     BrowserModule,

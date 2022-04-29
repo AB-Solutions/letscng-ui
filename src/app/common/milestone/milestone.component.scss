@@ -1,0 +1,40 @@
+.milestone {
+  width: 50px;
+  margin: 10px auto;
+  position: relative;
+
+
+  .top-circle {
+    border-width: 10px 0 0px 0;
+    border-style: solid;
+    border-color: #f5bd0c;
+    background: #F5BD0C;
+    text-align: center;
+    border-radius: 50% 50% 0 0;
+    font-weight: 700;
+    position: relative;
+  }
+
+  .white-body {
+    width: 50px;
+    height: 40px;
+    background: white;
+    z-index: 1;
+    left: 0;
+    vertical-align: middle;
+    line-height: 40px;
+    text-align: center;
+    top: 20px;
+    border: 1px solid #d5d5d5;
+    border-bottom: 0;
+  }
+
+  .base {
+    height: 10px;
+    border: 1px solid #d5d5d5;
+    width: 110%;
+    margin: 0 auto;
+    position: relative;
+    left: -5%;
+  }
+}

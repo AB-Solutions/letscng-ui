@@ -1,0 +1,46 @@
+.row {
+  margin: 0;
+}
+
+.astronaut-card {
+  padding: 5px 0;
+  border: 0.5px solid lightgray;
+
+  &>* {
+    margin: auto;
+  }
+
+  .profile_pic {
+    width: 80px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px lightgray;
+    margin: 0 auto;
+  }
+}
+
+.leaderboard-team-logo {
+  width: 50px;
+}
+
+.leaderboard-container {
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)) center center / contain no-repeat, url('../../../../assets/img/banner/wonders.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: rgba(236,228,185, 0.9);
+  background-size: 1500px;
+
+  animation-name: MOVE-BG;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes MOVE-BG {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}

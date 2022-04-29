@@ -47,6 +47,11 @@
     (refresh)="refreshTeamTotal()"
   ></app-team-leaderboard>
   <br/>
+  <app-top-performers-leaderboard
+    [loadingTopPerformers]="loadingTopPerformers"
+    [topPerformerData]="topPerformerData"
+  ></app-top-performers-leaderboard>
+  <br/>
   <aw80d-my-team
     *ngIf="isAw80D2022Participant || isAdmin"
     [teamId]="aw80dUser.team_id"

@@ -7,37 +7,33 @@ import { environment } from 'src/environments/environment';
 })
 export class EventService {
   aw80d2022Teams: any = {};
+  apiBaseUrl: string = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    const {backend} = environment;
+    this.apiBaseUrl = backend.apiBaseUrl;
+  }
 
   getAw80d2022ParticipantValidation(phone: any) {
-    const {backend} = environment;
-    const {apiBaseUrl} = backend;
-    const url = `${apiBaseUrl}/user/isAw80D2022Participant?phone=${phone}`;
+    const url = `${this.apiBaseUrl}/user/isAw80D2022Participant?phone=${phone}`;
 
     return this.http.get(url);
   }
 
   getAw80d2022UserActivities(phone: any) {
-    const {backend} = environment;
-    const {apiBaseUrl} = backend;
-    const url = `${apiBaseUrl}/rides/aw80d2022?phone=${phone}`;
+    const url = `${this.apiBaseUrl}/rides/aw80d2022?phone=${phone}`;
 
     return this.http.get(url);
   }
 
   getAw80d2022TeamNames() {
-    const {backend} = environment;
-    const {apiBaseUrl} = backend;
-    const url = `${apiBaseUrl}/aw80d_team_names`;
+    const url = `${this.apiBaseUrl}/aw80d_team_names`;
 
     return this.http.get(url);
   }
 
   getAw80d2022TeamTotals(cached: boolean) {
-    const {backend} = environment;
-    const {apiBaseUrl} = backend;
-    let url = `${apiBaseUrl}/rides/aw80d2022/teamTotals`;
+    let url = `${this.apiBaseUrl}/rides/aw80d2022/teamTotals`;
 
     if (cached) {
       url += `?cached=true`;
@@ -47,8 +43,6 @@ export class EventService {
   }
 
   getAw80d2022TeamRides(phone: any, id: number, cached: boolean) {
-    const {backend} = environment;
-    const {apiBaseUrl} = backend;
     let queryParams = '';
 
     if (id && id > 0) {
@@ -57,7 +51,7 @@ export class EventService {
       queryParams += `phone=${phone}`;
     }
 
-    let url = `${apiBaseUrl}/rides/aw80d2022/team?${queryParams}`;
+    let url = `${this.apiBaseUrl}/rides/aw80d2022/team?${queryParams}`;
 
     if (cached) {
       url += `&cached=true`;
@@ -67,9 +61,7 @@ export class EventService {
   }
 
   getMyTeamByPhone(phone: any) {
-    const {backend} = environment;
-    const {apiBaseUrl} = backend;
-    const url = `${apiBaseUrl}/user/getAw80D2022Team?phone=${phone}`;
+    const url = `${this.apiBaseUrl}/user/getAw80D2022Team?phone=${phone}`;
 
     return this.http.get(url);
   }
@@ -79,12 +71,20 @@ export class EventService {
   }
 
   getBoosterWeek() {
-    const {backend} = environment;
-    const {apiBaseUrl} = backend;
-    const url = `${apiBaseUrl}/rides/aw80d2022/boosterWeek`;
+    const url = `${this.apiBaseUrl}/rides/aw80d2022/boosterWeek`;
 
     return this.http.get(url);
   }
 
+  getLeaderboards() {
+    const url = `${this.apiBaseUrl}/rides/aw80d2022/getLeaderboard`;
 
+    return this.http.get(url);
+  }
+
+  refreshLeaderboard() {
+    const url = `${this.apiBaseUrl}/rides/aw80d2022/refreshLeaderboard`;
+
+    return this.http.get(url);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-top-performers-leaderboard',
@@ -8,6 +8,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 export class TopPerformersLeaderboardComponent implements OnInit, OnChanges {
   @Input() loadingTopPerformers: boolean = true;
   @Input() topPerformerData: any = {};
+  @Output() refresh = new EventEmitter<any>();
   loading: boolean = true;
   allGenderLeaderboard: any = [];
   topMaleLeaderboard: any = [];
@@ -20,19 +21,23 @@ export class TopPerformersLeaderboardComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(`changes in this.topPerformerData : `, changes);
-    this.loading = changes['loadingTopPerformers'].currentValue;
-
-    let leaderboardData = changes['topPerformerData'].currentValue;
-
-    if (leaderboardData.all || leaderboardData.male || leaderboardData.female) {
-      this.allGenderLeaderboard = this.formLeaderboardData('all', leaderboardData);
-      this.topMaleLeaderboard = this.formLeaderboardData('male', leaderboardData);
-      this.topFemaleLeaderboard = this.formLeaderboardData('female', leaderboardData);
+    if (changes['loadingTopPerformers']) {
+      this.loading = changes['loadingTopPerformers'].currentValue;
     }
 
-    console.log('allGenderLeaderboard: ', this.allGenderLeaderboard);
-    console.log('topMaleLeaderboard: ', this.topMaleLeaderboard);
-    console.log('topFemaleLeaderboard: ', this.topFemaleLeaderboard);
+    if (changes['topPerformerData']) {
+      let leaderboardData = changes['topPerformerData'].currentValue;
+
+      if (leaderboardData.all || leaderboardData.male || leaderboardData.female) {
+        this.allGenderLeaderboard = this.formLeaderboardData('all', leaderboardData);
+        this.topMaleLeaderboard = this.formLeaderboardData('male', leaderboardData);
+        this.topFemaleLeaderboard = this.formLeaderboardData('female', leaderboardData);
+      }
+
+      console.log('allGenderLeaderboard: ', this.allGenderLeaderboard);
+      console.log('topMaleLeaderboard: ', this.topMaleLeaderboard);
+      console.log('topFemaleLeaderboard: ', this.topFemaleLeaderboard);
+    }
   }
 
   formLeaderboardData(type: string, leaderboardData: any) {
@@ -44,6 +49,12 @@ export class TopPerformersLeaderboardComponent implements OnInit, OnChanges {
       return riderB.totals - riderA.totals;
     })
 
+  }
+
+  refreshLeaderboard() {
+    if (!this.loading) {
+      this.refresh.emit();
+    }
   }
 
 }

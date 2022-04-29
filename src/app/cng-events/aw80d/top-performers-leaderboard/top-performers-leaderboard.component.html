@@ -1,7 +1,10 @@
 <div class="container pad-0">
   <div class="row">
-    <h3 class="h3">Top 10 astronauts <i class="fa-solid fa-user-astronaut"></i></h3>
-    <div class="leaderboard-container all-leaderboard">
+    <h3 class="h3">
+      Top 10 astronauts <i class="fa-solid fa-user-astronaut"></i>
+      <i class="fa-solid fa-arrows-rotate right" [ngClass]="{'disabled': loading}" (click)="refreshLeaderboard()"></i>
+    </h3>
+    <div class="leaderboard-container all-leaderboard" *ngIf="!loading">
       <div class="astronaut-card row" *ngFor="let rider of allGenderLeaderboard; let i = index;">
         <div class="col-3">
           <img _ngcontent-xgc-c14="" class="profile_pic"
@@ -18,38 +21,16 @@
         </div>
       </div>
     </div>
-    <div class="alert alert-info" *ngIf="loading">
-      <strong>Loading Top 10 Leaderboard....</strong>
-    </div>
-  </div>
-  <hr/>
-  <div class="row">
-    <h3 class="h3">Top 5 Male astronauts <i class="fa-solid fa-user-astronaut"></i></h3>
-    <div class="leaderboard-container male-leaderboard">
-      <div class="astronaut-card row" *ngFor="let rider of topMaleLeaderboard; let i = index;">
-        <div class="col-3">
-          <img _ngcontent-xgc-c14="" class="profile_pic"
-          src="{{rider.strava_profile}}" alt="{{rider.firstName}}" />
-        </div>
-        <div class="col-6">
-          {{rider.firstName + ' ' + rider.lastName}}
-          <i *ngIf="i < 3" class="fa-solid fa-medal medal-{{i+1}}"></i>
-          <br/>
-          <img class="leaderboard-team-logo" src="../../../../assets/img/aw80dteams/{{rider.team_name}}.png" /> {{rider.team_name}}
-        </div>
-        <div class="col-3">
-          <app-milestone [distance]="(rider.totals/1000).toFixed(0)" [position]="i+1"></app-milestone>
-        </div>
+    <div>
+      <div class="alert alert-info" *ngIf="loading">
+        <strong>Loading Top 10 Leaderboard....</strong>
       </div>
-    </div>
-    <div class="alert alert-info" *ngIf="loading">
-      <strong>Loading Top 5 Male Leaderboard....</strong>
     </div>
   </div>
   <hr/>
   <div class="row">
     <h3 class="h3">Top 5 Female astronauts <i class="fa-solid fa-user-astronaut"></i></h3>
-    <div class="leaderboard-container female-leaderboard">
+    <div class="leaderboard-container female-leaderboard" *ngIf="!loading">
       <div class="astronaut-card row" *ngFor="let rider of topFemaleLeaderboard; let i = index;">
         <div class="col-3">
           <img _ngcontent-xgc-c14="" class="profile_pic"
@@ -66,8 +47,37 @@
         </div>
       </div>
     </div>
-    <div class="alert alert-info" *ngIf="loading">
-      <strong>Loading Top 5 Female Leaderboard....</strong>
+    <div>
+      <div class="alert alert-info" *ngIf="loading">
+        <strong>Loading Top 5 Female Leaderboard....</strong>
+      </div>
     </div>
   </div>
+  <hr/>
+  <div class="row">
+    <h3 class="h3">Top 5 Male astronauts <i class="fa-solid fa-user-astronaut"></i></h3>
+    <div class="leaderboard-container male-leaderboard" *ngIf="!loading">
+      <div class="astronaut-card row" *ngFor="let rider of topMaleLeaderboard; let i = index;">
+        <div class="col-3">
+          <img _ngcontent-xgc-c14="" class="profile_pic"
+          src="{{rider.strava_profile}}" alt="{{rider.firstName}}" />
+        </div>
+        <div class="col-6">
+          {{rider.firstName + ' ' + rider.lastName}}
+          <i *ngIf="i < 3" class="fa-solid fa-medal medal-{{i+1}}"></i>
+          <br/>
+          <img class="leaderboard-team-logo" src="../../../../assets/img/aw80dteams/{{rider.team_name}}.png" /> {{rider.team_name}}
+        </div>
+        <div class="col-3">
+          <app-milestone [distance]="(rider.totals/1000).toFixed(0)" [position]="i+1"></app-milestone>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="alert alert-info" *ngIf="loading">
+        <strong>Loading Top 5 Male Leaderboard....</strong>
+      </div>
+    </div>
+  </div>
+  <hr/>
 </div>

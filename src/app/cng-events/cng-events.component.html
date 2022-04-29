@@ -67,6 +67,7 @@
   <app-top-performers-leaderboard
   [loadingTopPerformers]="loadingTopPerformers"
   [topPerformerData]="topPerformerData"
+  (refresh)="refreshLeaderboard()"
   ></app-top-performers-leaderboard>
 </div>
 <div *ngIf="selectedTab === 'challenge'">

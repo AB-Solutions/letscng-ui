@@ -70,6 +70,15 @@ export class CngEventsComponent implements OnInit {
     this.formTeamLeaderboardList();
   }
 
+  refreshLeaderboard() {
+    this.loadingTopPerformers = true;
+    this.eventService.refreshLeaderboard().pipe(take(1)).subscribe((data: any) => {
+      this.getTopPerformers();
+    }, (error) => {
+      console.log('error: ', error);
+    });
+  }
+
   fetchMyself() {
     this.eventService.getMyTeamByPhone(this.authService.getPhoneNumber()).subscribe((data) => {
       this.aw80dUser = data;

@@ -55,4 +55,12 @@
   color: rgb(205, 127, 50);
 }
 
+.fa-solid.fa-arrows-rotate.right {
+  float: right;
+  margin-right: 3px;
 
+  &.disabled {
+    pointer-events: none;
+    color: lightgray;
+  }
+}

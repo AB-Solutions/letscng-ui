@@ -1,10 +1,20 @@
 <div *ngIf="teamId > 0" class="container pad-0">
   <div class="row clear-margin-lf">
     <div class="col-9">
-      <h3 class="h3" id="teamlist">({{getTeamName()}}) Team Member's List</h3>
+      <h3 class="h3" id="teamlist">({{getTeamName()}}) - Team</h3>
     </div>
     <div class="col-3 text-right">
-      <button class="btn btn-dark" (click)="refreshTeamList()" [disabled]="teamMemberStats.length === 0">Refresh</button>
+      <button *ngIf="isAdmin" class="admin-btn btn btn-dark white-color"
+        (click)="markDuplicate()"
+        [disabled]="teamMemberStats.length === 0"
+      >
+        <i class="fa-solid fa-recycle"></i>
+      </button>
+      <button *ngIf="isAdmin" class="admin-btn btn btn-dark white-color" (click)="refreshTeamList()" [disabled]="teamMemberStats.length === 0">
+        <i class="fa-solid fa-arrows-rotate"></i>
+      </button>
+
+      <button *ngIf="!isAdmin" class="btn btn-dark" (click)="refreshTeamList()" [disabled]="teamMemberStats.length === 0">Refresh</button>
     </div>
   </div>
   <table

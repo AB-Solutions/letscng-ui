@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CommonUtilService } from 'src/app/services/common-util.service';
 import { EventService } from 'src/app/services/event.service';
 import { getAnalytics, logEvent } from "firebase/analytics";
+import { take } from 'rxjs';
 
 @Component({
   selector: 'aw80d-my-team',
@@ -10,6 +11,7 @@ import { getAnalytics, logEvent } from "firebase/analytics";
   styleUrls: ['./my-team.component.scss']
 })
 export class MyTeamComponent implements OnInit {
+  @Input() isAdmin: boolean = false;
   @Input() aw80dUser: any;
   @Input() teamId: number = -1;
   loadingStats: boolean = false;
@@ -36,6 +38,16 @@ export class MyTeamComponent implements OnInit {
 
   getTeamName() {
     return this.eventService.getTeamNameById(this.teamId);
+  }
+
+  markDuplicate() {
+    this.commonUtilService.setLoadingMessage('Removing Duplicate Rides');
+    this.eventService.markDuplicates().pipe(take(1)).subscribe((data) => {
+      this.commonUtilService.setLoadingMessage('');
+    }, (error) => {
+      this.commonUtilService.setLoadingMessage('');
+      console.log('error: ', error);
+    });
   }
 
   refreshTeamList() {

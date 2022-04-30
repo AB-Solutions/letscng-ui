@@ -56,6 +56,7 @@
   <br/>
   <aw80d-my-team
     *ngIf="isAw80D2022Participant || isAdmin"
+    [isAdmin]="isAdmin"
     [teamId]="aw80dUser.team_id"
   ></aw80d-my-team>
 

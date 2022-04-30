@@ -87,4 +87,12 @@ export class EventService {
 
     return this.http.get(url);
   }
+
+  markDuplicates() {
+    const url = `${this.apiBaseUrl}/markDuplicates`;
+
+    return this.http.get(url);
+  }
+
+
 }

@@ -15,6 +15,7 @@ export class TeamLeaderboardComponent implements OnInit {
   numbers: any= [];
   selectedTeam: any;
   analytics: any;
+  analysis: boolean = false;
 
   constructor(private commonUtilService: CommonUtilService) {
     this.numbers = Array(13).fill(0).map((x,i)=>i);

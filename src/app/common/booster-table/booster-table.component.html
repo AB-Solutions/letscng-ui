@@ -5,8 +5,9 @@
         <th>Sl No.</th>
         <th>Rider</th>
         <th>Team</th>
-        <th>Week Rides</th>
+        <th>Rides</th>
         <th>Total (KM)</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -28,6 +29,9 @@
           </div>
         </td>
         <td>{{(rider.totalDistance / 1000).toFixed(2)}}</td>
+        <td>
+          <span *ngIf="(rider.totalDistance / 1000) >= 200">🏆</span>
+        </td>
       </tr>
     </tbody>
   </table>

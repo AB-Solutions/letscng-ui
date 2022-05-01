@@ -228,3 +228,44 @@ tr.highlight td {
 .table-row-selected {
   background-color: cyan !important;
 }
+
+
+#celebration-canvas {
+  position: fixed;
+  z-index: 2000;
+  width: 100%;
+  height: 100%;
+  display: none;
+
+  &.active {
+    display: inline-block;
+  }
+}
+
+#canvas-close {
+  position: fixed;
+  z-index: 3000;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  right: 10px;
+  top: 20px;
+  border-radius: 50%;
+  text-align: center;
+  display: none;
+
+  &.active {
+    display: inline-block;
+  }
+
+  .fa-xmark {
+    margin: 0 auto;
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+    color: #dd2c00;
+    position: absolute;
+    left: calc(50% - 15px);
+    top: calc(50% - 15px);
+  }
+}

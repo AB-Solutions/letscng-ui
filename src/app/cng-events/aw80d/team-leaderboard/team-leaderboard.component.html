@@ -14,6 +14,8 @@
         <th class="small-table-cell"></th>
         <th>Teams</th>
         <th class="km-progress">KMs</th>
+        <th *ngIf="analysis">KMs/day</th>
+        <th *ngIf="analysis">KMs/rider</th>
       </tr>
     </thead>
     <tbody>
@@ -36,6 +38,12 @@
           <div *ngIf="team.total < 0" class="progress">
             <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width:100%"></div>
           </div>
+        </td>
+        <td *ngIf="analysis">
+          {{(team.total / 28).toFixed(0)}}
+        </td>
+        <td *ngIf="analysis">
+          {{(team.total / (28*20)).toFixed(0)}}
         </td>
       </tr>
     </tbody>

@@ -1,0 +1,8 @@
+function claculateKmPerDay(total, remainingDays, perRider) {
+    const remainingKms = perRider * 20 * remainingDays;
+    const totals = total + remainingKms;
+    const finalKmsPerDay = (totals / 80);
+
+    console.log('finalKmsPerDay : ', finalKmsPerDay);
+}
+

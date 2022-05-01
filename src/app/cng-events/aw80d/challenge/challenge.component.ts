@@ -16,7 +16,6 @@ export class ChallengeComponent implements OnChanges {
   topRidersData: any = [];
   startDate = moment('04-24-2022 00:00:00:0000', 'MM-DD-YYYY HH:mm:ss.SSSS');
   endDate = moment('04-30-2022 23:59:59', 'MM-DD-YYYY HH:mm:ss');
-
   boosterStartDay = 24;
   boosterWeekDays: any[] = [];
 
@@ -30,6 +29,8 @@ export class ChallengeComponent implements OnChanges {
         this.commonUtilService.setLoadingMessage('Loading Booster 1');
       } else {
         this.commonUtilService.setLoadingMessage('');
+        document.getElementById('celebration-canvas')?.classList.add('active');
+        document.getElementById('canvas-close')?.classList.add('active');
       }
 
       if (changes['boosterWeekData'].currentValue.length > 0) {

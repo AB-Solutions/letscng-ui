@@ -71,7 +71,7 @@ export class EventService {
   }
 
   getBoosterWeek() {
-    const url = `${this.apiBaseUrl}/rides/aw80d2022/boosterWeek`;
+    const url = `${this.apiBaseUrl}/rides/aw80d2022/boosterWeek?cached=true`;
 
     return this.http.get(url);
   }

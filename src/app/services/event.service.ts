@@ -94,5 +94,11 @@ export class EventService {
     return this.http.get(url);
   }
 
+  getTeamTrend() {
+    const url = `${this.apiBaseUrl}/rides/aw80d2022/trend`;
+
+    return this.http.get(url);
+  }
+
 
 }

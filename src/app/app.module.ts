@@ -37,6 +37,7 @@ import { TrendsComponent } from './cng-events/aw80d/trends/trends.component';
 import { BoosterTableComponent } from './common/booster-table/booster-table.component';
 import { TopPerformersLeaderboardComponent } from './cng-events/aw80d/top-performers-leaderboard/top-performers-leaderboard.component';
 import { MilestoneComponent } from './common/milestone/milestone.component';
+import { TrendGraphComponent } from './common/trend-graph/trend-graph.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,8 @@ import { MilestoneComponent } from './common/milestone/milestone.component';
     TrendsComponent,
     BoosterTableComponent,
     TopPerformersLeaderboardComponent,
-    MilestoneComponent
+    MilestoneComponent,
+    TrendGraphComponent
   ],
   imports: [
     BrowserModule,

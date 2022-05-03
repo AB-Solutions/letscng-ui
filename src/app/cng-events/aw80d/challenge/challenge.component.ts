@@ -29,8 +29,7 @@ export class ChallengeComponent implements OnChanges {
         this.commonUtilService.setLoadingMessage('Loading Booster 1');
       } else {
         this.commonUtilService.setLoadingMessage('');
-        document.getElementById('celebration-canvas')?.classList.add('active');
-        document.getElementById('canvas-close')?.classList.add('active');
+        // this.commonUtilService.showConfetti();
       }
 
       if (changes['boosterWeekData'].currentValue.length > 0) {

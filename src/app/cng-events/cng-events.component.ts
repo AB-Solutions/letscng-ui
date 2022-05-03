@@ -28,6 +28,8 @@ export class CngEventsComponent implements OnInit {
   loadingBoosterData: boolean = false;
   topPerformerData: any = {};
   loadingTopPerformers: boolean = false;
+  teamTrends: any = {};
+  loadingTeamTrends: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -57,6 +59,10 @@ export class CngEventsComponent implements OnInit {
 
     if (!Object.keys(this.topPerformerData).length) {
       this.getTopPerformers();
+    }
+
+    if (!Object.keys(this.teamTrends).length) {
+      this.getTeamTrends();
     }
   }
 
@@ -161,6 +167,17 @@ export class CngEventsComponent implements OnInit {
     }, (error) => {
       console.log('error: ', error);
       this.loadingTopPerformers = false;
+    });
+  }
+
+  getTeamTrends() {
+    this.loadingTeamTrends = true;
+    this.eventService.getTeamTrend().pipe(take(1)).subscribe((data: any) => {
+      this.loadingTeamTrends = false;
+      this.teamTrends = data;
+    }, (error) => {
+      console.log('error: ', error);
+      this.loadingTeamTrends = false;
     });
   }
 

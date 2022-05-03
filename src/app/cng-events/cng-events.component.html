@@ -79,5 +79,9 @@
 </div>
 
 <div *ngIf="selectedTab === 'trends'">
-  <app-trends></app-trends>
+  <app-trends
+    [loadingTeamTrends]="loadingTeamTrends"
+    [teamTrends]="teamTrends"
+    [teamNames]="teamNames"
+  ></app-trends>
 </div>

@@ -37,4 +37,9 @@ export class CommonUtilService {
   setTeamListToView(id: any) {
     this.loadSelectedTeamList.emit(id);
   }
+
+  showConfetti() {
+    document.getElementById('celebration-canvas')?.classList.add('active');
+    document.getElementById('canvas-close')?.classList.add('active');
+  }
 }

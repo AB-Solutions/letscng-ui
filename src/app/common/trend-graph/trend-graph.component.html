@@ -1,0 +1,18 @@
+<!-- <div class="container">
+  <ul>
+    <li *ngFor="let dayData of trendData.dayWiseData; let i = index">
+      <span>Day - {{dayData.day}}</span> : <span>{{(dayData.data/1000).toFixed(0)}} KM</span>
+    </li>
+  </ul>
+</div> -->
+
+
+<div class="container">
+  <h4>{{trendData.teamName}}</h4>
+  plotPoints: {{plotPoints}}
+  <div #uj>
+    <svg class="graph-shell" width="100%" height="300" #graphShell>
+      <polyline *ngIf="plotPoints.length" attr.points="{{plotPoints}}" style="fill:none;stroke:black;stroke-width:3" />
+    </svg>
+  </div>
+</div>

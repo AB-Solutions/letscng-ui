@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { take } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../services/auth.service';
@@ -30,6 +31,7 @@ export class CngEventsComponent implements OnInit {
   loadingTopPerformers: boolean = false;
   teamTrends: any = {};
   loadingTeamTrends: boolean = false;
+  numberOfDay: number = 1;
 
   constructor(
     private authService: AuthService,
@@ -64,6 +66,10 @@ export class CngEventsComponent implements OnInit {
     if (!Object.keys(this.teamTrends).length) {
       this.getTeamTrends();
     }
+
+    const startDay = moment('2022-04-03', 'YYYY-MM-DD');
+    const day = (moment.now()/1000 - startDay.unix())/(24*60*60);
+    this.numberOfDay = Math.ceil(day);
   }
 
   refreshTeamTotal() {

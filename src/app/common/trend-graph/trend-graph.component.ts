@@ -74,11 +74,13 @@ export class TrendGraphComponent implements OnInit {
   }
 
   buildLinePoints() {
-    this.plotPoints = '';
+    console.log('in buildLinePoints');
+    let plotPointsData = this.plotPoints = '';
+    var self = this;
     this.linePoints = this.trendData.dayWiseData.map((dayData: any, i: number) => {
       const x = i * this.graphSetting.xDiff;
       const y = this.graphSetting.height - Number(((this.graphSetting.height / this.graphSetting.maxYScale) * (dayData.data/1000)).toFixed(0))
-      this.plotPoints += `${x},${y} `;
+      plotPointsData += `${x},${y} `;
 
       return {
         x,
@@ -86,6 +88,10 @@ export class TrendGraphComponent implements OnInit {
       }
     });
 
+    setTimeout(() => {
+      this.plotPoints = plotPointsData;
+    });
+    console.log('plotPointsData : ', plotPointsData);
     console.log('plotPoints : ', this.plotPoints);
   }
 

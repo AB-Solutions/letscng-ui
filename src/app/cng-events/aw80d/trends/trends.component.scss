@@ -1,0 +1,11 @@
+.trend-logo {
+  max-width: 100px;
+  width: calc(100% - 20px);
+}
+.team-selection {
+  margin-bottom: 2px;
+
+  &.not-selected {
+    border-color: transparent !important;
+  }
+}

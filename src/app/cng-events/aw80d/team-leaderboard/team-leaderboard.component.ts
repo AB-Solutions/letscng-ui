@@ -9,13 +9,14 @@ import { getAnalytics, logEvent } from "firebase/analytics";
 })
 export class TeamLeaderboardComponent implements OnInit {
   @Input() isAdmin: boolean = false;
+  @Input() numberOfDay: number = 1;
   @Input() teams: any[] = [];
   @Input() aw80dUser: any;
   @Output() refresh = new EventEmitter<any>();
   numbers: any= [];
   selectedTeam: any;
   analytics: any;
-  analysis: boolean = false;
+  analysis: boolean = true;
 
   constructor(private commonUtilService: CommonUtilService) {
     this.numbers = Array(13).fill(0).map((x,i)=>i);

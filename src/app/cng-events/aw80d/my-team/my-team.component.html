@@ -17,38 +17,41 @@
       <button *ngIf="!isAdmin" class="btn btn-dark" (click)="refreshTeamList()" [disabled]="teamMemberStats.length === 0">Refresh</button>
     </div>
   </div>
-  <table
-    class="table"
-    style="background-position: center; background-size: contain; background-repeat: no-repeat;background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)), url('../../../../assets/img/aw80dteams/{{getTeamName()}}.png')"
-  >
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th></th>
-        <th>Team Member Name</th>
-        <th>Total KM's</th>
-      </tr>
-    </thead>
-    <tbody *ngIf="!loadingStats">
-      <tr
-        *ngFor="let member of teamMemberStats; let i = index"
-        [ngClass]="{'highlight': member.me, 'table-row-selected': authService.isAdminUser() && selectedMember.id === member.id}"
-        (click)="setRiderView(member)"
-      >
-        <td>{{i + 1}}</td>
-        <td><img class="profile_pic" src="{{member.profile}}" alt="{{member.name}}" /></td>
-        <td>{{member.name}}</td>
-        <td>{{member.distance}}</td>
-      </tr>
-    </tbody>
-    <tfoot *ngIf="!loadingStats">
-      <tr>
-        <td colspan="3" class="text-right total">Total</td>
-        <td>{{getTeamTotal()}}</td>
-      </tr>
-    </tfoot>
-  </table>
-
+  <div class="table-responsive">
+    <table
+      class="table"
+      style="background-position: center; background-size: contain; background-repeat: no-repeat;background: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)), url('../../../../assets/img/aw80dteams/{{getTeamName()}}.png')"
+    >
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th></th>
+          <th>Team Member Name</th>
+          <th>Total KM's</th>
+          <th *ngIf="analysis">KM/day</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!loadingStats">
+        <tr
+          *ngFor="let member of teamMemberStats; let i = index"
+          [ngClass]="{'highlight': member.me, 'table-row-selected': authService.isAdminUser() && selectedMember.id === member.id}"
+          (click)="setRiderView(member)"
+        >
+          <td>{{i + 1}}</td>
+          <td><img class="profile_pic" src="{{member.profile}}" alt="{{member.name}}" /></td>
+          <td>{{member.name}}</td>
+          <td>{{member.distance}}</td>
+          <td *ngIf="analysis">{{(member.distance / numberOfDay).toFixed(2)}}</td>
+        </tr>
+      </tbody>
+      <tfoot *ngIf="!loadingStats">
+        <tr>
+          <td colspan="3" class="text-right total">Total</td>
+          <td>{{getTeamTotal()}}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
   <div class="alert alert-info" *ngIf="loadingStats">
     <strong>Loading Team Details....</strong>
   </div>

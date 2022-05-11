@@ -1,10 +1,29 @@
 <!-- <div class="container">
-  <img src="../../../../assets/img/gifs/launch.gif" />
+  <h2>Hello</h2>
+  <div class="row">
+    <div
+      class="col-3 team-selection"
+      *ngFor="let team of aw80dTeamTrends"
+      style="border-left: 5px solid {{team.colorBand}};"
+      [ngClass]="{'not-selected': !team.selected}"
+    >
+      <label>
+        <input type="checkbox" name="trend-{{team.teamId}}" [ngModel]="team.selected" (change)="logTrends(team)"/>
+        <img class="trend-logo" src="../../../../assets/img/aw80dteams/{{team.teamName}}.png" />
+      </label>
+    </div>
+  </div>
+  {{aw80dTeamTrends[0].selected}}
+  <app-all-total-graph
+    *ngIf="show"
+    [graphData]="aw80dTeamTrends"
+    [numberOfDay]="numberOfDay"
+  ></app-all-total-graph>
 </div> -->
 
 <app-aw80d></app-aw80d>
 
-<!-- <app-trend-graph *ngIf="aw80dTeamTrends.length" [trendData]="aw80dTeamTrends[10]"></app-trend-graph>
+<!-- <app-trend-graph *ngIf="aw80dTeamTrends.length" [trendData]="aw80dTeamTrends[0]"></app-trend-graph>
 <hr/>
 
 <app-trend-graph *ngIf="aw80dTeamTrends.length" [trendData]="aw80dTeamTrends[1]"></app-trend-graph>

@@ -11,6 +11,7 @@ import { take } from 'rxjs';
   styleUrls: ['./my-team.component.scss']
 })
 export class MyTeamComponent implements OnInit {
+  @Input() numberOfDay: number = 80;
   @Input() isAdmin: boolean = false;
   @Input() aw80dUser: any;
   @Input() teamId: number = -1;
@@ -18,6 +19,7 @@ export class MyTeamComponent implements OnInit {
   teamMemberStats: any[] = [];
   selectedMember: any = {};
   analytics: any;
+  analysis = false;
 
   constructor(
     private eventService: EventService,

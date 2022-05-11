@@ -7,53 +7,55 @@
       <button class="btn btn-dark" (click)="refreshLeaderBoard()" [disabled]="teams[0]?.total < 0">Refresh</button>
     </div>
   </div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th class="small-table-cell">Ranks</th>
-        <th class="small-table-cell"></th>
-        <th>Teams</th>
-        <th class="km-progress">KMs</th>
-        <th *ngIf="analysis">KMs/day</th>
-        <th *ngIf="analysis">KMs/rider</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let team of teams; let i = index"
-        [ngClass]="{
-          'highlight': aw80dUser && aw80dUser.team_name === team.name,
-          'table-row-selected': isAdmin && (team.teamId === selectedTeam?.teamId)
-        }"
-        [attr.data-bs-toggle]="isAdmin? null: 'modal'" [attr.data-bs-target]="isAdmin? null: '#scatteredModal'"
-        (click)="loadTeamList(team)"
-      >
-        <td class="small-table-cell">{{i + 1}}</td>
-        <td class="small-table-cell team-logo-td">
-          <img class="team-logo hidden" alt="{{team.name}}" src="{{team.logo}}" />
-          <img class="big-logo" alt="{{team.name}}" src="{{team.logo}}" />
-        </td>
-        <td>{{team.name}}</td>
-        <td class="km-progress">
-          <span *ngIf="team.total > 0">{{team.total}}</span>
-          <div *ngIf="team.total < 0" class="progress">
-            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width:100%"></div>
-          </div>
-        </td>
-        <td *ngIf="analysis">
-          {{(team.total / 32).toFixed(0)}}
-        </td>
-        <td *ngIf="analysis">
-          {{(team.total / (32*20)).toFixed(0)}}
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="3" class="text-right total"><b>Total</b></td>
-        <td>{{getTotals()}}</td>
-      </tr>
-    </tfoot>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="small-table-cell">Ranks</th>
+          <th class="small-table-cell"></th>
+          <th>Teams</th>
+          <th class="km-progress">KMs</th>
+          <th *ngIf="analysis">KMs/day</th>
+          <th *ngIf="analysis">KMs/rider</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of teams; let i = index"
+          [ngClass]="{
+            'highlight': aw80dUser && aw80dUser.team_name === team.name,
+            'table-row-selected': isAdmin && (team.teamId === selectedTeam?.teamId)
+          }"
+          [attr.data-bs-toggle]="isAdmin? null: 'modal'" [attr.data-bs-target]="isAdmin? null: '#scatteredModal'"
+          (click)="loadTeamList(team)"
+        >
+          <td class="small-table-cell">{{i + 1}}</td>
+          <td class="small-table-cell team-logo-td">
+            <img class="team-logo hidden" alt="{{team.name}}" src="{{team.logo}}" />
+            <img class="big-logo" alt="{{team.name}}" src="{{team.logo}}" />
+          </td>
+          <td>{{team.name}}</td>
+          <td class="km-progress">
+            <span *ngIf="team.total > 0">{{team.total}}</span>
+            <div *ngIf="team.total < 0" class="progress">
+              <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width:100%"></div>
+            </div>
+          </td>
+          <td *ngIf="analysis">
+            {{(team.total / numberOfDay).toFixed(0)}}
+          </td>
+          <td *ngIf="analysis">
+            {{(team.total / (numberOfDay*20)).toFixed(0)}}
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="text-right total"><b>Total</b></td>
+          <td>{{getTotals()}}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
   <div class="alert alert-info" *ngIf="teams.length == 0">
     <strong>Loading...</strong>
   </div>

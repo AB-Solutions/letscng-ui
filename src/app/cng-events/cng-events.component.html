@@ -51,6 +51,7 @@
     [isAdmin]="isAdmin"
     [teams]="teamLeaderboardList"
     [aw80dUser]="aw80dUser"
+    [numberOfDay]="numberOfDay"
     (refresh)="refreshTeamTotal()"
   ></app-team-leaderboard>
   <br/>
@@ -58,6 +59,7 @@
     *ngIf="isAw80D2022Participant || isAdmin"
     [isAdmin]="isAdmin"
     [teamId]="aw80dUser.team_id"
+    [numberOfDay]="numberOfDay"
   ></aw80d-my-team>
 
   <br/>
@@ -83,5 +85,6 @@
     [loadingTeamTrends]="loadingTeamTrends"
     [teamTrends]="teamTrends"
     [teamNames]="teamNames"
+    [numberOfDay]="numberOfDay"
   ></app-trends>
 </div>

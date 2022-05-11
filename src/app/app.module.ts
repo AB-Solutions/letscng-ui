@@ -13,7 +13,7 @@ import { environment } from '../environments/environment';
 import { FooterComponent } from './footer/footer.component';
 import { Ng2TelInputModule } from 'ng2-tel-input';
 import { RecaptchaModule } from "ng-recaptcha";
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgOtpInputModule } from  'ng-otp-input';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -38,6 +38,8 @@ import { BoosterTableComponent } from './common/booster-table/booster-table.comp
 import { TopPerformersLeaderboardComponent } from './cng-events/aw80d/top-performers-leaderboard/top-performers-leaderboard.component';
 import { MilestoneComponent } from './common/milestone/milestone.component';
 import { TrendGraphComponent } from './common/trend-graph/trend-graph.component';
+import { AllTotalGraphComponent } from './common/all-total-graph/all-total-graph.component';
+import { UfoComponent } from './ufo/ufo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,10 +65,13 @@ import { TrendGraphComponent } from './common/trend-graph/trend-graph.component'
     BoosterTableComponent,
     TopPerformersLeaderboardComponent,
     MilestoneComponent,
-    TrendGraphComponent
+    TrendGraphComponent,
+    AllTotalGraphComponent,
+    UfoComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

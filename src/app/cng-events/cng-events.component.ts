@@ -32,6 +32,7 @@ export class CngEventsComponent implements OnInit {
   teamTrends: any = {};
   loadingTeamTrends: boolean = false;
   numberOfDay: number = 1;
+  lostTeams = ['10', '13', '14'];
 
   constructor(
     private authService: AuthService,
@@ -142,9 +143,13 @@ export class CngEventsComponent implements OnInit {
         logo: `../../../assets/img/aw80dteams/${teamName}.png`,
         total: isTeamTotalReady ? Number(((this.teamTotals.running[teamId])/1000).toFixed(2)) : -1,
       }
-    }).sort((teamA, teamB) => {
-      return teamB.total - teamA.total;
+    }).filter((team) => {
+      return this.lostTeams.indexOf(team.teamId) === -1;
     });
+    // .sort((teamA, teamB) => {
+    //   return teamA.name > teamB.name;
+    //   // return teamB.total - teamA.total;
+    // });
   }
 
   changeTab(tab: string) {

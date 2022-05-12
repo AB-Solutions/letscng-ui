@@ -36,6 +36,14 @@
     transform: translateX(-50%);
     // border: 1px solid red;
 
+    .alien {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      font-size: xx-large;
+      transform: translateX(-50%);
+    }
+
     .belt {
       position: absolute;
       width: 150px;
@@ -161,6 +169,6 @@
     transform: rotate(5deg) scale(.1);
   }
   50% {
-    transform: rotate(-5deg) scale(.3);
+    transform: rotate(-5deg) scale(.5);
   }
 }

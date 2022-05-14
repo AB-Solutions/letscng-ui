@@ -13,6 +13,7 @@ import { EventService } from '../services/event.service';
   styleUrls: ['./cng-events.component.scss']
 })
 export class CngEventsComponent implements OnInit {
+  alertFullMessage: boolean = false;
   selectedTab = 'leaderboard';
   admins = environment.admins;
   isAdmin: boolean = false;

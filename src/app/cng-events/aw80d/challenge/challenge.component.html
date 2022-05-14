@@ -10,6 +10,9 @@
   <!-- <hr/> -->
   <div *ngIf="bottomRidersData.length > 0">
     <!-- <h5 class="h5">Tortoise Challenge Board</h5> -->
-    <app-booster-table [boosterData]="bottomRidersData"></app-booster-table>
+    <app-booster-table
+      [boosterData]="bottomRidersData"
+      [thresholdKm]="200"
+    ></app-booster-table>
   </div>
 </div>

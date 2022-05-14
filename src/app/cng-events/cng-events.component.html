@@ -43,9 +43,18 @@
     <p class="text-secondary">Around the world in 80 days i.e. 40075 kms (The Circumference of the Earth). Multiple teams, each team of 22 riders must cycle 40075 kms in 80 days. Names of the Teams (derived from first Satellite of a Country): Aryabhata (India), Sputnik (USSR), Explorer (USA), Oshumi (Japan) etc.</p>
     <div class="alert alert-warning">
       <strong>EMERGENCY ALERT 🚨 !</strong> <br/>
-      Command Center 🏣 has Lost Contact with 3 satellites 🛰️ : Kit Sat, Spuntik & Sanmarco.
+      Command Center 🏣 has Lost Contact with 3 satellites 🛰️ : Kit Sat, Spuntik & Sanmarco at 10:30 PM on Thursday, 12th May 2022.
       <br/><br/>
-      Command Post and the IT Team are trying to establish  📡contact, UPDATE EXPECTED SOON.
+      Three teams have been made to rescue these three satellites 🛰 namely: <b>Let’s Rescue Kit Sat</b>, <b>Let’s Rescue Sanmarco</b> and <b>Let’s Rescue Sputnik</b>. <span class="link" *ngIf="!alertFullMessage" (click)="alertFullMessage = !alertFullMessage">Read more..</span>
+      <span *ngIf="alertFullMessage">
+        <br>
+        <br>
+        Target of each Rescue Team is to cover 4200 KMs in 7 days starting Sunday (15th May) and ending on Saturday(21st may). As soon as rescue team achieves 4200 kms within 7 days, the respective lost satellite will be back to the Leaderboard.
+        <br/>
+        <br/>
+        <b>Note:</b>Rescue Rider who covers minimum 250 (Kms) in this 7 days will receive AW80D Theme Baklava.
+        <span class="link" *ngIf="alertFullMessage" (click)="alertFullMessage = !alertFullMessage">Read less..</span>
+      </span>
     </div>
   </div>
 

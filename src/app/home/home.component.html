@@ -1,13 +1,74 @@
-<div class="container-fluid">
-    <div class="row row-grid align-items-center">
-        <div class="col-12 col-xl-12 order-md-1 text-center">
+<div class="container-fluid full-width">
+
+  <!-- Carousel -->
+  <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+
+    <!-- Indicators/dots -->
+    <div class="carousel-indicators">
+      <button
+        *ngFor="let carousel of carouselData; let i = index"
+        type="button"
+        data-bs-target="#carousel"
+        attr.data-bs-slide-to="{{i}}"
+        [ngClass]="{'active': carouselIndex === i}"
+      ></button>
+    </div>
+
+    <!-- The slideshow/carousel -->
+    <div class="carousel-inner">
+      <div
+        class="carousel-item"
+        [ngClass]="{'active': carouselIndex === i}"
+        *ngFor="let carousel of carouselData; let i = index"
+      >
+        <div class="image-content">
+          <a *ngIf="carousel.link" href="{{carousel.link}}" target="_blank">
+            <img
+              src="../../assets/img/banner/{{carousel.image}}"
+              alt="{{carousel.description}}"
+              class="d-block"
+            />
+          </a>
+          <img *ngIf="!carousel.link"
+            src="../../assets/img/banner/{{carousel.image}}"
+            alt="{{carousel.description}}"
+            class="d-block"
+          />
+        </div>
+        <div
+          class="carousel-background"
+          style="background-image: url(../../assets/img/banner/{{carousel.image}});"
+        >
+        </div>
+        <div class="carousel-caption" *ngIf="carousel.description || carousel.smallDesc">
+          <a href="{{carousel.link}}" target="_blank" *ngIf="carousel.link">
+            <h3 *ngIf="carousel.description">{{carousel.description}}</h3>
+            <p *ngIf="carousel.smallDesc">{{carousel.smallDesc}}</p>
+          </a>
+          <h3 *ngIf="carousel.description && !carousel.link">{{carousel.description}}</h3>
+          <p *ngIf="carousel.smallDesc && !carousel.link">{{carousel.smallDesc}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+
+    <div class="row row-grid align-items-center mar-0">
+        <!-- <div class="col-12 col-xl-12 order-md-1 text-center">
           <a href="https://forms.gle/S5FcUGNF39VTTJi69" target="_blank">
             <figure class="w-100">
               <img *ngIf="!maintenance" class="img-fluid mw-md-120" src="../../assets/img/banner/web_banner.jpg" alt="Image banner" />
               <img *ngIf="maintenance" class="img-fluid mw-md-120" src="../../assets/img/banner/under-mintenance.jpeg" alt="Image banner" />
             </figure>
           </a>
-        </div>
+        </div> -->
         <div *ngIf="!maintenance" class="col-12 col-xl-12 order-md-2 pr-md-5">
             <h3 class="display-4 h3 text-center text-md-left mb-3">
 

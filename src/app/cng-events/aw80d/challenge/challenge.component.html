@@ -10,28 +10,37 @@
         class="tab-header col-3"
         [ngClass]="{'selected': selectedTab === 1}"
         (click)="selectedTab = 1"
+        style="background-image: url('../../../../assets/img/aw80dteams/Kit Sat - South Korea.png')"
       >
-        Rescue <span class="intact">Kit Sat</span>
-        <br/>
-        <span class="sm-text">{{getRescueTotals(1)}} KM</span>
+        <div>
+          Rescue <span class="intact">Kit Sat</span>
+          <br/>
+          <span class="sm-text">{{getRescueTotals(1)}} KM</span>
+        </div>
       </div>
       <div
         class="tab-header col-3"
         [ngClass]="{'selected': selectedTab === 2}"
         (click)="selectedTab = 2"
+        style="background-image: url('../../../../assets/img/aw80dteams/Sanmarco - Italy.png')"
       >
-        Rescue Sanmarco
-        <br/>
-        <span class="sm-text">{{getRescueTotals(2)}} KM</span>
+        <div>
+          Rescue Sanmarco
+          <br/>
+          <span class="sm-text">{{getRescueTotals(2)}} KM</span>
+        </div>
       </div>
       <div
         class="tab-header col-3"
         [ngClass]="{'selected': selectedTab === 3}"
         (click)="selectedTab = 3"
+        style="background-image: url('../../../../assets/img/aw80dteams/Sputnik - USSR.png')"
       >
-        Rescue Sputnik
-        <br/>
-        <span class="sm-text">{{getRescueTotals(3)}} KM</span>
+        <div>
+          Rescue Sputnik
+          <br/>
+          <span class="sm-text">{{getRescueTotals(3)}} KM</span>
+        </div>
       </div>
       <div
         class="tab-header col-3"

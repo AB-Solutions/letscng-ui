@@ -1,0 +1,24 @@
+.tab-team-logo {
+  width: 50px;
+}
+
+
+.tab-header {
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+  background: #efefef;
+  border-right: 0.5px solid #fff;
+
+  &.selected {
+    border-bottom: 1px solid #125ea3;
+    background: lightyellow;
+  }
+}
+
+.fa-solid {
+  display: block;
+}
+
+.intact {
+  white-space: nowrap;
+}

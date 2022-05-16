@@ -28,6 +28,8 @@ export class CngEventsComponent implements OnInit {
   aw80dUser: any = {};
   boosterWeekData: any = [];
   loadingBoosterData: boolean = false;
+  boosterWeek2Data: any = [];
+  loadingBooster2Data: boolean = false;
   topPerformerData: any = {};
   loadingTopPerformers: boolean = false;
   teamTrends: any = {};
@@ -59,6 +61,10 @@ export class CngEventsComponent implements OnInit {
 
     if (!this.boosterWeekData.length) {
       this.getBoosterWeekData();
+    }
+
+    if (!this.boosterWeek2Data.length) {
+      this.getBoosterWeek2Data();
     }
 
     if (!Object.keys(this.topPerformerData).length) {
@@ -165,6 +171,20 @@ export class CngEventsComponent implements OnInit {
       this.boosterWeekData = Object.keys(data).map((riderId) => {
         return data[riderId];
       });
+    }, (error) => {
+      console.log('error: ', error);
+      this.loadingBoosterData = false;
+    });
+  }
+
+  getBoosterWeek2Data() {
+    this.loadingBooster2Data = true;
+    this.eventService.getBoosterWeek2().pipe(take(1)).subscribe((data: any) => {
+      this.loadingBooster2Data = false;
+      this.boosterWeek2Data = Object.keys(data).map((riderId) => {
+        return data[riderId];
+      });
+      console.log('boosterWeek2Data: ', this.boosterWeek2Data);
     }, (error) => {
       console.log('error: ', error);
       this.loadingBoosterData = false;

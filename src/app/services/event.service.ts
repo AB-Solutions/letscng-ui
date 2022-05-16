@@ -76,6 +76,12 @@ export class EventService {
     return this.http.get(url);
   }
 
+  getBoosterWeek2() {
+    const url = `${this.apiBaseUrl}/rides/aw80d2022/boosterWeek2`;
+
+    return this.http.get(url);
+  }
+
   getLeaderboards() {
     const url = `${this.apiBaseUrl}/rides/aw80d2022/getLeaderboard`;
 

@@ -94,8 +94,10 @@
 </div>
 <div *ngIf="selectedTab === 'challenge'">
   <app-challenge
+    [boosterWeek2Data]="boosterWeek2Data"
     [boosterWeekData]="boosterWeekData"
     [loadingBoosterData]="loadingBoosterData"
+    [loadingBooster2Data]="loadingBooster2Data"
   ></app-challenge>
 </div>
 

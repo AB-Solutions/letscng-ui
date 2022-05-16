@@ -10,8 +10,12 @@ import { EventService } from 'src/app/services/event.service';
   styleUrls: ['./challenge.component.scss']
 })
 export class ChallengeComponent implements OnChanges {
+  @Input() boosterWeek2Data: any = [];
+  @Input() loadingBooster2Data: boolean = false;
+
   @Input() boosterWeekData: any = [];
-  @Input() loadingBoosterData: boolean = false
+  @Input() loadingBoosterData: boolean = false;
+  selectedTab: number = 1;
   bottomRidersData: any = [];
   topRidersData: any = [];
   startDate = moment('04-24-2022 00:00:00:0000', 'MM-DD-YYYY HH:mm:ss.SSSS');
@@ -25,14 +29,15 @@ export class ChallengeComponent implements OnChanges {
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-      if (changes['loadingBoosterData'].currentValue) {
-        this.commonUtilService.setLoadingMessage('Loading Booster 1');
+    console.log(changes);
+      if (changes['loadingBoosterData']?.currentValue || changes['loadingBooster2Data']?.currentValue) {
+        this.commonUtilService.setLoadingMessage('Loading Booster Data');
       } else {
         this.commonUtilService.setLoadingMessage('');
         // this.commonUtilService.showConfetti();
       }
 
-      if (changes['boosterWeekData'].currentValue.length > 0) {
+      if (changes['boosterWeekData']?.currentValue.length > 0) {
         for (let i = 0; i < 7; i++) {
           let day: any = this.boosterStartDay + i;
           day = day < 10 ? '0'+day : day;
@@ -40,6 +45,13 @@ export class ChallengeComponent implements OnChanges {
         }
 
         this.getBottomRiders();
+      }
+
+      if (changes['boosterWeek2Data']?.currentValue.length > 0) {
+        this.boosterWeek2Data = changes['boosterWeek2Data'].currentValue;
+        console.log('boosterWeek2Data : ', this.boosterWeek2Data);
+      } else {
+        console.log('here pelm na 1');
       }
   }
 
@@ -51,6 +63,35 @@ export class ChallengeComponent implements OnChanges {
     });
 
     console.log('this.bottomRidersData : ', this.bottomRidersData);
+  }
+
+  getRescueTotals(team: number) {
+    return (this.boosterWeek2Data.filter((rider: any) => {
+      return rider.team === team;
+    }).reduce((total: number, rider: any) => {
+      return total + rider.ride_distance;
+    }, 0)).toFixed(2);
+  }
+
+  getBoosterWeek2Data(selectedTab: number) {
+    let tabularData = [...this.boosterWeek2Data];
+
+    if (selectedTab !== 4) {
+      tabularData = tabularData.filter((rider: any) => {
+        return rider.team == this.selectedTab;
+      })
+    }
+
+    return tabularData.map((rider: any) => {
+      return {
+        ...rider,
+        totalDistance: rider.ride_distance * 1000,
+      };
+    }).sort((a: any, b: any) => {
+      return b.totalDistance - a.totalDistance;
+    });
+
+
   }
 
   getTopRiders() {

@@ -23,6 +23,12 @@ export class HomeComponent implements OnInit {
       smallDesc: 'Register'
     },
     {
+      image: 'cng-brm-200.jpg',
+      link: 'https://www.audaxindia.in/event-e-6021',
+      description: '',
+      smallDesc: ''
+    },
+    {
       image: 'aw80d2.0jersey.jpg',
       link: '',
       description: '',

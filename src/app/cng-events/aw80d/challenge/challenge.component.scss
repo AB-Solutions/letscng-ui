@@ -12,7 +12,8 @@
   border-right: 0.5px solid #fff;
 
   &>div {
-    background: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.8);
+    height: 100%;
   }
   &.selected {
     border-bottom: 5px solid #125ea3;

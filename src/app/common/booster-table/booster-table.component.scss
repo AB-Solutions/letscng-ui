@@ -3,6 +3,16 @@ td, th {
   padding-right: 0 !important;
 }
 
+@media only screen and (max-width: 575px) {
+  td,th{
+    max-width: 200px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 20px !important;
+  }
+}
+
 .week-data {
   min-width: 80px;
   span {

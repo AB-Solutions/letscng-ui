@@ -54,11 +54,20 @@
   </div>
   <div *ngIf="boosterWeek2Data.length > 0">
     <!-- <h5 class="h5">Tortoise Challenge Board</h5> -->
-    <app-booster-table
-      [showRidesCandle]="false"
-      [boosterData]="getBoosterWeek2Data(selectedTab)"
-      [thresholdKm]="250"
-    ></app-booster-table>
+    <div *ngIf="selectedTab < 4">
+      <app-booster-table
+        [showRidesCandle]="false"
+        [boosterData]="getBoosterWeek2Data(selectedTab)"
+        [thresholdKm]="0"
+      ></app-booster-table>
+    </div>
+    <div *ngIf="selectedTab === 4">
+      <app-booster-table
+        [showRidesCandle]="false"
+        [boosterData]="getBoosterWeek2Data(selectedTab)"
+        [thresholdKm]="250"
+      ></app-booster-table>
+    </div>
   </div>
   <br>
   <br/>

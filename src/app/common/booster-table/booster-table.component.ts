@@ -29,7 +29,7 @@ export class BoosterTableComponent implements OnInit {
 
     if (changes['boosterData'].currentValue) {
       let boosterData = changes['boosterData'].currentValue;
-      this.showTrophy = boosterData.some((rider: any) => {
+      this.showTrophy = this.thresholdKm && boosterData.some((rider: any) => {
         return rider.totalDistance/1000 >= this.thresholdKm;
       });
     }

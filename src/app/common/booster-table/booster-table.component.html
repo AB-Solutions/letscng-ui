@@ -30,7 +30,7 @@
         </td>
         <td>{{(rider.totalDistance / 1000).toFixed(2)}}</td>
         <td *ngIf="showTrophy">
-          <span *ngIf="(rider.totalDistance / 1000) >= 200">🏆</span>
+          <span *ngIf="(rider.totalDistance / 1000) >= thresholdKm">🏆</span>
         </td>
       </tr>
     </tbody>

@@ -26,6 +26,11 @@
       <div id="canvas-close" onclick="closeCanvas()">
         <i class="fa-solid fa-xmark"></i>
       </div>
+      <div class="global-alert" id="global-alert">
+        <div class="header">Important Announcement</div>
+        <hr/>
+        <div id="global-alert-body"></div>
+      </div>
         <app-root></app-root>
     </div>
     <noscript>Please enable JavaScript to continue using this application.</noscript>
@@ -37,6 +42,7 @@
       function closeCanvas() {
         document.getElementById('celebration-canvas').classList.remove('active');
         document.getElementById('canvas-close').classList.remove('active');
+        document.getElementById('global-alert').classList.remove('active');
       }
     </script>
 </body>

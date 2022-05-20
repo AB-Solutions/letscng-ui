@@ -42,4 +42,14 @@ export class CommonUtilService {
     document.getElementById('celebration-canvas')?.classList.add('active');
     document.getElementById('canvas-close')?.classList.add('active');
   }
+
+  showGlobalAlert(message: string) {
+    const globalAlertElement = document.getElementById('global-alert');
+    const globalAlertBody = document.getElementById('global-alert-body');
+    globalAlertElement?.classList.add('active');
+    if(globalAlertBody) {
+      globalAlertBody.innerHTML = message;
+    }
+
+  }
 }

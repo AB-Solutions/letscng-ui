@@ -8,6 +8,8 @@ import { getAnalytics, logEvent } from "firebase/analytics";
   styleUrls: ['./team-leaderboard.component.scss']
 })
 export class TeamLeaderboardComponent implements OnInit {
+  Number = Number;
+  @Input() rescuedTeams: any[] = [];
   @Input() isAdmin: boolean = false;
   @Input() numberOfDay: number = 1;
   @Input() teams: any[] = [];

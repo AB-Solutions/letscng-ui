@@ -66,6 +66,7 @@
   <div *ngIf="lostTeams.indexOf(aw80dUser.team_id) === -1">
     <app-team-leaderboard
       [isAdmin]="isAdmin"
+      [rescuedTeams]="rescuedTeams"
       [teams]="teamLeaderboardList"
       [aw80dUser]="aw80dUser"
       [numberOfDay]="numberOfDay"

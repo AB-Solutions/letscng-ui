@@ -242,7 +242,7 @@ export class CngEventsComponent implements OnInit {
     const rescuedTeamNames = this.rescuedTeams.map((teamId: any) => {
       return this.teamNames[teamId];
     });
-    this.commonUtilService.showGlobalAlert(`Lost satellite${plural} namely -> ${rescuedTeamNames.join(', ')} have been rescued by the trusted Rescue Team${plural}. Congratulations to the Rescue Team${plural} and Welcome Back Satellite${plural} ${rescuedTeamNames.join(', ')}`);
+    this.commonUtilService.showGlobalAlert(`Lost satellite${plural} namely -> <span class="green-text">${rescuedTeamNames.join(', ')}</span> have been rescued by the trusted Rescue Team${plural}.<br/><br/>Congratulations to the Rescue Team${plural} and Welcome back Satellite${plural} <span class="green-text">${rescuedTeamNames.join(', ')}</span> <br/><br/> <b>Note: </b>Leaderboard Rankings will be enabled after all the lost satellites are rescued.`);
     this.formTeamLeaderboardList();
   }
 

@@ -225,6 +225,10 @@ tr.highlight td {
   background: rgba(255,255,0,.4);
 }
 
+tr.rescued td {
+  background: #74b84a;
+}
+
 .hidden {
   visibility: hidden;
 }
@@ -279,7 +283,7 @@ tr.highlight td {
   display: none;
   position: fixed;
   z-index: 3000;
-  width: 80%;
+  width: calc(100% - 30px);
   max-width: 400px;
   left: 50%;
   top: 50%;
@@ -297,4 +301,9 @@ tr.highlight td {
 
 .mar-0 {
   margin: 0;
+}
+
+.green-text {
+  color: green;
+  font-weight: bolder;
 }

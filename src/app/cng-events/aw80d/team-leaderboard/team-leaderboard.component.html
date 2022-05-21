@@ -23,8 +23,7 @@
         <tr *ngFor="let team of teams; let i = index"
           [ngClass]="{
             'highlight': aw80dUser && aw80dUser.team_name === team.name,
-            'table-row-selected': isAdmin && (team.teamId === selectedTeam?.teamId),
-            'rescued': rescuedTeams.indexOf(Number(team.teamId)) >= 0
+            'table-row-selected': isAdmin && (team.teamId === selectedTeam?.teamId)
           }"
           [attr.data-bs-toggle]="isAdmin? null: 'modal'" [attr.data-bs-target]="isAdmin? null: '#scatteredModal'"
           (click)="loadTeamList(team)"

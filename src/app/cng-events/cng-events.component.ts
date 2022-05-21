@@ -35,8 +35,6 @@ export class CngEventsComponent implements OnInit {
   teamTrends: any = {};
   loadingTeamTrends: boolean = false;
   numberOfDay: number = 1;
-  lostTeams = ['10', '13', '14'];
-  rescuedTeams: Number[] = [];
 
   constructor(
     private authService: AuthService,
@@ -151,9 +149,13 @@ export class CngEventsComponent implements OnInit {
         logo: `../../../assets/img/aw80dteams/${teamName}.png`,
         total: isTeamTotalReady ? Number(((this.teamTotals.running[teamId])/1000).toFixed(2)) : -1,
       }
-    }).filter((team) => {
-      return this.lostTeams.indexOf(team.teamId) === -1 || this.rescuedTeams.indexOf(Number(team.teamId)) >= 0;
+    }).sort((teamA: any, teamB: any) => {
+      return teamB.total - teamA.total;
     });
+
+    // .filter((team) => {
+    //   return this.lostTeams.indexOf(team.teamId) === -1 || this.rescuedTeams.indexOf(Number(team.teamId)) >= 0;
+    // });
     // .sort((teamA, teamB) => {
     //   return teamA.name > teamB.name;
     //   // return teamB.total - teamA.total;
@@ -186,65 +188,65 @@ export class CngEventsComponent implements OnInit {
         return data[riderId];
       });
       console.log('boosterWeek2Data: ', this.boosterWeek2Data);
-      this.checkRescueTeamsRecovery();
+      // this.checkRescueTeamsRecovery();
     }, (error) => {
       console.log('error: ', error);
       this.loadingBoosterData = false;
     });
   }
 
-  checkRescueTeamsRecovery() {
-    const rescueTeam1Total = this.boosterWeek2Data.filter((rider: any) => {
-      return rider.team === 1;
-    }).reduce((total: number, member: any) => {
-      return total + member.ride_distance;
-    }, 0).toFixed(2);
+  // checkRescueTeamsRecovery() {
+  //   const rescueTeam1Total = this.boosterWeek2Data.filter((rider: any) => {
+  //     return rider.team === 1;
+  //   }).reduce((total: number, member: any) => {
+  //     return total + member.ride_distance;
+  //   }, 0).toFixed(2);
 
-    if (rescueTeam1Total >= 4200) {
-      this.rescuedTeams.push(10);
-    }
-    console.log('rescue team 1 total = ', rescueTeam1Total);
+  //   if (rescueTeam1Total >= 4200) {
+  //     this.rescuedTeams.push(10);
+  //   }
+  //   console.log('rescue team 1 total = ', rescueTeam1Total);
 
-    const rescueTeam2Total = this.boosterWeek2Data.filter((rider: any) => {
-      return rider.team === 2;
-    }).reduce((total: number, member: any) => {
-      return total + member.ride_distance;
-    }, 0).toFixed(2);
+  //   const rescueTeam2Total = this.boosterWeek2Data.filter((rider: any) => {
+  //     return rider.team === 2;
+  //   }).reduce((total: number, member: any) => {
+  //     return total + member.ride_distance;
+  //   }, 0).toFixed(2);
 
-    if (rescueTeam2Total >= 4200) {
-      this.rescuedTeams.push(13);
-    }
-    console.log('rescue team 2 total = ', rescueTeam2Total);
+  //   if (rescueTeam2Total >= 4200) {
+  //     this.rescuedTeams.push(13);
+  //   }
+  //   console.log('rescue team 2 total = ', rescueTeam2Total);
 
-    const rescueTeam3Total = this.boosterWeek2Data.filter((rider: any) => {
-      return rider.team === 3;
-    }).reduce((total: number, member: any) => {
-      return total + member.ride_distance;
-    }, 0).toFixed(2);
+  //   const rescueTeam3Total = this.boosterWeek2Data.filter((rider: any) => {
+  //     return rider.team === 3;
+  //   }).reduce((total: number, member: any) => {
+  //     return total + member.ride_distance;
+  //   }, 0).toFixed(2);
 
-    if (rescueTeam3Total >= 4200) {
-      this.rescuedTeams.push(14);
-    }
-    console.log('rescue team 3 total = ', rescueTeam3Total);
+  //   if (rescueTeam3Total >= 4200) {
+  //     this.rescuedTeams.push(14);
+  //   }
+  //   console.log('rescue team 3 total = ', rescueTeam3Total);
 
-    if(this.rescuedTeams.length >= 1) {
-      this.announceRescueTeams();
-    }
-  }
+  //   if(this.rescuedTeams.length >= 1) {
+  //     this.announceRescueTeams();
+  //   }
+  // }
 
 
-  announceRescueTeams() {
-    console.log('Hurray: ', this.rescuedTeams);
-    console.log('teamLeaderboardList: ', this.teamLeaderboardList);
-    console.log('this.teamNames: ', this.teamNames);
-    const plural = this.rescuedTeams.length > 1 ? 's' : '';
-    this.commonUtilService.showConfetti();
-    const rescuedTeamNames = this.rescuedTeams.map((teamId: any) => {
-      return this.teamNames[teamId];
-    });
-    this.commonUtilService.showGlobalAlert(`Lost satellite${plural} namely -> <span class="green-text">${rescuedTeamNames.join(', ')}</span> have been rescued by the trusted Rescue Team${plural}.<br/><br/>Congratulations to the Rescue Team${plural} and Welcome back Satellite${plural} <span class="green-text">${rescuedTeamNames.join(', ')}</span> <br/><br/> <b>Note: </b>Leaderboard Rankings will be enabled after all the lost satellites are rescued.`);
-    this.formTeamLeaderboardList();
-  }
+  // announceRescueTeams() {
+  //   console.log('Hurray: ', this.rescuedTeams);
+  //   console.log('teamLeaderboardList: ', this.teamLeaderboardList);
+  //   console.log('this.teamNames: ', this.teamNames);
+  //   const plural = this.rescuedTeams.length > 1 ? 's' : '';
+  //   this.commonUtilService.showConfetti();
+  //   const rescuedTeamNames = this.rescuedTeams.map((teamId: any) => {
+  //     return this.teamNames[teamId];
+  //   });
+  //   this.commonUtilService.showGlobalAlert(`Lost satellite${plural} namely -> <span class="green-text">${rescuedTeamNames.join(', ')}</span> have been rescued by the trusted Rescue Team${plural}.<br/><br/>Congratulations to the Rescue Team${plural} and Welcome back Satellite${plural} <span class="green-text">${rescuedTeamNames.join(', ')}</span> <br/><br/> <b>Note: </b>Leaderboard Rankings will be enabled after all the lost satellites are rescued.`);
+  //   this.formTeamLeaderboardList();
+  // }
 
   getTopPerformers() {
     this.loadingTopPerformers = true;

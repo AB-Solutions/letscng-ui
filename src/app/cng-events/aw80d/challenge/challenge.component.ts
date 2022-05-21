@@ -15,7 +15,7 @@ export class ChallengeComponent implements OnChanges {
 
   @Input() boosterWeekData: any = [];
   @Input() loadingBoosterData: boolean = false;
-  selectedTab: number = 1;
+  selectedTab: number = 4;
   bottomRidersData: any = [];
   topRidersData: any = [];
   startDate = moment('04-24-2022 00:00:00:0000', 'MM-DD-YYYY HH:mm:ss.SSSS');

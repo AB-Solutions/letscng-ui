@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
     {
       image: 'aw80d-booster2.jpg',
       link: '',
-      description: 'AW80D Booster2 (LIVE)',
+      description: 'AW80D Booster2 (COMPLETED)',
       smallDesc: ''
     },
   ];

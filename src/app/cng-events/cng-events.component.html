@@ -40,14 +40,27 @@
 
 <div *ngIf="selectedTab === 'leaderboard'">
   <div class="container">
-    <p class="text-secondary">Around the world in 80 days i.e. 40075 kms (The Circumference of the Earth). Multiple teams, each team of 22 riders must cycle 40075 kms in 80 days. Names of the Teams (derived from first Satellite of a Country): Aryabhata (India), Sputnik (USSR), Explorer (USA), Oshumi (Japan) etc.</p>
+    <p class="text-secondary">Around the world in 80 days i.e. 40075 kms (The Circumference of the Earth). Multiple teams, each team of 22 riders must cycle 40075 kms in 80 days. Names of the Teams (derived from first Satellite of a Country): Aryabhata (India), Sputnik (USSR), Explorer (USA), Oshumi (Japan) etc.
+      <br/><br/>
+      <b>Note: </b> Each rider must complete 1500km to qualify for the medal and certificate.
+    </p>
     <div class="alert alert-warning">
       <strong>🚨 IMPORTANT ANNOUNCEMENT 🚨</strong> <br/><br/>
-      The Command Center 🏣 is HAPPY to announce that the LOST SATELLITES  🛰️ Kit Sat, Spuntik & Sanmarco are now RESCUED and communication has been established with all 🛰️
-      <br/><br/>
-      Foreign Affair Ministers of Italy 🇮🇹 , Russia 🇷🇺 & South Korea 🇰🇷 have sent their congratulatory messages and thanked the participating Astro Rangers for their support in the Rescue 🛟 Mission.
-      <br/><br/>
-      United Nations 🇺🇳 has also extended its Congratulations to all the Nations in showing such extensive collective composure.
+      When 3 satellite 🛰️where into the unknown🌌 causing a lot of despair and worry among all concerned, 66 Astro-rangers 👩‍🚀👨‍🚀 decided to take up the challenge to bring the reign in these lost satellites back to an orbit where the quest for #AW80D can be continued.
+      <br/>
+      <br/>
+      The Command🏣 Centre is Happy to announce the list of 38 Astro Rangers who generated 250+ Newtons of Thrust within a available time frame of 7 days. <span class="link" *ngIf="!alertFullMessage" (click)="alertFullMessage = true">Read more</span>
+      <div *ngIf="alertFullMessage">
+        <br/>
+        💥 <strong>CONGRATULATIONS</strong> 💥
+        <br/>
+        <br/>
+        Go to the Challenge Tab to see the List of Qualifiers who are Awarded an Exclusive #AW80D Bandana : which needs to be Earned 🏆 and Cannot be Bought 💵.
+        <br/>
+        <br/>
+        "PS : SAY NO TO WAR, ☮️ AW80D IS A CHALLENGE NOT COMPETITION."
+        By : United Nations 🇺🇳 <span class="link" *ngIf="alertFullMessage" (click)="alertFullMessage = false">Read less</span>
+      </div>
     </div>
   </div>
 

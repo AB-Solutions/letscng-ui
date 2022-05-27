@@ -40,6 +40,9 @@ export class HomeComponent implements OnInit {
       description: 'AW80D Booster2 (COMPLETED)',
       smallDesc: ''
     },
+    {
+      image: 'CNG-foundation-day.jpg'
+    }
   ];
 
   constructor(

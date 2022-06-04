@@ -1,7 +1,7 @@
 <div class="container-fluid full-width">
 
   <!-- Carousel -->
-  <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+  <div id="carousel" class="carousel slide" data-bs-ride="carousel" *ngIf="!maintenance">
 
     <!-- Indicators/dots -->
     <div class="carousel-indicators">
@@ -61,14 +61,14 @@
   </div>
 
     <div class="row row-grid align-items-center mar-0">
-        <!-- <div class="col-12 col-xl-12 order-md-1 text-center">
-          <a href="https://forms.gle/S5FcUGNF39VTTJi69" target="_blank">
+        <div class="col-12 col-xl-12 order-md-1 text-center">
+          <a>
             <figure class="w-100">
               <img *ngIf="!maintenance" class="img-fluid mw-md-120" src="../../assets/img/banner/web_banner.jpg" alt="Image banner" />
               <img *ngIf="maintenance" class="img-fluid mw-md-120" src="../../assets/img/banner/under-mintenance.jpeg" alt="Image banner" />
             </figure>
           </a>
-        </div> -->
+        </div>
         <div *ngIf="!maintenance" class="col-12 col-xl-12 order-md-2 pr-md-5">
             <h3 class="display-4 h3 text-center text-md-left mb-3">
 

@@ -1,4 +1,49 @@
 <div class="container">
+  <!-- <h3 class="h3">Booster - Level 3 (6th June - 12th June)</h3>
+  <p>1️⃣ Out of these 6 Middle Order Riders, if any rider contributes 250 kms in given 7 days, he/she will get AW80D themed Bandana
+    2️⃣ If the the Pursuers are able to reward their top performers, they will also get a AW80D themed Bandana.</p>
+
+  <div class="aw80d-tabs container mb-3">
+    <div class="row">
+      <div
+        class="tab-header col-6"
+        [ngClass]="{'selected': selectedTabBooster3 === 1}"
+        (click)="selectedTabBooster3 = 1"
+      >
+        Team Leaderboard
+      </div>
+      <div
+        class="tab-header col-6"
+        [ngClass]="{'selected': selectedTabBooster3 === 2}"
+        (click)="selectedTabBooster3 = 2"
+      >
+        <i class="fa-solid fa-ranking-star"></i>
+        Rider's Leaderboard
+      </div>
+    </div>
+  </div>
+  <div *ngIf="boosterWeek3Data.length > 0">
+    <h5 class="h5">Tortoise Challenge Board</h5>
+    <div *ngIf="selectedTabBooster3 == 1">
+      <app-booster-table
+        [showRidesCandle]="false"
+        [boosterData]="getBoosterWeek2Data(selectedTab)"
+        [thresholdKm]="0"
+      ></app-booster-table>
+      show team leaderboard
+    </div>
+    <div *ngIf="selectedTabBooster3 === 2">
+      <app-booster-table
+        [showRidesCandle]="false"
+        [boosterData]="getBoosterWeek3RiderLeaderboard()"
+        [thresholdKm]="250"
+      ></app-booster-table>
+      show rider leaderboard
+    </div>
+  </div>
+  <br/>
+  <br/>
+  <br/> -->
   <h3 class="h3">Booster - Level 2 (Completed)</h3>
   <p>Target of each Rescue Team is to cover 4200 KMs in 7 days starting Sunday (15th May) and ending on Saturday(21st may). As soon as rescue team achieves 4200 kms within 7 days, the respective lost satellite will be back to the Leaderboard.
   <br/>

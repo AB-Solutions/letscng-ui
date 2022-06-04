@@ -30,6 +30,8 @@ export class CngEventsComponent implements OnInit {
   loadingBoosterData: boolean = false;
   boosterWeek2Data: any = [];
   loadingBooster2Data: boolean = false;
+  boosterWeek3Data: any = [];
+  loadingBooster3Data: boolean = false;
   topPerformerData: any = {};
   loadingTopPerformers: boolean = false;
   teamTrends: any = {};
@@ -64,6 +66,10 @@ export class CngEventsComponent implements OnInit {
 
     if (!this.boosterWeek2Data.length) {
       this.getBoosterWeek2Data();
+    }
+
+    if (!this.boosterWeek3Data.length) {
+      this.getBoosterWeek3Data();
     }
 
     if (!Object.keys(this.topPerformerData).length) {
@@ -187,11 +193,26 @@ export class CngEventsComponent implements OnInit {
       this.boosterWeek2Data = Object.keys(data).map((riderId) => {
         return data[riderId];
       });
-      console.log('boosterWeek2Data: ', this.boosterWeek2Data);
+      // console.log('boosterWeek2Data: ', this.boosterWeek2Data);
       // this.checkRescueTeamsRecovery();
     }, (error) => {
       console.log('error: ', error);
-      this.loadingBoosterData = false;
+      this.loadingBooster2Data = false;
+    });
+  }
+
+  getBoosterWeek3Data() {
+    this.loadingBooster3Data = true;
+    this.eventService.getBoosterWeek3().pipe(take(1)).subscribe((data: any) => {
+      this.loadingBooster3Data = false;
+      this.boosterWeek3Data = Object.keys(data).map((riderId) => {
+        return data[riderId];
+      });
+      console.log('boosterWeek3Data: ', this.boosterWeek3Data);
+      // this.checkRescueTeamsRecovery();
+    }, (error) => {
+      console.log('error: ', error);
+      this.loadingBooster3Data = false;
     });
   }
 

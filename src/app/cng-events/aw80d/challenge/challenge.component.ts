@@ -10,12 +10,15 @@ import { EventService } from 'src/app/services/event.service';
   styleUrls: ['./challenge.component.scss']
 })
 export class ChallengeComponent implements OnChanges {
-  @Input() boosterWeek2Data: any = [];
-  @Input() loadingBooster2Data: boolean = false;
-
   @Input() boosterWeekData: any = [];
   @Input() loadingBoosterData: boolean = false;
+  @Input() boosterWeek2Data: any = [];
+  @Input() loadingBooster2Data: boolean = false;
+  @Input() boosterWeek3Data: any = [];
+  @Input() loadingBooster3Data: boolean = false;
+
   selectedTab: number = 4;
+  selectedTabBooster3: number = 1;
   bottomRidersData: any = [];
   topRidersData: any = [];
   startDate = moment('04-24-2022 00:00:00:0000', 'MM-DD-YYYY HH:mm:ss.SSSS');
@@ -30,7 +33,10 @@ export class ChallengeComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
-      if (changes['loadingBoosterData']?.currentValue || changes['loadingBooster2Data']?.currentValue) {
+      if (changes['loadingBoosterData']?.currentValue
+        || changes['loadingBooster2Data']?.currentValue
+        || changes['loadingBooster3Data']?.currentValue
+      ) {
         this.commonUtilService.setLoadingMessage('Loading Booster Data');
       } else {
         this.commonUtilService.setLoadingMessage('');
@@ -53,6 +59,10 @@ export class ChallengeComponent implements OnChanges {
       } else {
         console.log('here pelm na 1');
       }
+
+      if (changes['boosterWeek3Data']?.currentValue.length > 0) {
+        this.boosterWeek3Data = changes['boosterWeek3Data'].currentValue;
+      }
   }
 
   getBottomRiders() {
@@ -74,6 +84,7 @@ export class ChallengeComponent implements OnChanges {
   }
 
   getBoosterWeek2Data(selectedTab: number) {
+    console.log('in getBoosterWeek2Data: ', selectedTab);
     let tabularData = [...this.boosterWeek2Data];
 
     if (selectedTab !== 4) {
@@ -90,8 +101,39 @@ export class ChallengeComponent implements OnChanges {
     }).sort((a: any, b: any) => {
       return b.totalDistance - a.totalDistance;
     });
+  }
 
+  getBoosterWeek3RiderLeaderboard() {
+    this.getBoosterWeek3TeamLeaderboard();
+    return this.boosterWeek3Data.map((rider:any) => {
+      return {
+        ...rider,
+        totalDistance: rider.ride_distance * 1000,
+      }
+    }).sort((riderA: any, riderB: any) => {
+      return riderB.ride_distance - riderA.ride_distance;
+    });
 
+  }
+
+  getBoosterWeek3TeamLeaderboard() {
+    const teamData: any = {};
+
+    for (let i = 0; i < this.boosterWeek3Data.length; i++) {
+      const rider = this.boosterWeek3Data[i];
+      const teamId = rider.team_id;
+      if (teamData[teamId]) {
+        teamData[teamId].distance += rider.ride_distance;
+      } else {
+        teamData[teamId] = {
+          distance: rider.ride_distance,
+          teamId: teamId,
+          teamName: rider.team_name,
+        }
+      }
+    }
+
+    console.log('teamData booster3: ', teamData);
   }
 
   getTopRiders() {

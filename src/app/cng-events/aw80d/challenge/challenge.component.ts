@@ -33,9 +33,7 @@ export class ChallengeComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
-      if (changes['loadingBoosterData']?.currentValue
-        || changes['loadingBooster2Data']?.currentValue
-        || changes['loadingBooster3Data']?.currentValue
+      if (changes['loadingBooster3Data']?.currentValue
       ) {
         this.commonUtilService.setLoadingMessage('Loading Booster Data');
       } else {

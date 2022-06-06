@@ -1,7 +1,16 @@
 <div class="container">
-  <!-- <h3 class="h3">Booster - Level 3 (6th June - 12th June)</h3>
-  <p>1️⃣ Out of these 6 Middle Order Riders, if any rider contributes 250 kms in given 7 days, he/she will get AW80D themed Bandana
-    2️⃣ If the the Pursuers are able to reward their top performers, they will also get a AW80D themed Bandana.</p>
+  <h3 class="h3">Booster - Level 3 (6th June - 12th June)</h3>
+  <p>
+    <b>THE MISSION SALUTE: </b>6 Middle Order Riders (Rank 10 - 15) of each Team have to contribute 1️⃣1️⃣0️⃣0️⃣ kms in 7 days.
+    <br/>
+    <b>PERFORMANCE MATRIX: </b>
+    <br/>
+    ▶️ Fails to achieve 900 Kms in 7 days, all the top three riders will not get their dues and may leave the team. 😭<br/>
+▶️ Achieves 900 Kms but fails to achieve 1000 kms in 7 days, all top two👥 riders will miss their due (3rd will be rewarded)<br/>
+▶️ Achieves 1000 Kms but fails to achieve 1100 kms in 7 days, top 👤one rider will miss his/her due (2nd and 3rd will get their dues)<br/>
+▶️ Achieves 1100 Kms , all top riders will get their dues in the mission with his/her kms
+
+  </p>
 
   <div class="aw80d-tabs container mb-3">
     <div class="row">
@@ -10,6 +19,7 @@
         [ngClass]="{'selected': selectedTabBooster3 === 1}"
         (click)="selectedTabBooster3 = 1"
       >
+        <i class="fa-solid fa-satellite"></i>
         Team Leaderboard
       </div>
       <div
@@ -23,14 +33,11 @@
     </div>
   </div>
   <div *ngIf="boosterWeek3Data.length > 0">
-    <h5 class="h5">Tortoise Challenge Board</h5>
     <div *ngIf="selectedTabBooster3 == 1">
-      <app-booster-table
-        [showRidesCandle]="false"
-        [boosterData]="getBoosterWeek2Data(selectedTab)"
-        [thresholdKm]="0"
-      ></app-booster-table>
-      show team leaderboard
+      <app-booster3-team-leaderboard
+        [boosterWeek3TeamTotals]="getBoosterWeek3TeamLeaderboard()"
+      >
+      </app-booster3-team-leaderboard>
     </div>
     <div *ngIf="selectedTabBooster3 === 2">
       <app-booster-table
@@ -38,12 +45,11 @@
         [boosterData]="getBoosterWeek3RiderLeaderboard()"
         [thresholdKm]="250"
       ></app-booster-table>
-      show rider leaderboard
     </div>
   </div>
   <br/>
   <br/>
-  <br/> -->
+  <br/>
   <h3 class="h3">Booster - Level 2 (Completed)</h3>
   <p>Target of each Rescue Team is to cover 4200 KMs in 7 days starting Sunday (15th May) and ending on Saturday(21st may). As soon as rescue team achieves 4200 kms within 7 days, the respective lost satellite will be back to the Leaderboard.
   <br/>

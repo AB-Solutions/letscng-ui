@@ -40,6 +40,7 @@ import { MilestoneComponent } from './common/milestone/milestone.component';
 import { TrendGraphComponent } from './common/trend-graph/trend-graph.component';
 import { AllTotalGraphComponent } from './common/all-total-graph/all-total-graph.component';
 import { UfoComponent } from './ufo/ufo.component';
+import { Booster3TeamLeaderboardComponent } from './common/booster3-team-leaderboard/booster3-team-leaderboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +68,8 @@ import { UfoComponent } from './ufo/ufo.component';
     MilestoneComponent,
     TrendGraphComponent,
     AllTotalGraphComponent,
-    UfoComponent
+    UfoComponent,
+    Booster3TeamLeaderboardComponent
   ],
   imports: [
     BrowserModule,

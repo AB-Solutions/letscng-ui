@@ -40,7 +40,7 @@
           <td>{{i + 1}}</td>
           <td><img class="profile_pic" src="{{member.profile}}" alt="{{member.name}}" /></td>
           <td>{{member.name}}</td>
-          <td>{{member.distance}}</td>
+          <td [ngClass]="{'target-achieved': member.distance >= 1500}">{{member.distance}}</td>
           <td *ngIf="analysis">{{(member.distance / numberOfDay).toFixed(2)}}</td>
         </tr>
       </tbody>

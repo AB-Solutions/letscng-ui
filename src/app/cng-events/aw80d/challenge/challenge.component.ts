@@ -108,10 +108,10 @@ export class ChallengeComponent implements OnChanges {
     return this.boosterWeek3Data.map((rider:any) => {
       return {
         ...rider,
-        totalDistance: rider.ride_distance * 1000,
+        totalDistance: rider.total_distance || 0,
       }
     }).sort((riderA: any, riderB: any) => {
-      return riderB.ride_distance - riderA.ride_distance;
+      return riderB.totalDistance - riderA.totalDistance;
     });
 
   }
@@ -123,17 +123,26 @@ export class ChallengeComponent implements OnChanges {
       const rider = this.boosterWeek3Data[i];
       const teamId = rider.team_id;
       if (teamData[teamId]) {
-        teamData[teamId].distance += rider.ride_distance;
+        teamData[teamId].distance += rider.total_distance ? (rider.total_distance / 1000) : 0;
       } else {
         teamData[teamId] = {
-          distance: rider.ride_distance,
+          distance: rider.total_distance ? (rider.total_distance / 1000) : 0,
           teamId: teamId,
           teamName: rider.team_name,
         }
       }
     }
 
+    const data = Object.keys(teamData).map((teamId: any) => {
+      return teamData[teamId];
+    }).sort((a:any, b:any) => {
+      return b.distance - a.distance;
+    });
+
     console.log('teamData booster3: ', teamData);
+    console.log('data: ', data);
+
+    return data;
   }
 
   getTopRiders() {

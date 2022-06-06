@@ -34,7 +34,7 @@
             <img class="big-logo" alt="{{team.name}}" src="{{team.logo}}" />
           </td>
           <td>{{team.name}}</td>
-          <td class="km-progress">
+          <td class="km-progress" [ngClass]="{'target-achieved': team.total >= 40075}">
             <span *ngIf="team.total > 0">{{team.total}}</span>
             <div *ngIf="team.total < 0" class="progress">
               <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" style="width:100%"></div>

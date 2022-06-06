@@ -1,0 +1,30 @@
+.logo-image {
+  width: 50px;
+}
+
+.fa-flag-checkered {
+  color: #efefef;
+
+  &.highlight1 {
+    color: goldenrod;
+  }
+  &.highlight2 {
+    color: silver;
+  }
+  &.highlight3 {
+    color: #8C5722;
+  }
+}
+
+
+.small {
+  font-size: x-small;
+}
+
+.intact-cell {
+  white-space: nowrap;
+  text-align: left;
+  max-width: 200px;
+  padding-left: 0;
+  text-overflow: ellipsis;
+}

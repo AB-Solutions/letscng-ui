@@ -24,6 +24,7 @@
         <th>Ride Title</th>
         <th>Date</th>
         <th *ngIf="authService.isAdminUser()">Avg Speed (Kmph)</th>
+        <th *ngIf="authService.isAdminUser()">Max Speed (Kmph)</th>
         <th>Distance (KM)</th>
       </tr>
     </thead>
@@ -36,6 +37,7 @@
           <a attr.href="https://www.strava.com/activities/{{activity.id}}" target="_blank">{{activity.name}}</a></td>
         <td>{{getDate(activity.start_date)}}</td>
         <td *ngIf="authService.isAdminUser()">{{getAvgSpeed(activity.average_speed)}}</td>
+        <td *ngIf="authService.isAdminUser()" [ngClass]="{'danger': authService.isAdminUser() && getAvgSpeed(activity.max_speed) > 70}">{{getAvgSpeed(activity.max_speed)}}</td>
         <td>{{getDistance(activity.distance)}}</td>
       </tr>
     </tbody>

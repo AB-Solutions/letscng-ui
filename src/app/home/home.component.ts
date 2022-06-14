@@ -12,6 +12,11 @@ export class HomeComponent implements OnInit {
   carouselIndex: number = 0;
   carouselData: any = [
     {
+      image: 'aw80d2022.jpeg',
+      link: '',
+      desciption: ''
+    },
+    {
       image: 'aw80d2.0jersey.jpg',
       link: '',
       description: '',

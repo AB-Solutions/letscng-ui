@@ -83,6 +83,30 @@ export class CngEventsComponent implements OnInit {
     const startDay = moment('2022-04-03', 'YYYY-MM-DD');
     const day = (moment.now()/1000 - startDay.unix())/(24*60*60);
     this.numberOfDay = Math.ceil(day);
+
+
+    var lastDayStart = moment('2022-06-21 23:59:59.0000', 'YYYY-MM-DD HH:mm:ss.SSSS');
+    var lastDayEnds = moment('2022-06-22 23:59:59.0000', 'YYYY-MM-DD HH:mm:ss.SSSS');
+    var momentNow = moment.now()/1000;
+
+    if ((momentNow > lastDayStart.unix()) &&(momentNow < lastDayEnds.unix())) {
+      if (!((localStorage.getItem('celebration') && localStorage.getItem('celebration') == 'done'))) {
+        this.commonUtilService.showConfetti();
+        this.commonUtilService.showGlobalAlert(`
+        <b>Fellow Astronauts</b>👩🏻‍🚀,
+        <br/><br/>
+        Congratulation 🎉 to each and every one of you. Those who succeeded and even those who tried.
+        <br/><br/>
+        As this journey of 8️⃣0️⃣ days comes to a end, but this also a new beginning of friendship 🤝 built on the base of mutual love ❤️ of cycling.
+        <br/><br/>
+        The second season of AW80D was bigger and stronger than ever before, we thank each and everyone of your for patience in dealing with us 🙏. Hope your guys had as much fun 😀 as we had creating this event for you.
+        <br/><br/>
+        Stay tuned 📻for more excitement for the times to come.
+        <br/><br/>
+        Go speed. Keepin Riding. Let's CNG.`);
+        localStorage.setItem('celebration', 'done')
+      }
+    }
   }
 
   refreshTeamTotal() {

@@ -2,7 +2,7 @@
   <div class="row">
     <h3 class="h3">
       Top 10 astronauts <i class="fa-solid fa-user-astronaut"></i>
-      <i class="fa-solid fa-arrows-rotate right" [ngClass]="{'disabled': loading}" (click)="refreshLeaderboard()"></i>
+      <!-- <i class="fa-solid fa-arrows-rotate right" [ngClass]="{'disabled': loading}" (click)="refreshLeaderboard()"></i> -->
     </h3>
     <div class="leaderboard-container all-leaderboard" *ngIf="!loading">
       <div class="astronaut-card row" *ngFor="let rider of allGenderLeaderboard; let i = index;">

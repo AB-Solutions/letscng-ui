@@ -89,7 +89,7 @@ export class CngEventsComponent implements OnInit {
     var lastDayEnds = moment('2022-06-22 23:59:59.0000', 'YYYY-MM-DD HH:mm:ss.SSSS');
     var momentNow = moment.now()/1000;
 
-    if ((momentNow > lastDayStart.unix()) &&(momentNow < lastDayEnds.unix())) {
+    if (!this.commonUtilService.maintenance && (momentNow > lastDayStart.unix()) &&(momentNow < lastDayEnds.unix())) {
       // if (!((localStorage.getItem('celebration') && localStorage.getItem('celebration') == 'done'))) {
         this.commonUtilService.showConfetti();
         this.commonUtilService.showGlobalAlert(`

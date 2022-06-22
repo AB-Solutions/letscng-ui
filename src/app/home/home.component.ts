@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   carouselIndex: number = 0;
   carouselData: any = [
     {
-      image: 'aw80d2022.jpeg',
+      image: 'bye-bye-aw80d2.0.jpeg',
       link: '',
       desciption: ''
     },
@@ -21,9 +21,6 @@ export class HomeComponent implements OnInit {
       link: '',
       description: '',
       smallDesc: ''
-    },
-    {
-      image: 'CNG-foundation-day.jpg'
     }
   ];
 

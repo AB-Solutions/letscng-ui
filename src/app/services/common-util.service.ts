@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CommonUtilService {
-  maintenance = true;
+  maintenance = false;
   loadingMessage = new EventEmitter<string>();
   loadingSuccessMessage = new EventEmitter<string>();
   loadSelectedTeamList = new EventEmitter<string>();

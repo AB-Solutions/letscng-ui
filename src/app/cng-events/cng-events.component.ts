@@ -90,7 +90,7 @@ export class CngEventsComponent implements OnInit {
     var momentNow = moment.now()/1000;
 
     if ((momentNow > lastDayStart.unix()) &&(momentNow < lastDayEnds.unix())) {
-      if (!((localStorage.getItem('celebration') && localStorage.getItem('celebration') == 'done'))) {
+      // if (!((localStorage.getItem('celebration') && localStorage.getItem('celebration') == 'done'))) {
         this.commonUtilService.showConfetti();
         this.commonUtilService.showGlobalAlert(`
         <b>Fellow Astronauts</b>👩🏻‍🚀,
@@ -105,7 +105,7 @@ export class CngEventsComponent implements OnInit {
         <br/><br/>
         Go speed. Keepin Riding. Let's CNG.`);
         localStorage.setItem('celebration', 'done')
-      }
+      // }
     }
   }
 

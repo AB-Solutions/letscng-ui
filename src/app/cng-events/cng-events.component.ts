@@ -181,6 +181,18 @@ export class CngEventsComponent implements OnInit {
       }
     }).sort((teamA: any, teamB: any) => {
       return teamB.total - teamA.total;
+    }).map((team, index) => {
+      let total = team.total;
+      if (index <= 10) {
+        total = total - 15;
+      } else if (index === 13) {
+        total = 39938.41 + 15*11;
+      }
+
+      return {
+        ...team,
+        total,
+      }
     });
 
     // .filter((team) => {
